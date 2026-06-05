@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-**AMT2ABC** 是一个开源的工业软件能力编译生态。它将工业机理（Atomic Mechanism Triplet, AMT）自动编译为可复用的原子业务能力（Atomic Business Capability, ABC），为制造运营管理系统（MOM）提供从业务目标到可执行应用的自动化编译能力。
+**AMT2ABC** 是一个开源的工业软件能力编译生态。它将工业机理（Atomic Mechanism Triplet, AMT）自动编译为可复用的原子业务能力（Atomic Business Capability, ABC），为工业智能化提供从业务目标到可执行应用的自动化编译能力。
 
 > 工业软件缺的不是AI，而是Compiler。  
 > —— AMT2ABC 核心主张
