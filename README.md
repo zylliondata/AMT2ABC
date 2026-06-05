@@ -1,4 +1,4 @@
-# AMT2ABC: From Atomic Mechanism Triplets to Atomic Business Capabilities — An Industrial Software Compiler
+# AMT2ABC: From "Atomic Mechanism Triplets" to "Atomic Business Capabilities" — An Industrial Software Compiler
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -7,14 +7,14 @@
 
 ---
 
-**AMT2ABC** is an open-source industrial software capability compilation ecosystem. It automatically compiles industrial mechanisms (Atomic Mechanism Triplet, **AMT**) into reusable Atomic Business Capabilities (**ABC**), providing industrial intelligence with automated compilation from business goals to executable applications.
+**AMT2ABC** is an open-source ecosystem for compiling industrial software capabilities. It automatically compiles industrial mechanisms, expressed as Atomic Mechanism Triplets (**AMTs**), into reusable Atomic Business Capabilities (**ABCs**), enabling automated transformation from business goals to executable industrial applications.
 
 > What industrial software lacks is not AI, but a Compiler.
 > — AMT2ABC core thesis
 
 ## Why AMT2ABC?
 
-Traditional industrial software development has long been trapped in a "project-based, siloed, costly-to-change" dilemma. Capabilities are hard to reuse across production lines and processes, and every change requires extensive manual code modification. Drawing on Huawei's Tau (τ) Law and the historical lessons of RISC + Compiler, AMT2ABC shifts complexity from low-level code to the instance-configuration layer, letting the system automatically understand business goals and compile optimal capability combinations.
+Traditional industrial software development has long been trapped in a "project-based, siloed, costly-to-change" dilemma. Capabilities are hard to reuse across production lines and processes, and every change requires extensive manual code modification. Drawing on Huawei's Tau (τ) Law and the historical lessons of RISC + Compiler, AMT2ABC shifts complexity from low-level code to the instance-configuration layer, letting the system automatically understand business goals and compile recommended capability combinations.
 
 ## Core Concepts
 
@@ -75,7 +75,7 @@ For a full tutorial, see `docs/getting-started.md` (coming soon).
 | 1. Hands-on Prototype | This year Q3 | Open-source Compiler MVP + die-casting line example |
 | 2. Community Contributions | This year Q4+ | Open contribution channels for AMT/SECP patterns |
 | 3. ABC Registry | Next year | An ABC capability marketplace, similar to Docker Hub |
-| 4. Standardization | Three years out | National association standards → international standards |
+| 4. Standardization | Three years out | Domestic group standards → international standards |
 
 ## Contributing
 

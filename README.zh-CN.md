@@ -1,4 +1,4 @@
-# AMT2ABC：从原子机理到原子业务能力的工业软件 Compiler
+# AMT2ABC：从"原子机理三元组"到"原子业务能力"的工业软件 Compiler
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -14,13 +14,13 @@
 
 ## 为什么需要 AMT2ABC？
 
-传统工业软件开发长期陷入"项目制、烟囱式、变更代价高"的困境。不同产线、不同工艺之间难以复用能力，每次变更都需要大量手工修改代码。AMT2ABC 借鉴华为韬(τ)定律和 RISC+Compiler 的历史经验，将复杂度从底层代码转移到实例配置层，让系统自动理解业务目标并编译出最优能力组合。
+传统工业软件开发长期陷入"项目制、烟囱式、变更代价高"的困境。不同产线、不同工艺之间难以复用能力，每次变更都需要大量手工修改代码。AMT2ABC 借鉴华为韬(τ)定律和 RISC+Compiler 的历史经验，将复杂度从底层代码转移到实例配置层，让系统自动理解业务目标并编译出推荐的能力组合。
 
 ## 核心概念
 
 | 概念 | 全称 | 说明 |
 |------|------|------|
-| **AMT** | Atomic Mechanism Triple | 原子机理三元组，不可再拆的最小工业因果单元，如"负载↑ → 振动↑" |
+| **AMT** | Atomic Mechanism Triplet | 原子机理三元组，不可再拆的最小工业因果单元，如"负载↑ → 振动↑" |
 | **SECP** | Structure, Event, Configuration, Process | 工业软件的四维语法，为 AMT 提供统一的结构化标签 |
 | **ABC** | Atomic Business Capability | 原子业务能力，可独立部署、跨场景复用的最小软件能力单元 |
 | **Compiler** | AMT2ABC Compiler | 从业务目标（GS）自动抽取 AMT Cluster，封装为 ABC 并编排为 App/Agent 的系统 |
