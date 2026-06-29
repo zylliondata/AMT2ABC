@@ -84,6 +84,12 @@ graph TD
 
 ## 7. 相关文档
 
-- [`contribute-abc-quickstart.md`](./contribute-abc-quickstart.md) — 贡献者快速指南（普通用户看这个）
-- [`abc-spec.md`](./abc-spec.md) — ABC 完整规范（维护者参考）
-- [`desensitization-guide.md`](./desensitization-guide.md) — 脱敏详细指南（维护者参考）
+**贡献者**：
+
+- [`contribute-abc-quickstart.md`](./contribute-abc-quickstart.md) — 快速指南（普通用户看这个）
+
+**维护者**：
+
+- [`abc-spec.md`](./abc-spec.md) — ABC 完整规范（审阅结构标尺）
+- [`desensitization-guide.md`](./desensitization-guide.md) — 脱敏详细指南（审阅脱敏标尺）
+- [`pr-review-sop.md`](./pr-review-sop.md) — PR 审阅 SOP（何时合并、何时交回）
