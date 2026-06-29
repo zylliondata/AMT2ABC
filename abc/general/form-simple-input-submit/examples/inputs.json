@@ -1,0 +1,5 @@
+{
+  "title": "请输入设备编号",
+  "placeholder": "如 EQ-001",
+  "defaultValue": ""
+}

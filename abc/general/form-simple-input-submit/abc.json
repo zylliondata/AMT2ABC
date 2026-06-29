@@ -1,0 +1,454 @@
+{
+  "amt2abc": {
+    "id": "form-simple-input-submit",
+    "name": "简单输入表单 ABC",
+    "industry": "general",
+    "category": "form",
+    "author": "zylliondata",
+    "sanitized": true
+  },
+  "applicationInfo": {
+    "name": "simple-input-form",
+    "type": "module",
+    "id": "000000000000000000000000",
+    "createBy": "",
+    "createAt": 0,
+    "publicToAll": false,
+    "publicToMarketplace": false
+  },
+  "applicationDSL": {
+    "outputs": [
+      {
+        "name": "inputValue",
+        "description": "当前输入框的值（提交后更新）",
+        "value": "{{ cv_inputValue.value }}"
+      },
+      {
+        "name": "isSubmitted",
+        "description": "是否已点击提交",
+        "value": "{{ cv_submitted.value === 'yes' }}"
+      }
+    ],
+    "ui": [
+      {
+        "hidden": false,
+        "slot": "default",
+        "customId": "",
+        "contextObject": {},
+        "compType": "rect",
+        "children": [
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "root-rect-0001",
+            "compType": "text",
+            "onEvent": [],
+            "valueType": "text",
+            "name": "formTitle",
+            "x": 20,
+            "width": 460,
+            "customClass": "",
+            "y": 16,
+            "style": {
+              "transform": "translate(20px, 16px)",
+              "backgroundColor": "transparent",
+              "color": "#1F2937",
+              "width": "460px",
+              "fontSize": "24px",
+              "position": "absolute",
+              "fontWeight": "600",
+              "height": "40px"
+            },
+            "id": "title-text-0002",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{ title.value }}",
+            "height": 40
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "{{ defaultValue.value }}",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "main-input-0003",
+            "ignorePrint": false,
+            "placeholder": "{{ placeholder.value }}",
+            "locked": false,
+            "height": 48,
+            "clearable": true,
+            "textType": "text",
+            "label": "",
+            "parentId": "root-rect-0001",
+            "labelPlacement": "left",
+            "labelAlign": "left",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "name": "cv_inputValue",
+                    "methodName": "setValue",
+                    "params": {
+                      "comp": "{{ userInput.value }}",
+                      "path": ""
+                    }
+                  },
+                  "compType": "setTempState",
+                  "delay": "",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": true
+                },
+                "name": "change",
+                "id": "evt-input-change-000a"
+              }
+            ],
+            "name": "userInput",
+            "x": 20,
+            "width": 460,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "18px"
+            },
+            "y": 72,
+            "style": {
+              "transform": "translate(20px, 72px)",
+              "width": "460px",
+              "position": "absolute",
+              "height": "48px"
+            },
+            "prefixIcon": "",
+            "min": null,
+            "max": null
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "primary",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "submit-btn-0004",
+            "ignorePrint": false,
+            "text": "提交",
+            "locked": false,
+            "height": 44,
+            "loading": false,
+            "parentId": "root-rect-0001",
+            "suffixIconColor": "",
+            "appearance": "primary",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "name": "cv_submitted",
+                    "methodName": "setValue",
+                    "params": {
+                      "comp": "yes",
+                      "path": ""
+                    }
+                  },
+                  "compType": "setTempState",
+                  "delay": "",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": true
+                },
+                "name": "click",
+                "id": "evt-submit-click-000b"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "name": "cv_inputValue",
+                    "methodName": "setValue",
+                    "params": {
+                      "comp": "{{ userInput.value }}",
+                      "path": ""
+                    }
+                  },
+                  "compType": "setTempState",
+                  "delay": "",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": true
+                },
+                "name": "click",
+                "id": "evt-submit-trigger-000c"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "name": "onSubmit"
+                  },
+                  "compType": "triggerModuleEvent",
+                  "delay": "",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "evt-submit-module-000d"
+              }
+            ],
+            "name": "submitBtn",
+            "x": 280,
+            "width": 96,
+            "customClass": "",
+            "y": 144,
+            "style": {
+              "transform": "translate(280px, 144px)",
+              "width": "96px",
+              "fontSize": "32px",
+              "position": "absolute",
+              "height": "44px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "default",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "cancel-btn-0005",
+            "ignorePrint": false,
+            "text": "取消",
+            "locked": false,
+            "height": 44,
+            "loading": false,
+            "parentId": "root-rect-0001",
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "name": "onCancel"
+                  },
+                  "compType": "triggerModuleEvent",
+                  "delay": "",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "evt-cancel-module-000e"
+              }
+            ],
+            "name": "cancelBtn",
+            "x": 384,
+            "width": 96,
+            "customClass": "",
+            "y": 144,
+            "style": {
+              "transform": "translate(384px, 144px)",
+              "width": "96px",
+              "fontSize": "32px",
+              "position": "absolute",
+              "height": "44px"
+            },
+            "prefixIcon": ""
+          }
+        ],
+        "onEvent": [],
+        "name": "formRoot",
+        "x": 0,
+        "width": 511,
+        "customClass": "",
+        "y": 0,
+        "style": {
+          "border": "1px solid #E5E7EB",
+          "transform": "translate(0px, 0px)",
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": "8px",
+          "width": "511px",
+          "position": "absolute",
+          "height": "248px"
+        },
+        "id": "root-rect-0001",
+        "ignorePrint": false,
+        "locked": false,
+        "height": 248
+      }
+    ],
+    "customShortcuts": [],
+    "inputs": [
+      {
+        "defaultValue": "请输入信息",
+        "name": "title",
+        "description": "表单标题文字",
+        "type": "data",
+        "testValue": "请输入信息"
+      },
+      {
+        "defaultValue": "在此输入...",
+        "name": "placeholder",
+        "description": "输入框占位符",
+        "type": "data",
+        "testValue": "在此输入..."
+      },
+      {
+        "defaultValue": "",
+        "name": "defaultValue",
+        "description": "输入框默认值",
+        "type": "data",
+        "testValue": ""
+      }
+    ],
+    "methods": [
+      {
+        "name": "clear",
+        "description": "清空输入框并重置提交状态",
+        "action": {
+          "comp": {
+            "name": "userInput",
+            "methodName": "setValue",
+            "params": {
+              "comp": "",
+              "path": ""
+            }
+          },
+          "compType": "setTempState",
+          "delay": "",
+          "conditions": [
+            {
+              "type": "and",
+              "value": "true"
+            }
+          ],
+          "sync": true
+        },
+        "params": []
+      }
+    ],
+    "global": [
+      {
+        "name": "cv_inputValue",
+        "id": "var-input-value-0001",
+        "type": "variable",
+        "value": ""
+      },
+      {
+        "name": "cv_submitted",
+        "id": "var-submitted-0002",
+        "type": "variable",
+        "value": "no"
+      }
+    ],
+    "event": {
+      "enableEventTestMessage": false,
+      "list": [
+        {
+          "name": "onSubmit",
+          "description": "点击提交按钮时触发（inputValue 已更新）"
+        },
+        {
+          "name": "onCancel",
+          "description": "点击取消按钮时触发"
+        }
+      ]
+    },
+    "preload": {
+      "style": "",
+      "script": ""
+    },
+    "canvasSetting": {
+      "deviceType": "desktop",
+      "paddingX": 0,
+      "backgroundColor": "",
+      "backgroundImage": "",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundOrigin": "center center",
+      "paddingY": 0
+    },
+    "i18n": {
+      "defaultLocale": "zh-CN",
+      "messages": {
+        "en-US": {
+          "ioap.hello_world": "Hello World",
+          "ioap.material.file_upload.trigger_by_camera": "Take Photo & Upload",
+          "ioap.material.file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
+          "ioap.material.file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
+          "ioap.material.file_upload.trigger_by_local_file": "Upload File",
+          "ioap.resource.query.execution_failed": "Query Failed",
+          "ioap.resource.query.execution_successful": "Query Successful"
+        },
+        "zh-CN": {
+          "ioap.hello_world": "你好，世界",
+          "ioap.material.file_upload.trigger_by_camera": "拍照上传",
+          "ioap.material.file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
+          "ioap.material.file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
+          "ioap.material.file_upload.trigger_by_local_file": "上传文件",
+          "ioap.resource.query.execution_failed": "查询失败",
+          "ioap.resource.query.execution_successful": "查询成功"
+        }
+      },
+      "fallbackLocale": "zh-CN",
+      "source": {}
+    },
+    "setting": {
+      "iconCorner": "default",
+      "icon": "",
+      "iconColor": "",
+      "description": "简单表单 Module：标题+输入框+提交/取消，暴露 inputValue 输出与 onSubmit/onCancel 事件",
+      "category": []
+    }
+  }
+}
