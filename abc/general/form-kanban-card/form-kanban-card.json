@@ -1,0 +1,1119 @@
+{
+  "amt2abc":{
+	"id":"kanban-card",
+	"name":"看板卡片列表",
+	"industry":"general",
+	"category":"form",
+	"author":"Xuyl",
+	"sanitized":true
+  },
+    "applicationDSL": {
+    "outputs": [
+      {
+        "name": "table_select",
+        "description": "",
+        "value": "{{transform_select_row.data}}"
+      }
+    ],
+    "ui": [
+      {
+        "hidden": false,
+        "showHeader": true,
+        "footerPadding": "",
+        "customId": "",
+        "contextObject": {},
+        "showFooter": false,
+        "headerPadding": "",
+        "compType": "card",
+        "children": [
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "header",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "441f0ff7-3e74-4094-8263-f790beb83083",
+            "compType": "text",
+            "onEvent": [],
+            "valueType": "markdown",
+            "x": 0,
+            "name": "text1",
+            "width": "fit-content",
+            "customClass": "",
+            "y": 0,
+            "style": {
+              "transform": "translate(0px, 0px)",
+              "backgroundColor": "transparent",
+              "color": "#242E3A",
+              "width": "fit-content",
+              "fontSize": "32px",
+              "position": "absolute",
+              "fontWeight": "bold",
+              "height": "fit-content"
+            },
+            "id": "73244e36-57c0-4470-97db-df950bc155f2",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{i18n.t('kanban_cards_info')}}",
+            "height": "fit-content"
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "#1c69e1",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "default",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "5207c2c1-dd17-437a-bfbc-d70051581b3a",
+            "ignorePrint": false,
+            "text": "",
+            "locked": false,
+            "height": 40,
+            "loading": false,
+            "parentId": "441f0ff7-3e74-4094-8263-f790beb83083",
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "script": "select1.clearValue();\ntable1.setPage(1);\ntransform_status_filter_value.run();"
+                  },
+                  "compType": "runScript",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "d1c04481-d4a0-4a8b-8743-d818aa48b5fe"
+              }
+            ],
+            "x": 1104,
+            "name": "button1",
+            "width": 50,
+            "customClass": "",
+            "y": 40,
+            "style": {
+              "transform": "translate(1104px, 40px)",
+              "width": "50px",
+              "fontSize": "32px",
+              "position": "absolute",
+              "height": "40px"
+            },
+            "prefixIcon": "fa7-solid:refresh"
+          },
+          {
+            "pagination": {
+              "defaultPage": 1,
+              "pageSizes": [
+                5,
+                10,
+                20,
+                50
+              ],
+              "total": "{{transform_select_list.data.tableTotal}}",
+              "defaultPageSize": 5,
+              "quickJumperText": "跳至",
+              "hideOnSinglePage": false,
+              "showSizePicker": false,
+              "showQuickJumper": false
+            },
+            "hidden": false,
+            "data": "{{transform_select_list.data.listArray}}",
+            "columns": [
+              {
+                "show": true,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "ID",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "id"
+              },
+              {
+                "show": true,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t(\"material_definition_id\")}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "material_definition_id"
+              },
+              {
+                "show": true,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t(\"material_description\")}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "material_description"
+              },
+              {
+                "show": true,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t(\"status\")}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "status"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "Name",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "name"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "Date",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "date"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "Department",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "department"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "ConsumingLocation",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "consuming_location"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "IsActive",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "is_active"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "ImageUrl",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "image_url"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "StatusColor",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "status_color"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "CreatedAt",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "created_at"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "UpdatedAt",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "updated_at"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "Supplier",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "supplier"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "Qty",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "qty"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "LeadTime",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentCell }}"
+                },
+                "key": "lead_time"
+              }
+            ],
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "currentCell": "",
+              "currentRow": {},
+              "currentIndex": 0
+            },
+            "fixedHeader": false,
+            "compType": "table",
+            "id": "6e67ac1a-9871-4f34-8853-8b0b32aa142f",
+            "ignorePrint": false,
+            "locked": false,
+            "fixedToolbar": false,
+            "height": "fit-content",
+            "defaultSelected": false,
+            "showHeader": true,
+            "resizeableColumnsWidth": false,
+            "loading": false,
+            "parentId": "441f0ff7-3e74-4094-8263-f790beb83083",
+            "toolbar": {
+              "showToolbar": false,
+              "showColumnControl": false,
+              "showDownload": false,
+              "iconSize": 18,
+              "downloadName": "table-data.csv",
+              "csvSeparator": ","
+            },
+            "size": "medium",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "transform_select_row",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "rowClick",
+                "id": "807a62bb-851b-475e-9cc9-8e465515e355"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "transform_status_filter_value",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "pageChange",
+                "id": "c2048091-52f7-476e-9bce-e2bc9fe551c8"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "transform_status_filter_value",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "pageSizeChange",
+                "id": "a45d3de5-a99f-4ae3-b3d6-8510a5accbef"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "name": "tableEvent"
+                  },
+                  "compType": "triggerModuleEvent",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "rowClick",
+                "id": "c5569663-f707-4a89-90b8-6ec93b81a7c8"
+              }
+            ],
+            "enableScrollX": false,
+            "x": 0,
+            "name": "table1",
+            "width": "100%",
+            "customClass": "",
+            "y": 96,
+            "style": {
+              "transform": "translate(0px, 96px)",
+              "width": "100%",
+              "position": "absolute",
+              "height": "fit-content"
+            }
+          },
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "441f0ff7-3e74-4094-8263-f790beb83083",
+            "compType": "text",
+            "onEvent": [],
+            "valueType": "markdown",
+            "x": 0,
+            "name": "text2",
+            "width": "fit-content",
+            "customClass": "",
+            "y": 20,
+            "style": {
+              "transform": "translate(0px, 20px)",
+              "backgroundColor": "transparent",
+              "color": "#323c47",
+              "width": "fit-content",
+              "fontSize": "26px",
+              "position": "absolute",
+              "fontWeight": "400",
+              "height": "40px"
+            },
+            "id": "07502be2-a739-4d13-8b73-6c6f903015e3",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{ i18n.t('select_kanban_card') }}",
+            "height": 40
+          },
+          {
+            "hidden": false,
+            "defaultValue": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "item": {}
+            },
+            "required": false,
+            "optionType": "map",
+            "feedback": "",
+            "compType": "select",
+            "labelTooltip": "",
+            "mapOptions": "[\n  {\n    \"status\":\"ACTIVE\"\n  },{\n    \"status\":\"LOW\"\n  }\n]",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "disabled": false,
+            "id": "e5fee184-7f49-4630-ad7d-f057b5d23c8e",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 80,
+            "filterable": false,
+            "clearable": true,
+            "manualOptions": [
+              {
+                "hidden": "",
+                "disabled": "",
+                "label": "Option 1",
+                "prefixIcon": "",
+                "value": 1
+              },
+              {
+                "hidden": "",
+                "disabled": "",
+                "label": "Option 2",
+                "prefixIcon": "",
+                "value": 2
+              }
+            ],
+            "multiple": false,
+            "label": "{{i18n.t(\"status_filter\")}}",
+            "parentId": "441f0ff7-3e74-4094-8263-f790beb83083",
+            "labelPlacement": "top",
+            "mapOptionsFieldMap": {
+              "hidden": "",
+              "disabled": "",
+              "label": "{{item.status}}",
+              "prefixIcon": "",
+              "value": "{{item.status}}"
+            },
+            "labelAlign": "left",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "script": "table1.setPage(1);\ntransform_status_filter_value.run();"
+                  },
+                  "compType": "runScript",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "change",
+                "id": "3358e65f-5903-4475-bf86-60251e7d3ee9"
+              }
+            ],
+            "x": 802,
+            "name": "select1",
+            "width": 300,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 0,
+            "style": {
+              "transform": "translate(802px, 0px)",
+              "width": "300px",
+              "position": "absolute",
+              "height": "80px"
+            }
+          }
+        ],
+        "x": 0,
+        "name": "card1",
+        "width": 1188,
+        "customClass": "",
+        "bodyPadding": "",
+        "y": 0,
+        "showBody": true,
+        "style": {
+          "transform": "translate(0px, 0px)",
+          "width": "1188px",
+          "position": "absolute",
+          "height": "724px"
+        },
+        "id": "441f0ff7-3e74-4094-8263-f790beb83083",
+        "ignorePrint": false,
+        "locked": false,
+        "height": 724
+      }
+    ],
+    "customShortcuts": [],
+    "inputs": [
+      {
+        "defaultValue": "",
+        "name": "token",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "tenantId",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "resourceId",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "correlationId",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      }
+    ],
+    "methods": [],
+    "global": [
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "transform_select_list",
+        "depQueryName": "abc_search",
+        "delayTime": "",
+        "id": "fe25f160-4519-42ef-8750-892c2ee539a3",
+        "triggerType": "onQueryExecution",
+        "type": "javascript",
+        "script": "// 修复可选链语法 + 增加空值默认值\nconst array = abc_search?.data?.data?.kanbanList?.result ?? [];\nconst total = abc_search?.data?.data?.kanbanList?.total ?? 0;\n// 组装返回数据\nconst resultData = {\n  listArray: array,\n  tableTotal: total\n};\n\nreturn resultData;"
+      },
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "transform_select_row",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "47d4ab54-d0d6-43e5-9b24-9d55b3df7924",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "return table1.selectedRow;"
+      },
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "transform_status_filter_value",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "3d5cf3a5-4840-4a9f-8ebf-6af4a011b27b",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "const filterValue = select1.value;\nlet resultStatus = [\"ACTIVE\",\"LOW\"];\nif (filterValue!=null && filterValue!==\"\") {\n  resultStatus = [\n    filterValue\n  ]\n}\nreturn resultStatus;"
+      },
+      {
+        "bodyType": "application/json",
+        "headers": [
+          {
+            "value": "application/json",
+            "key": "Content-Type"
+          },
+          {
+            "value": "{{tenantId.value}}",
+            "key": "Tenant-Id"
+          },
+          {
+            "value": "{{token.value}}",
+            "key": "Authorization"
+          }
+        ],
+        "variables": [],
+        "method": "POST",
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "{{\n  {\n    \"resourceId\": resourceId.value,\n    \"action\": \"ACTION_04\",\n    \"businessKey\": \"MATERIAL_REQUEST_APP_DOMAIN\",\n    \"correlationId\": correlationId.value,\n    \"parameters\": {\n      \"search_kanban_list.page_number\":table1.page,\n      \"search_kanban_list.page_size\":table1.pageSize,\n      \"oet_kanban_card_status_list\": transform_status_filter_value.data\n    }\n  }\n}}",
+        "type": "restApi",
+        "url": "{{currentConfig.GATEWAY_API_URL}}/api/fabric/secondaryDikube/transaction/templates/MATERIAL_REQUEST_APP/execute",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "onEvent": [],
+        "name": "abc_search",
+        "depQueryName": "transform_status_filter_value",
+        "delayTime": "",
+        "id": "7ca34c82-dc3d-4b51-8f6c-0fdbcfe555d7",
+        "triggerType": "onQueryExecution"
+      }
+    ],
+    "event": {
+      "enableEventTestMessage": false,
+      "list": [
+        {
+          "name": "tableEvent",
+          "description": ""
+        }
+      ]
+    },
+    "preload": {
+      "style": "",
+      "script": ""
+    },
+    "i18n": {
+      "defaultLocale": "zh-CN",
+      "messages": {
+        "en-US": {
+          "material_definition_id": "Material Definition ID",
+          "kanban_cards_info": "Kanban Cards",
+          "select_kanban_card": "Select Kanban Card",
+          "status_filter": "Status Filter",
+          "material_description": "Material Description",
+          "status": "Status"
+        },
+        "zh-CN": {
+          "material_definition_id": "物料ID",
+          "kanban_cards_info": "看板信息",
+          "select_kanban_card": "选择看板卡",
+          "status_filter": "状态筛选",
+          "material_description": "物料描述",
+          "status": "状态"
+        }
+      },
+      "fallbackLocale": {
+        "default": [
+          "zh-CN"
+        ]
+      },
+      "source": {
+        "key": ""
+      }
+    },
+    "canvasSetting": {
+      "deviceType": "desktop",
+      "paddingX": 0,
+      "backgroundColor": "",
+      "backgroundImage": "",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundOrigin": "center center",
+      "paddingY": 0
+    },
+    "setting": {
+      "iconCorner": "default",
+      "icon": "",
+      "iconColor": "",
+      "description": "",
+      "category": []
+    }
+  },
+  "applicationInfo": {
+    "createBy": "",
+    "favicon": "",
+    "name": "kanban_card",
+    "id": "000000000000000",
+    "type": "",
+    "publicToAll": false,
+    "createAt": 0,
+    "publicToMarketplace": false
+  }
+}
