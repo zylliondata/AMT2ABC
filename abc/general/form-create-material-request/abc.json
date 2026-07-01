@@ -1,0 +1,738 @@
+{
+  "amt2abc":{
+	"id":"create-material-request",
+	"name":"发起物料申请",
+	"industry":"general",
+	"category":"form",
+	"author":"",
+	"sanitized":true
+  },
+  "applicationDSL": {
+    "outputs": [],
+    "ui": [
+      {
+        "showMask": true,
+        "hidden": false,
+        "closeOnEsc": true,
+        "closable": true,
+        "title": "{{i18n.t(\"request_detail\")}}",
+        "maskClosable": true,
+        "customId": "",
+        "contextObject": {},
+        "compType": "modal",
+        "children": [
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "{{material_definition_id.value}}",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "7cc60a85-a4b5-494e-a308-2d863fb35b66",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 80,
+            "clearable": false,
+            "textType": "text",
+            "label": "{{i18n.t(\"material_definition_id\")}}",
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 0,
+            "name": "input1",
+            "width": 240,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 0,
+            "style": {
+              "transform": "translate(0px, 0px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "80px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "{{material_description.value}}",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "65196be8-dabf-48a8-82d9-1f1de5950a1b",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 80,
+            "clearable": false,
+            "textType": "text",
+            "label": "{{i18n.t(\"material_description\")}}",
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 256,
+            "name": "input2",
+            "width": 240,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 0,
+            "style": {
+              "transform": "translate(256px, 0px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "80px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "minusIcon": "",
+            "hidden": false,
+            "defaultValue": "{{qty.value}}",
+            "precision": "",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "showThousandsSeparator": false,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "buttonPlacement": "right",
+            "compType": "input-number",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "disabled": false,
+            "id": "5cb80a4a-169b-4519-a62a-7fefa980da2b",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 78,
+            "keyboard": true,
+            "clearable": false,
+            "format": "%s",
+            "label": "{{i18n.t(\"qty\")}}",
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "showButton": false,
+            "onEvent": [],
+            "x": 512,
+            "name": "inputNumber1",
+            "width": 240,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 0,
+            "step": 1,
+            "style": {
+              "transform": "translate(512px, 0px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "78px"
+            },
+            "prefixIcon": "",
+            "addIcon": ""
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "{{status.value}}",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "customId": "",
+            "contextObject": {},
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "469cd5b7-7a21-4fcb-8979-0610f72b935c",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 78,
+            "clearable": false,
+            "textType": "text",
+            "label": "{{i18n.t(\"status\")}}",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 0,
+            "name": "input3",
+            "width": 240,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 96,
+            "style": {
+              "transform": "translate(0px, 96px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "78px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "maxTime": "",
+            "minDate": "",
+            "hidden": false,
+            "defaultValue": "{{due_date.value}}",
+            "suffixIcon": "ant-design:calendar-twotone",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "item": {}
+            },
+            "required": false,
+            "feedback": "",
+            "compType": "date-picker",
+            "minTime": "",
+            "labelTooltip": "",
+            "pickerMode": "date",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "id": "c81ffe54-aee9-4c72-9ac5-86cf4c9da672",
+            "ignorePrint": false,
+            "placeholder": "Select Date",
+            "locked": false,
+            "height": 80,
+            "pickerType": "date",
+            "secondStep": "",
+            "showTime": false,
+            "defaultEnd": "",
+            "label": "{{i18n.t(\"due_date\")}}",
+            "inputFormat": "YYYY-MM-DD",
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "labelPlacement": "top",
+            "hourStep": "",
+            "defaultStart": "",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 512,
+            "name": "datePicker1",
+            "width": 240,
+            "customClass": "",
+            "minuteStep": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 96,
+            "maxDate": "",
+            "style": {
+              "transform": "translate(512px, 96px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "80px"
+            }
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "type": "default",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "0065d50d-db09-4431-9b29-2a0f0f4225c9",
+            "ignorePrint": false,
+            "text": "{{i18n.t(\"cancel\")}}",
+            "locked": false,
+            "height": 40,
+            "loading": false,
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "script": "modal1.closeModal();"
+                  },
+                  "compType": "runScript",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "8453eb9d-e39d-46f4-908c-db45b2d3fc7c"
+              }
+            ],
+            "x": 0,
+            "name": "button1",
+            "width": 200,
+            "customClass": "",
+            "y": 584,
+            "style": {
+              "transform": "translate(0px, 584px)",
+              "backgroundColor": "#ecedee",
+              "width": "200px",
+              "fontSize": "32px",
+              "position": "absolute",
+              "height": "40px"
+            },
+            "prefixIcon": "ant-design:close-circle-outlined"
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "default",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": "{{modify.value}}",
+            "id": "c281211a-4fe3-41fd-85c6-500a412525c3",
+            "ignorePrint": false,
+            "text": "{{i18n.t(\"create_request\")}}",
+            "locked": false,
+            "height": 40,
+            "loading": false,
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "abc_create_material_request",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "86dbf7fa-6f38-431c-9b95-23a286a4ec40"
+              }
+            ],
+            "x": 552,
+            "name": "button2",
+            "width": 200,
+            "customClass": "",
+            "y": 584,
+            "style": {
+              "transform": "translate(552px, 584px)",
+              "backgroundColor": "#198c1c",
+              "color": "#FFFFFF",
+              "width": "200px",
+              "fontSize": "32px",
+              "position": "absolute",
+              "height": "40px"
+            },
+            "prefixIcon": "ant-design:check-circle-outlined"
+          },
+          {
+            "hidden": false,
+            "defaultValue": "{{}}",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "item": {}
+            },
+            "required": false,
+            "optionType": "map",
+            "feedback": "",
+            "compType": "select",
+            "labelTooltip": "",
+            "mapOptions": "[\n  {\n    \"level\":\"HIGH\"\n  },{\n    \"level\":\"MEDIUM\"\n  },{\n    \"level\":\"LOW\"\n  }\n]",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "disabled": false,
+            "id": "80fefe3b-4c3b-4c72-a137-c3bb79577e2f",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 80,
+            "filterable": false,
+            "clearable": false,
+            "manualOptions": [],
+            "multiple": false,
+            "label": "{{i18n.t(\"request_priority\")}}",
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "labelPlacement": "top",
+            "mapOptionsFieldMap": {
+              "hidden": "",
+              "disabled": "",
+              "label": "{{item.level}}",
+              "prefixIcon": "",
+              "value": "{{item.level}}"
+            },
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 256,
+            "name": "select1",
+            "width": 240,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 96,
+            "style": {
+              "transform": "translate(256px, 96px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "80px"
+            }
+          },
+          {
+            "hidden": false,
+            "objectFit": "fill",
+            "src": "{{image_url.value}}",
+            "previewDisabled": false,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+            "compType": "image",
+            "onEvent": [],
+            "previewSrc": "",
+            "x": 226,
+            "name": "image1",
+            "width": 300,
+            "customClass": "",
+            "y": 208,
+            "style": {
+              "transform": "translate(226px, 208px)",
+              "backgroundColor": "#FFF",
+              "width": "300px",
+              "position": "absolute",
+              "height": "350px"
+            },
+            "id": "663cd3aa-10b0-4df3-a42f-90aff9267bd7",
+            "ignorePrint": false,
+            "locked": false,
+            "imageType": "url",
+            "height": 350
+          }
+        ],
+        "onEvent": [],
+        "x": 0,
+        "name": "modal1",
+        "width": 784,
+        "customClass": "",
+        "y": 0,
+        "style": {
+          "transform": "translate(0px, 0px)",
+          "width": "784px",
+          "position": "relative",
+          "height": "700px"
+        },
+        "id": "36f45d91-6b56-43cc-a983-b7f8c89742d8",
+        "ignorePrint": false,
+        "locked": false,
+        "height": 700
+      }
+    ],
+    "customShortcuts": [],
+    "inputs": [
+      {
+        "defaultValue": "",
+        "name": "material_definition_id",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "material_description",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "qty",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "status",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "due_date",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "kanban_id",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "tenant_id",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "token",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "resource_id",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "",
+        "name": "image_url",
+        "description": "",
+        "type": "data",
+        "testValue": ""
+      }
+    ],
+    "methods": [],
+    "global": [
+      {
+        "name": "modify",
+        "id": "e7a8ee5a-afac-4a3c-9224-e6f3a6acbdf2",
+        "type": "variable",
+        "value": "{{input1.value==null||input1.value===\"\"||input2.value==null||input2.value===\"\"||input3.value==null||input3.value===\"\"||select1.value==null||select1.value===\"\"||inputNumber1.value==null||inputNumber1<0||datePicker1.formattedValue==null}"
+      },
+      {
+        "bodyType": "application/json",
+        "headers": [
+          {
+            "value": "application/json",
+            "key": "Content-Type"
+          },
+          {
+            "value": "{{tenantId.value}}",
+            "key": "Tenant-Id"
+          },
+          {
+            "value": "{{token.value}}",
+            "key": "Authorization"
+          }
+        ],
+        "variables": [],
+        "method": "POST",
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "{{\n  {\n    \"resourceId\": resourceId.value,\n    \"action\": \"ACTION_02\",\n    \"businessKey\": \"MATERIAL_REQUEST_APP_DOMAIN\",\n    \"correlationId\": getCtx(\"correlationId\"),\n    \"parameters\": {\n      \"material_request_item\": input1.value,\n      \"material_request_qty\": inputNumber1.value,\n      \"material_request_due_date\": datePicker1.value,\n      \"material_request_source_type\": \"KANBAN\",\n      \"material_request_priority\": select1.value,\n      \"material_request_kanban_id\": kanbanId.value\n    }\n  }\n}}",
+        "type": "restApi",
+        "url": "{{currentConfig.GATEWAY_API_URL}}/api/fabric/secondaryDikube/transaction/templates/MATERIAL_REQUEST_APP/execute",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "onEvent": [
+          {
+            "handler": {
+              "comp": {
+                "name": "modal1",
+                "methodName": "closeModal",
+                "params": []
+              },
+              "compType": "executeComp",
+              "delay": "",
+              "conditionType": "conditions",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "true"
+                }
+              ],
+              "sync": false
+            },
+            "name": "success",
+            "id": "c967a3ed-07b1-4470-89e6-e64002d5b37f"
+          }
+        ],
+        "name": "abc_create_material_request",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "66439681-33a1-495f-a5b9-960c650613c6",
+        "triggerType": "manual"
+      }
+    ],
+    "event": {
+      "enableEventTestMessage": false,
+      "list": []
+    },
+    "preload": {
+      "style": "",
+      "script": ""
+    },
+    "i18n": {
+      "defaultLocale": "zh-CN",
+      "messages": {
+        "en-US": {
+          "material_definition_id": "Material Definition ID",
+          "cancel": "Cancel",
+          "request_priority": "Request Priority",
+          "due_date": "Due Date",
+          "create_request": "Create Request",
+          "qty": "QTY",
+          "request_detail": "Request Detail",
+          "material_description": "Material Description",
+          "status": "Status"
+        },
+        "zh-CN": {
+          "material_definition_id": "物料ID",
+          "cancel": "取消",
+          "request_priority": "请求优先级",
+          "due_date": "截至日期",
+          "create_request": "创建请求",
+          "qty": "数量",
+          "request_detail": "请求详情",
+          "material_description": "物料介绍",
+          "status": "状态"
+        }
+      },
+      "fallbackLocale": {
+        "default": [
+          "zh-CN"
+        ]
+      },
+      "source": {
+        "key": ""
+      }
+    },
+    "canvasSetting": {
+      "deviceType": "desktop",
+      "paddingX": 0,
+      "backgroundColor": "",
+      "backgroundImage": "",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundOrigin": "center center",
+      "paddingY": 0
+    },
+    "setting": {
+      "iconCorner": "default",
+      "icon": "",
+      "iconColor": "",
+      "description": "",
+      "category": []
+    }
+  },
+  "applicationInfo": {
+    "createBy": "",
+    "favicon": "",
+    "name": "create_material_request",
+    "id": "0000000000",
+    "type": "",
+    "publicToAll": false,
+    "createAt": 0,
+    "publicToMarketplace": false
+  }
+}
