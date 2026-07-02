@@ -1,0 +1,1220 @@
+{
+  "amt2abc": {
+    "id": "Create_Edit_CAPA_Events",
+    "name": "创建/编辑 CAPA 事件",
+    "industry": "general",
+    "category": "form",
+    "author": "TitanMile",
+    "sanitized": true
+  },
+  "applicationDSL": {
+    "outputs": [],
+    "ui": [
+      {
+        "hidden": false,
+        "showHeader": true,
+        "footerPadding": "16",
+        "customId": "",
+        "contextObject": {},
+        "showFooter": true,
+        "headerPadding": "8",
+        "compType": "card",
+        "children": [
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "header",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "compType": "text",
+            "onEvent": [],
+            "valueType": "text",
+            "x": 16,
+            "name": "text1",
+            "width": 496,
+            "customClass": "",
+            "y": 4,
+            "style": {
+              "transform": "translate(16px, 4px)",
+              "backgroundColor": "transparent",
+              "color": "#242E3A",
+              "width": "496px",
+              "fontSize": "32px",
+              "position": "absolute",
+              "fontWeight": "400",
+              "height": "51px"
+            },
+            "id": "f835cd06-93dd-475b-9770-a7a41e19825c",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{ i18n.t(capaId.value ? \"editCAPA\" : \"addCAPA\") }}",
+            "height": 51
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "{{ capaId.value ?? \"\" }}",
+            "suffixIcon": "{{ capaId.value ? \"\" : \"fa7-solid:arrows-rotate\" }}",
+            "labelWidth": "200px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": "{{ !capaId.value }}",
+            "prefixIconClickable": false,
+            "suffixIconClickable": true,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": "{{ !!capaId.value }}",
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "8e65bcc7-da95-4445-917e-7d915b881b56",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "height": 39,
+            "clearable": true,
+            "textType": "text",
+            "label": "ID",
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "labelPlacement": "left",
+            "labelAlign": "left",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "name": "input1",
+                    "methodName": "setValue",
+                    "params": [
+                      {
+                        "comp": "{{ uuid.v4() }}",
+                        "name": "n"
+                      }
+                    ]
+                  },
+                  "compType": "executeComp",
+                  "delay": "",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "suffixIconClick",
+                "id": "639c0546-7a82-48e2-b972-24e987114b3d"
+              }
+            ],
+            "x": 0,
+            "name": "input1",
+            "width": 825,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 0,
+            "style": {
+              "transform": "translate(0px, 0px)",
+              "width": "825px",
+              "position": "absolute",
+              "height": "39px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "{{ cv_capa.value?.description ?? \"\" }}",
+            "minLength": "",
+            "suffixIcon": "",
+            "onlyRead": false,
+            "labelWidth": "200px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": "{{ !capaId.value }}",
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "textarea",
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "88529d4c-aae5-4035-b433-c1492a7121df",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": true,
+            "height": 160,
+            "clearable": false,
+            "textType": "text",
+            "label": "{{ i18n.t(\"description\") }}",
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "labelPlacement": "left",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 0,
+            "name": "textarea1",
+            "width": 825,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 56,
+            "style": {
+              "transform": "translate(0px, 56px)",
+              "backgroundColor": "transparent",
+              "color": "#323c47",
+              "width": "825px",
+              "fontSize": "26px",
+              "position": "absolute",
+              "fontWeight": "400",
+              "height": "160px"
+            },
+            "prefixIcon": "",
+            "maxLength": ""
+          },
+          {
+            "hidden": false,
+            "defaultValue": "{{ cv_capa.value?.assignee_id ?? \"\" }}",
+            "labelWidth": "200px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "item": {}
+            },
+            "required": false,
+            "optionType": "map",
+            "feedback": "",
+            "compType": "select",
+            "labelTooltip": "",
+            "mapOptions": "{{ eca_searchUsers.data?.data?.list ?? [] }}",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "disabled": false,
+            "id": "392e718b-2598-4355-a6fc-f50df139b26b",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": true,
+            "height": 39,
+            "filterable": false,
+            "clearable": false,
+            "manualOptions": [
+              {
+                "hidden": "",
+                "disabled": "",
+                "label": "Option 1",
+                "prefixIcon": "",
+                "value": 1
+              },
+              {
+                "hidden": "",
+                "disabled": "",
+                "label": "Option 2",
+                "prefixIcon": "",
+                "value": 2
+              }
+            ],
+            "multiple": false,
+            "label": "{{ i18n.t(\"assigneeID\") }}",
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "labelPlacement": "left",
+            "mapOptionsFieldMap": {
+              "hidden": "",
+              "disabled": "",
+              "label": "{{ item.nickname }}",
+              "prefixIcon": "",
+              "value": "{{ item.id }}"
+            },
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 0,
+            "name": "select2",
+            "width": 825,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 237,
+            "style": {
+              "transform": "translate(0px, 237px)",
+              "width": "825px",
+              "position": "absolute",
+              "height": "39px"
+            }
+          },
+          {
+            "maxTime": "",
+            "minDate": "",
+            "hidden": false,
+            "defaultValue": "{{ cv_capa.value?.due_date ?? \"\" }}",
+            "suffixIcon": "ant-design:calendar-twotone",
+            "labelWidth": "200px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "item": {}
+            },
+            "required": false,
+            "feedback": "",
+            "compType": "date-picker",
+            "minTime": "",
+            "labelTooltip": "",
+            "pickerMode": "date",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "id": "144df743-b25c-43d4-ba0f-6e457a0f9ec2",
+            "ignorePrint": false,
+            "placeholder": "Select Date",
+            "locked": true,
+            "height": 39,
+            "pickerType": "date",
+            "secondStep": "",
+            "showTime": false,
+            "defaultEnd": "",
+            "label": "{{ i18n.t(\"dueDate\") }}",
+            "inputFormat": "YYYY-MM-DD",
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "labelPlacement": "left",
+            "hourStep": "",
+            "defaultStart": "",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 0,
+            "name": "datePicker1",
+            "width": 512,
+            "customClass": "",
+            "minuteStep": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 291,
+            "maxDate": "",
+            "style": {
+              "transform": "translate(0px, 291px)",
+              "width": "512px",
+              "position": "absolute",
+              "height": "39px"
+            }
+          },
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "compType": "text",
+            "onEvent": [],
+            "valueType": "text",
+            "x": 0,
+            "name": "text2",
+            "width": 200,
+            "customClass": "",
+            "y": 348,
+            "style": {
+              "transform": "translate(0px, 348px)",
+              "backgroundColor": "transparent",
+              "color": "#323c47",
+              "width": "200px",
+              "fontSize": "26px",
+              "position": "absolute",
+              "fontWeight": "400",
+              "height": "42px"
+            },
+            "id": "8d377f37-806a-4a5c-a085-ba1507e47269",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{ i18n.t(\"attachment\") }}",
+            "height": 42
+          },
+          {
+            "maxTime": "",
+            "hidden": false,
+            "defaultValue": "{{ cv_capa.value ? `${new Date(cv_capa.value.due_date).getHours()}:${new Date(cv_capa.value.due_date).getMinutes()}:${new Date(cv_capa.value.due_date).getSeconds()}` : \"23:59:59\" }}",
+            "suffixIcon": "icon-park-outline:time",
+            "labelWidth": "100px",
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "required": false,
+            "showConfirm": true,
+            "feedback": "",
+            "compType": "time-picker",
+            "minTime": "",
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "id": "dee17902-fab0-45cf-8080-cf75299480a5",
+            "ignorePrint": false,
+            "placeholder": "Select Time",
+            "locked": false,
+            "height": 39,
+            "showNow": true,
+            "secondStep": "",
+            "label": "",
+            "inputFormat": "HH:mm:ss",
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "showClear": false,
+            "labelPlacement": "left",
+            "useTwelveHours": false,
+            "hourStep": "",
+            "labelAlign": "left",
+            "onEvent": [],
+            "x": 513,
+            "name": "timePicker1",
+            "width": 312,
+            "customClass": "",
+            "minuteStep": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "y": 291,
+            "style": {
+              "transform": "translate(513px, 291px)",
+              "width": "312px",
+              "position": "absolute",
+              "height": "39px"
+            }
+          },
+          {
+            "hidden": "{{ cv_capa.value.attachment_url && Object.keys(cv_capa.value.attachment_url).length > 0 }}",
+            "showRemoveButton": true,
+            "showFileList": true,
+            "triggerButton": {
+              "appearance": "ghost",
+              "color": "",
+              "corner": "default",
+              "suffixIcon": {
+                "color": "",
+                "size": 24,
+                "icon": ""
+              },
+              "type": "info",
+              "prefixIcon": {
+                "color": "",
+                "size": 24,
+                "icon": "zyx-outline:import"
+              },
+              "textColor": "",
+              "height": "40px"
+            },
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "listType": "image",
+            "showCancelButton": true,
+            "uploadFileField": "file",
+            "compType": "file-upload",
+            "showRetryButton": true,
+            "id": "b5ade8f7-a300-4724-b4ea-80d32b26a647",
+            "ignorePrint": false,
+            "locked": true,
+            "height": 118,
+            "headers": "{\n  \"Authorization\": \"{{ cookie.values.dop_t }}\",\n  \"Tenant-Id\": \"{{ currentUser.data?.tenant?.id }}\"\n}",
+            "defaultFileList": [],
+            "multiple": false,
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "accept": "[\"image/*\", \".pdf\", 'xls', 'xlsx', 'doc', 'docx']",
+            "uploadUrl": "{{ currentAPI.UPLOAD }}",
+            "x": 202,
+            "name": "fileUpload1",
+            "width": 621,
+            "customClass": "",
+            "messages": "{\n  \"triggerByCamera\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_camera') }}\",\n  \"triggerByLocalFile\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_local_file') }}\",\n  \"triggerByDnd\": {\n    \"description1\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_dnd.description1') }}\",\n    \"description2\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_dnd.description2') }}\"\n  }\n}",
+            "y": 348,
+            "style": {
+              "transform": "translate(202px, 348px)",
+              "width": "621px",
+              "position": "absolute",
+              "height": "118px"
+            },
+            "triggerType": "localFile",
+            "showDownloadButton": true,
+            "showPreviewButton": true
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "footer",
+            "type": "success",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "3ba5615a-724f-4b2d-9f92-bc47aff9513d",
+            "ignorePrint": false,
+            "text": "{{ i18n.t(\"save\") }}",
+            "locked": false,
+            "height": 60,
+            "loading": false,
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "eca_submitRunning",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "821f3625-3e97-47ec-8dab-44c103163be7"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "name": "save"
+                  },
+                  "compType": "triggerModuleEvent",
+                  "delay": "",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "{{ eca_addCAPAEvent.success }}"
+                    },
+                    {
+                      "type": "or",
+                      "value": "{{ eca_editCAPAEvent.success }}"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "1e52ba60-87ff-4d04-a311-122e322a6d47"
+              }
+            ],
+            "x": 526,
+            "name": "button1",
+            "width": 300,
+            "customClass": "",
+            "y": 0,
+            "style": {
+              "transform": "translate(526px, 0px)",
+              "width": "300px",
+              "fontSize": "26px",
+              "position": "absolute",
+              "height": "60px"
+            },
+            "prefixIcon": "zyx-filled:circle-correct"
+          },
+          {
+            "hidden": "{{ !(cv_capa.value.attachment_url && Object.keys(cv_capa.value.attachment_url).length > 0 && cv_capa.value.attachment_url.category === \"image\") }}",
+            "objectFit": "contain",
+            "src": "{{ cv_capa.value.attachment_url.url ?? \"\" }}",
+            "previewDisabled": false,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "compType": "image",
+            "onEvent": [],
+            "previewSrc": "",
+            "x": 201,
+            "name": "image1",
+            "width": 120,
+            "customClass": "",
+            "y": 347,
+            "style": {
+              "transform": "translate(201px, 347px)",
+              "backgroundColor": "#FFF",
+              "width": "120px",
+              "position": "absolute",
+              "height": "130px"
+            },
+            "id": "4e284eaa-5b67-4880-9b8e-b0023338dd22",
+            "ignorePrint": false,
+            "locked": false,
+            "imageType": "url",
+            "height": 130
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": "{{ !(cv_capa.value.attachment_url && Object.keys(cv_capa.value.attachment_url).length > 0) }}",
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "info",
+            "customId": "",
+            "contextObject": {},
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "0080af27-3bd2-43cf-9c11-1e19362609f6",
+            "ignorePrint": false,
+            "text": "{{ i18n.t(\"reUpload\") }}",
+            "locked": false,
+            "height": 60,
+            "loading": false,
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "suffixIconColor": "",
+            "appearance": "text",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "script": "{{ cv_capa.value.attachment_url = \"\" }}"
+                  },
+                  "compType": "runScript",
+                  "delay": "",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "c8d168e0-551d-4e23-b9ae-1a99712bde6e"
+              }
+            ],
+            "x": 616,
+            "name": "button2",
+            "width": 200,
+            "customClass": "",
+            "y": 409,
+            "style": {
+              "transform": "translate(616px, 409px)",
+              "width": "200px",
+              "fontSize": "26px",
+              "position": "absolute",
+              "height": "60px"
+            },
+            "prefixIcon": "zyx-outline:refresh"
+          },
+          {
+            "hidden": "{{ !(cv_capa.value.attachment_url && Object.keys(cv_capa.value.attachment_url).length > 0 && cv_capa.value.attachment_url.category === \"file\") }}",
+            "lineClamp": 0,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+            "compType": "text",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "inNewTab": true,
+                    "query": [
+                      {
+                        "value": "",
+                        "key": ""
+                      }
+                    ],
+                    "url": "{{ cv_capa.value?.attachment_url?.url ?? \"\" }}",
+                    "hash": ""
+                  },
+                  "compType": "goToURL",
+                  "delay": "",
+                  "conditionType": "conditions",
+                  "stopPropagation": true,
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "click",
+                "id": "711183a4-f1e1-4267-85ad-d93a824cc258"
+              }
+            ],
+            "valueType": "text",
+            "x": 203,
+            "name": "text3",
+            "width": 620,
+            "customClass": "",
+            "y": 352,
+            "style": {
+              "cursor": "pointer",
+              "transform": "translate(203px, 352px)",
+              "backgroundColor": "transparent",
+              "color": "#2C60DB",
+              "width": "620px",
+              "fontSize": "26px",
+              "position": "absolute",
+              "fontWeight": "400",
+              "height": "78px"
+            },
+            "id": "2cb6cd34-e008-4285-a33a-f74275d55d57",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{ cv_capa.value?.attachment_url?.fileName ?? \"\" }}",
+            "height": 78
+          }
+        ],
+        "x": 0,
+        "name": "card1",
+        "width": 872,
+        "customClass": "",
+        "bodyPadding": "",
+        "y": 0,
+        "showBody": true,
+        "style": {
+          "transform": "translate(0px, 0px)",
+          "backgroundColor": "",
+          "width": "872px",
+          "position": "absolute",
+          "height": "720px"
+        },
+        "id": "f7fe83af-f90e-4d0c-aed6-5465a673b456",
+        "ignorePrint": false,
+        "locked": false,
+        "height": 720
+      }
+    ],
+    "customShortcuts": [],
+    "inputs": [
+      {
+        "defaultValue": "\"\"",
+        "name": "resourceId",
+        "description": "资源ID",
+        "type": "data",
+        "testValue": "resource_d93bd8ab-f3f0-49f4-8f7d-9dd79ad80a68"
+      },
+      {
+        "defaultValue": "\"\"",
+        "name": "capaId",
+        "description": "CAPA ID，在修改CAPA时传入",
+        "type": "data",
+        "testValue": "CAPA-ZS-20260629001"
+      },
+      {
+        "defaultValue": "\"\"",
+        "name": "sourceRef",
+        "description": "来源 ID（追溯上下文）",
+        "type": "data",
+        "testValue": ""
+      }
+    ],
+    "methods": [],
+    "global": [
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": false,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "loadRunning",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "4c9a4508-6ab9-4746-b8af-ac73099b06e0",
+        "triggerType": "onPageLoad",
+        "type": "javascript",
+        "script": "// 页面加载后执行的操作\ncurrentUser.login()\nconst resource = resourceId.value && resourceId.value.length > 0;\nconst capa = capaId.value && capaId.value.length > 0;\nif (resource) {\n  eca_searchUsers.run();\n  if ( capa ) {\n    eca_searchCAPA.run();\n  }\n}"
+      },
+      {
+        "bodyType": "application/json",
+        "headers": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "variables": [],
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "{{\n  {\n    resourceId: resourceId.value ?? \"\",\n    table: \"oet_capas\",\n    filter: [\n      {\n        condition: \"=\",\n        columnName: \"id\",\n        columnValue: capaId.value ?? \"\"\n      }\n    ]\n  }\n}}",
+        "type": "presetRestApi",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": false
+        },
+        "onEvent": [
+          {
+            "handler": {
+              "comp": {
+                "queryName": "eca_parseFileUrl",
+                "queryVariables": []
+              },
+              "compType": "executeQuery",
+              "delay": "",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "{{ eca_searchCAPA.data?.code == 200 }}"
+                }
+              ],
+              "sync": false
+            },
+            "name": "success",
+            "id": "e95ce5dc-c48f-4066-9115-426ce12c6877"
+          }
+        ],
+        "presetReferenceKey": "presetRestApi:search",
+        "name": "eca_searchCAPA",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "013ee78e-7be1-4635-87da-c0ef0e96ec18",
+        "triggerType": "manual"
+      },
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": false,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "eca_parseFileUrl",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "ffbdb869-bdc0-4e52-8694-708c7b0ca9d9",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "/**\n * 将查询结果赋值\n * 纯本地解析文件链接，无网络请求\n * @param {string} url 文件地址\n * @returns {\n *   fileName: string,      // 完整文件名\n *   suffix: string,        // 小写后缀\n *   category: string      // 文件分类：图片 / PDF文档 / Word文档 / Excel表格 / 未知\n * }\n */\nfunction parseFileUrlLocal(url) {\n  // 取最后一段文件名\n  const fileName = url.split('/').pop();\n  const arr = fileName.split('.');\n  const suffix = arr.length >= 2 ? arr.pop().toLowerCase() : '';\n\n  let category = '未知';\n\n  // 图片后缀集合\n  const imgExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg'];\n  // File文档\n  const fileExt = ['doc', 'docx', 'pdf', 'xls', 'xlsx'];\n\n  if (imgExt.includes(suffix)) {\n    category = \"image\";\n  } else if (fileExt.includes(suffix)) {\n    category = \"file\";\n  }\n\n  return {\n    \"fileName\": fileName,\n    \"url\": url,\n    \"category\": category\n  };\n}\n\nconst resultList = [...(eca_searchCAPA.data?.data?.result ?? [])];\nif (resultList.length > 0) {\n  let result = {...resultList[0]};\n  if (Object.keys(result).length > 0) {\n    const attachmentUrl = result.attachment_url;\n    if (attachmentUrl && attachmentUrl.length > 0) {\n      result[\"attachment_url\"] = parseFileUrlLocal(attachmentUrl);\n    };\n    cv_capa.setValue(result);\n  };\n};\n"
+      },
+      {
+        "name": "cv_capa",
+        "id": "67dbf315-d99e-4f13-92e0-ea9b3d8b0b77",
+        "type": "variable",
+        "value": "{}"
+      },
+      {
+        "bodyType": "none",
+        "headers": [
+          {
+            "value": "application/json",
+            "key": "Content-Type"
+          },
+          {
+            "value": "{{ cookie.values?.dop_t ?? \"\" }}",
+            "key": "Authorization"
+          },
+          {
+            "value": "{{ currentUser.data?.tenant?.id ?? \"\" }}",
+            "key": "tenant-Id"
+          }
+        ],
+        "variables": [],
+        "method": "GET",
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": "tissueName"
+          },
+          {
+            "value": "",
+            "key": "groupName"
+          },
+          {
+            "value": "",
+            "key": "childGroupName"
+          },
+          {
+            "value": "1",
+            "key": "page"
+          },
+          {
+            "value": "10000",
+            "key": "size"
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "",
+        "type": "restApi",
+        "url": "{{ currentAPI.USER_LIST }}",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": false,
+          "showSuccess": false
+        },
+        "onEvent": [],
+        "name": "eca_searchUsers",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "53736d10-0e74-498d-a5ca-5ec1d01e4f1f",
+        "triggerType": "manual"
+      },
+      {
+        "bodyType": "application/json",
+        "headers": [
+          {
+            "value": "application/json",
+            "key": "Content-Type"
+          },
+          {
+            "value": "{{ cookie.values?.dop_t ?? \"\" }}",
+            "key": "Authorization"
+          }
+        ],
+        "variables": [],
+        "method": "POST",
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "{{ cv_saveData.value ?? {} }}",
+        "type": "restApi",
+        "url": "https://idfp-gateway.data4industry.com/api/fabric/secondaryDikube/transaction/templates/CREATE_CAPA_EVENT/execute",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ i18n.t(\"submitMess\") }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "onEvent": [],
+        "name": "eca_addCAPAEvent",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "e3cf7265-686b-4e44-9dd3-729fc3072a2b",
+        "triggerType": "manual"
+      },
+      {
+        "bodyType": "application/json",
+        "headers": [
+          {
+            "value": "application/json",
+            "key": "Content-Type"
+          },
+          {
+            "value": "{{ cookie.values?.dop_t ?? \"\" }}",
+            "key": "Authorization"
+          }
+        ],
+        "variables": [],
+        "method": "POST",
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "{{ cv_saveData.value ?? {} }}",
+        "type": "restApi",
+        "url": "https://idfp-gateway.data4industry.com/api/fabric/secondaryDikube/transaction/templates/CREATE_CAPA_EVENT/execute",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ i18n.t(\"submitMess\") }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "onEvent": [],
+        "name": "eca_editCAPAEvent",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "3fb74380-a274-4d39-90ee-1e2f8c988388",
+        "triggerType": "manual"
+      },
+      {
+        "name": "cv_saveData",
+        "id": "0deb74ee-7c71-4215-9538-10c122c96d67",
+        "type": "variable",
+        "value": "{}"
+      },
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "eca_buildingSaveData",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "eb23ac5f-0899-467a-b0be-77306fb9696d",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "/* 构建提交参数，当接收到 CAPA ID 参数时默认为修改操作，构建修改参数 */\nlet saveData = {\n  \"resourceId\": resourceId.value ?? \"\",\n  \"businessKey\": \"CAPA\",\n  \"correlationId\": uuid.v4(),\n  \"parameters\": {\n    \"capaId\": input1.value ?? \"\",\n    \"description\": textarea1.value ?? \"\",\n    \"dueDate\": `${datePicker1.formattedValue}T${timePicker1.value}+8:00`,\n    \"assigneeId\": select2.value ?? \"\",\n    \"userId\": currentUser.data?.id ?? \"\",\n    \"tenantId\": currentUser.data?.tenant?.id ?? \"\"\n  }\n}\nif (capaId.value && capaId.value.length > 0) {\n  saveData[\"action\"] = \"UPDATE_CAPA\";\n} else {\n  saveData[\"action\"] = \"CREATE_CAPA\";\n  if (sourceRef.value && sourceRef.value.length > 0) {\n    saveData[\"action\"][\"parameters\"][\"sourceRef\"] = sourceRef.value;\n  }\n}\n\nif (fileUpload1.files && fileUpload1.files.length > 0) {\n  saveData[\"parameters\"][\"attachmentUrl\"] = fileUpload1.files[0].url;\n} else if (cv_capa.value.attachment_url.url.length > 0) {\n  saveData[\"parameters\"][\"attachmentUrl\"] = cv_capa.value.attachment_url.url;\n};\n\ncv_saveData.setValue(saveData);"
+      },
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "eca_submitRunning",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "5ec3d319-b7eb-4855-8295-13fa329f940d",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "// 必填验证\nconst required = input1.value && input1.value.length > 0 && textarea1.value && textarea1.value.length > 0;\nif (required) {\n  await eca_buildingSaveData.run();\n  if (capaId.value && capaId.value.length > 0) {\n    eca_editCAPAEvent.run();\n  } else {\n    eca_addCAPAEvent.run();\n  }\n} else {\n  message.warning(i18n.t(\"requiredMess\"));\n}\n"
+      }
+    ],
+    "event": {
+      "enableEventTestMessage": false,
+      "list": [
+        {
+          "name": "save",
+          "description": "执行保存"
+        }
+      ]
+    },
+    "preload": {
+      "style": "",
+      "script": ""
+    },
+    "i18n": {
+      "defaultLocale": "zh-CN",
+      "messages": {
+        "en-US": {
+          "ioap.resource.query.execution_failed": "Query Failed",
+          "submitMess": "Save successful",
+          "ioap.material.file_upload.trigger_by_local_file": "Upload File",
+          "dueDate": "Due date",
+          "save": "Save",
+          "description": "Description",
+          "ioap.material.file_upload.trigger_by_camera": "Take Photo & Upload",
+          "assigneeID": "Assignee ID",
+          "editCAPA": "Edit CAPA",
+          "reUpload": "Re-upload",
+          "addCAPA": "Add CAPA",
+          "attachment": "Update Attachment",
+          "ioap.material.file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
+          "ioap.material.file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
+          "linkDefect": "Link defects events",
+          "ioap.resource.query.execution_successful": "Query Successful",
+          "ioap.hello_world": "Hello World",
+          "requiredMess": "Please fill in the required fields"
+        },
+        "zh-CN": {
+          "ioap.resource.query.execution_failed": "查询失败",
+          "submitMess": "保存成功",
+          "ioap.material.file_upload.trigger_by_local_file": "上传文件",
+          "dueDate": "截止日期",
+          "save": "保存",
+          "description": "描述",
+          "ioap.material.file_upload.trigger_by_camera": "拍照上传",
+          "assigneeID": "负责人",
+          "editCAPA": "编辑纠正与预防措施",
+          "reUpload": "重新上传",
+          "addCAPA": "添加纠正与预防措施",
+          "attachment": "上传附件",
+          "ioap.material.file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
+          "ioap.material.file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
+          "linkDefect": "关联缺陷事件",
+          "ioap.resource.query.execution_successful": "查询成功",
+          "ioap.hello_world": "你好，世界",
+          "requiredMess": "请填写必填项"
+        }
+      },
+      "fallbackLocale": {
+        "default": [
+          "zh-CN"
+        ]
+      },
+      "source": {
+        "key": ""
+      }
+    },
+    "canvasSetting": {
+      "deviceType": "desktop",
+      "paddingX": 0,
+      "backgroundColor": "",
+      "backgroundImage": "",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundOrigin": "center center",
+      "paddingY": 0
+    },
+    "setting": {
+      "iconCorner": "default",
+      "icon": "",
+      "iconColor": "",
+      "description": "",
+      "category": []
+    }
+  },
+  "applicationInfo": {
+    "createBy": "zhangcy",
+    "favicon": "",
+    "name": "新建/编辑CAPA",
+    "id": "6a3ddc3ca4c46a7c40616da1",
+    "type": "module",
+    "publicToAll": true,
+    "createAt": 1782438946225,
+    "publicToMarketplace": true
+  }
+}
