@@ -1,0 +1,1588 @@
+{
+  "amt2abc": {
+    "id": "Query_CAPA_list_details",
+    "name": "查询 CAPA 列表/详情",
+    "industry": "general",
+    "category": "form",
+    "author": "TitanMile",
+    "sanitized": true
+  },
+  "applicationDSL": {
+    "outputs": [
+      {
+        "name": "values",
+        "description": "表格选中行数据",
+        "value": "{{ cv_selectData.value ?? {} }}"
+      }
+    ],
+    "ui": [
+      {
+        "hidden": false,
+        "customId": "",
+        "contextObject": {},
+        "compType": "rect",
+        "children": [
+          {
+            "hidden": false,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "18197795-5bad-4d08-a98c-761d95221815",
+            "compType": "rect",
+            "children": [
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d3925813-83a3-41b0-83d0-ff9ec481322b",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text1",
+                "width": 671,
+                "customClass": "",
+                "y": 8,
+                "style": {
+                  "transform": "translate(16px, 8px)",
+                  "backgroundColor": "transparent",
+                  "color": "#242E3A",
+                  "width": "671px",
+                  "fontSize": "32px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "51px"
+                },
+                "id": "58c59ea5-19e5-46fe-9ffd-0111f8b97132",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"viewCAPA\") }}",
+                "height": 51
+              },
+              {
+                "dashed": false,
+                "hidden": false,
+                "vertical": false,
+                "lineColor": "#000000",
+                "slot": "default",
+                "title": "",
+                "titlePlacement": "center",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d3925813-83a3-41b0-83d0-ff9ec481322b",
+                "compType": "divider",
+                "x": 16,
+                "name": "divider1",
+                "width": 1069,
+                "customClass": "",
+                "y": 65,
+                "style": {
+                  "transform": "translate(16px, 65px)",
+                  "borderColor": "#CCD3DB",
+                  "width": "1069px",
+                  "position": "absolute",
+                  "height": "1px"
+                },
+                "id": "6b21ce83-e5c0-4a52-aafe-5eed27f57966",
+                "ignorePrint": false,
+                "locked": false,
+                "height": 1
+              },
+              {
+                "hidden": false,
+                "defaultValue": "",
+                "labelWidth": "100px",
+                "slot": "default",
+                "customId": "",
+                "contextObject": {
+                  "item": {}
+                },
+                "required": false,
+                "optionType": "map",
+                "feedback": "",
+                "compType": "select",
+                "labelTooltip": "",
+                "mapOptions": "{{ cv_optionss.value?.id ?? [] }}",
+                "labelStyle": {
+                  "fontSize": "26px"
+                },
+                "disabled": false,
+                "id": "15a60311-4076-42e4-bbf4-b3f53b2bce29",
+                "ignorePrint": false,
+                "placeholder": "",
+                "locked": false,
+                "height": 78,
+                "filterable": true,
+                "clearable": true,
+                "manualOptions": [
+                  {
+                    "hidden": "",
+                    "disabled": "",
+                    "label": "Option 1",
+                    "prefixIcon": "",
+                    "value": 1
+                  },
+                  {
+                    "hidden": "",
+                    "disabled": "",
+                    "label": "Option 2",
+                    "prefixIcon": "",
+                    "value": 2
+                  }
+                ],
+                "multiple": false,
+                "label": "ID",
+                "parentId": "d3925813-83a3-41b0-83d0-ff9ec481322b",
+                "labelPlacement": "top",
+                "mapOptionsFieldMap": {
+                  "hidden": "",
+                  "disabled": "",
+                  "label": "{{ item.id }}",
+                  "prefixIcon": "",
+                  "value": "{{ item.id }}"
+                },
+                "labelAlign": "left",
+                "onEvent": [
+                  {
+                    "handler": {
+                      "comp": {
+                        "queryName": "eca_buildingFilter",
+                        "queryVariables": []
+                      },
+                      "compType": "executeQuery",
+                      "delay": "",
+                      "stopPropagation": true,
+                      "conditions": [
+                        {
+                          "type": "and",
+                          "value": "true"
+                        }
+                      ],
+                      "sync": false
+                    },
+                    "name": "change",
+                    "id": "11673ff0-56d0-4256-ad33-07c5cf03eb4f"
+                  }
+                ],
+                "x": 16,
+                "name": "select1",
+                "width": 500,
+                "customClass": "",
+                "inputStyle": {
+                  "fontSize": "26px"
+                },
+                "y": 70,
+                "style": {
+                  "transform": "translate(16px, 70px)",
+                  "width": "500px",
+                  "position": "absolute",
+                  "height": "78px"
+                }
+              },
+              {
+                "hidden": false,
+                "defaultValue": "",
+                "labelWidth": "100px",
+                "slot": "default",
+                "customId": "",
+                "contextObject": {
+                  "item": {}
+                },
+                "required": false,
+                "optionType": "map",
+                "feedback": "",
+                "compType": "select",
+                "labelTooltip": "",
+                "mapOptions": "{{ cv_optionss.value?.status ?? [] }}",
+                "labelStyle": {
+                  "fontSize": "26px"
+                },
+                "disabled": false,
+                "id": "27b96bba-1c5e-46dd-99c6-62c867f8a225",
+                "ignorePrint": false,
+                "placeholder": "",
+                "locked": false,
+                "height": 78,
+                "filterable": true,
+                "clearable": true,
+                "manualOptions": [
+                  {
+                    "hidden": "",
+                    "disabled": "",
+                    "label": "Option 1",
+                    "prefixIcon": "",
+                    "value": 1
+                  },
+                  {
+                    "hidden": "",
+                    "disabled": "",
+                    "label": "Option 2",
+                    "prefixIcon": "",
+                    "value": 2
+                  }
+                ],
+                "multiple": false,
+                "label": "{{ i18n.t(\"status\") }}",
+                "parentId": "d3925813-83a3-41b0-83d0-ff9ec481322b",
+                "labelPlacement": "top",
+                "mapOptionsFieldMap": {
+                  "hidden": "",
+                  "disabled": "",
+                  "label": "{{ i18n.t(item.status) }}",
+                  "prefixIcon": "",
+                  "value": "{{ item.status }}"
+                },
+                "labelAlign": "left",
+                "onEvent": [
+                  {
+                    "handler": {
+                      "comp": {
+                        "queryName": "eca_buildingFilter",
+                        "queryVariables": []
+                      },
+                      "compType": "executeQuery",
+                      "delay": "",
+                      "stopPropagation": true,
+                      "conditions": [
+                        {
+                          "type": "and",
+                          "value": "true"
+                        }
+                      ],
+                      "sync": false
+                    },
+                    "name": "change",
+                    "id": "3c96be27-3ba2-4899-80e1-24440ced05a5"
+                  }
+                ],
+                "x": 536,
+                "name": "select2",
+                "width": 200,
+                "customClass": "",
+                "inputStyle": {
+                  "fontSize": "26px"
+                },
+                "y": 70,
+                "style": {
+                  "transform": "translate(536px, 70px)",
+                  "width": "200px",
+                  "position": "absolute",
+                  "height": "78px"
+                }
+              },
+              {
+                "pagination": {
+                  "defaultPage": 1,
+                  "pageSizes": [
+                    5,
+                    10,
+                    20,
+                    50
+                  ],
+                  "total": "{{ eca_searchCAPAData.data?.data?.total ?? 0 }}",
+                  "defaultPageSize": "9",
+                  "quickJumperText": "跳至",
+                  "hideOnSinglePage": false,
+                  "showSizePicker": false,
+                  "showQuickJumper": true
+                },
+                "hidden": false,
+                "data": "{{ eca_searchCAPAData.data?.data?.result ?? [] }}",
+                "columns": [
+                  {
+                    "show": true,
+                    "tooltip": "",
+                    "tooltipPlacement": "top",
+                    "autoWidth": "fixed",
+                    "width": 200,
+                    "fixed": "none",
+                    "align": "left",
+                    "title": {
+                      "show": true,
+                      "tooltip": "",
+                      "tooltipPlacement": "top",
+                      "label": "ID",
+                      "align": "left"
+                    },
+                    "render": {
+                      "suffixIconColor": "",
+                      "prefixIconColor": "",
+                      "prefixIconSize": 24,
+                      "fieldKey": "id",
+                      "suffixIconSize": 24,
+                      "suffixIcon": "",
+                      "type": "text",
+                      "prefixIcon": "",
+                      "value": "{{ currentRow.id }}"
+                    },
+                    "key": "id"
+                  },
+                  {
+                    "show": true,
+                    "tooltip": "",
+                    "tooltipPlacement": "top",
+                    "autoWidth": "auto",
+                    "width": 200,
+                    "fixed": "none",
+                    "align": "left",
+                    "title": {
+                      "show": true,
+                      "tooltip": "",
+                      "tooltipPlacement": "top",
+                      "label": "{{ i18n.t(\"description\") }}",
+                      "align": "left"
+                    },
+                    "render": {
+                      "suffixIconColor": "",
+                      "prefixIconColor": "",
+                      "prefixIconSize": 24,
+                      "fieldKey": "description",
+                      "suffixIconSize": 24,
+                      "suffixIcon": "",
+                      "type": "text",
+                      "prefixIcon": "",
+                      "value": "{{ currentRow.description }}"
+                    },
+                    "key": "description"
+                  },
+                  {
+                    "show": true,
+                    "tooltip": "",
+                    "tooltipPlacement": "top",
+                    "autoWidth": "fixed",
+                    "width": 200,
+                    "fixed": "none",
+                    "align": "left",
+                    "title": {
+                      "show": true,
+                      "tooltip": "",
+                      "tooltipPlacement": "top",
+                      "label": "{{ i18n.t(\"status\") }}",
+                      "align": "left"
+                    },
+                    "render": {
+                      "suffixIconColor": "",
+                      "prefixIconColor": "",
+                      "prefixIconSize": 24,
+                      "fieldKey": "status",
+                      "suffixIconSize": 24,
+                      "suffixIcon": "",
+                      "type": "text",
+                      "prefixIcon": "",
+                      "value": "{{ i18n.t(currentRow.status) }}"
+                    },
+                    "key": "status"
+                  },
+                  {
+                    "show": true,
+                    "tooltip": "",
+                    "tooltipPlacement": "top",
+                    "autoWidth": "fixed",
+                    "width": 200,
+                    "fixed": "none",
+                    "align": "left",
+                    "title": {
+                      "show": true,
+                      "tooltip": "",
+                      "tooltipPlacement": "top",
+                      "label": "{{ i18n.t(\"dueDate\") }}",
+                      "align": "left"
+                    },
+                    "render": {
+                      "suffixIconColor": "",
+                      "prefixIconColor": "",
+                      "prefixIconSize": 24,
+                      "fieldKey": "due_date",
+                      "suffixIconSize": 24,
+                      "suffixIcon": "",
+                      "format": "YYYY-MM-DD HH:mm:ss",
+                      "type": "date-time",
+                      "prefixIcon": "",
+                      "value": "{{ currentRow.due_date }}"
+                    },
+                    "key": "due_date"
+                  }
+                ],
+                "slot": "default",
+                "customId": "",
+                "contextObject": {
+                  "currentCell": "",
+                  "currentRow": {},
+                  "currentIndex": 0
+                },
+                "fixedHeader": false,
+                "compType": "table",
+                "id": "f67116f5-95cb-4ba1-8513-ad68d2a801f0",
+                "ignorePrint": false,
+                "locked": false,
+                "fixedToolbar": false,
+                "height": 545,
+                "defaultSelected": false,
+                "showHeader": true,
+                "resizeableColumnsWidth": false,
+                "loading": false,
+                "parentId": "d3925813-83a3-41b0-83d0-ff9ec481322b",
+                "toolbar": {
+                  "showToolbar": false,
+                  "showColumnControl": false,
+                  "showDownload": false,
+                  "iconSize": 18,
+                  "downloadName": "table-data.csv",
+                  "csvSeparator": ","
+                },
+                "size": "medium",
+                "onEvent": [
+                  {
+                    "handler": {
+                      "comp": {
+                        "queryName": "eca_processData",
+                        "queryVariables": []
+                      },
+                      "compType": "executeQuery",
+                      "delay": "",
+                      "stopPropagation": true,
+                      "conditions": [
+                        {
+                          "type": "and",
+                          "value": "true"
+                        }
+                      ],
+                      "sync": false
+                    },
+                    "name": "rowClick",
+                    "id": "d27fcb73-c788-4a18-9dec-cc9c0f4a2782"
+                  },
+                  {
+                    "handler": {
+                      "comp": {
+                        "queryName": "eca_buildingFilter",
+                        "queryVariables": []
+                      },
+                      "compType": "executeQuery",
+                      "delay": "",
+                      "stopPropagation": true,
+                      "conditions": [
+                        {
+                          "type": "and",
+                          "value": "true"
+                        }
+                      ],
+                      "sync": false
+                    },
+                    "name": "pageChange",
+                    "id": "cf612131-a40b-48ed-89f7-dc3e3db5f661"
+                  },
+                  {
+                    "handler": {
+                      "comp": {
+                        "name": "rowClick"
+                      },
+                      "compType": "triggerModuleEvent",
+                      "delay": "",
+                      "stopPropagation": true,
+                      "conditions": [
+                        {
+                          "type": "and",
+                          "value": "true"
+                        }
+                      ],
+                      "sync": false
+                    },
+                    "name": "rowClick",
+                    "id": "0b0cb2ba-def7-4f92-b558-46f4bdb80f26"
+                  }
+                ],
+                "enableScrollX": false,
+                "x": 16,
+                "name": "table1",
+                "width": 1069,
+                "customClass": "",
+                "y": 156,
+                "style": {
+                  "transform": "translate(16px, 156px)",
+                  "width": "1069px",
+                  "position": "absolute",
+                  "height": "545px"
+                }
+              }
+            ],
+            "x": 0,
+            "name": "rect2",
+            "width": 1101,
+            "customClass": "",
+            "y": 0,
+            "style": {
+              "transform": "translate(0px, 0px)",
+              "backgroundColor": "#FFFFFF",
+              "width": "1101px",
+              "position": "absolute",
+              "height": "718px"
+            },
+            "id": "d3925813-83a3-41b0-83d0-ff9ec481322b",
+            "ignorePrint": false,
+            "locked": false,
+            "height": 718
+          },
+          {
+            "hidden": false,
+            "slot": "default",
+            "customId": "",
+            "contextObject": {},
+            "parentId": "18197795-5bad-4d08-a98c-761d95221815",
+            "compType": "rect",
+            "children": [
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text2",
+                "width": 572,
+                "customClass": "",
+                "y": 8,
+                "style": {
+                  "transform": "translate(16px, 8px)",
+                  "backgroundColor": "transparent",
+                  "color": "#242E3A",
+                  "width": "572px",
+                  "fontSize": "32px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "51px"
+                },
+                "id": "ff17e502-5b52-40f9-b4a5-f74d9dd7d9d9",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"details\") }}",
+                "height": 51
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text3",
+                "width": 150,
+                "customClass": "",
+                "y": 75,
+                "style": {
+                  "transform": "translate(16px, 75px)",
+                  "backgroundColor": "transparent",
+                  "color": "#6B7582",
+                  "width": "150px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "8bc6a031-4a20-4672-8ee4-eec6e34af4d3",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "ID",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 170,
+                "name": "text4",
+                "width": 590,
+                "customClass": "",
+                "y": 75,
+                "style": {
+                  "transform": "translate(170px, 75px)",
+                  "backgroundColor": "transparent",
+                  "color": "#323C47",
+                  "width": "590px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "2a8ea82a-3064-4563-9350-b70df9ea70db",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ cv_selectData.value?.id ?? \"\" }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text5",
+                "width": 150,
+                "customClass": "",
+                "y": 120,
+                "style": {
+                  "transform": "translate(16px, 120px)",
+                  "backgroundColor": "transparent",
+                  "color": "#6B7582",
+                  "width": "150px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "90a866d9-6958-4c90-9e92-5cbe399dd160",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"assignee\") }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 170,
+                "name": "text6",
+                "width": 590,
+                "customClass": "",
+                "y": 120,
+                "style": {
+                  "transform": "translate(170px, 120px)",
+                  "backgroundColor": "transparent",
+                  "color": "#323C47",
+                  "width": "590px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "98df08cf-6824-4a98-bc0b-10a82dc25a8c",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ cv_selectData.value?.assignee_id ?? \"\" }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text7",
+                "width": 150,
+                "customClass": "",
+                "y": 164,
+                "style": {
+                  "transform": "translate(16px, 164px)",
+                  "backgroundColor": "transparent",
+                  "color": "#6B7582",
+                  "width": "150px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "f9a62bd1-ada8-4192-a840-d8b1a690b1e6",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"createdAt\") }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 170,
+                "name": "text8",
+                "width": 590,
+                "customClass": "",
+                "y": 164,
+                "style": {
+                  "transform": "translate(170px, 164px)",
+                  "backgroundColor": "transparent",
+                  "color": "#323C47",
+                  "width": "590px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "8c1d46ec-d6ac-4091-aaa0-7b082ae3cc84",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ cv_selectData.value?.created_at ?? \"\" }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text9",
+                "width": 150,
+                "customClass": "",
+                "y": 253,
+                "style": {
+                  "transform": "translate(16px, 249px)",
+                  "backgroundColor": "transparent",
+                  "color": "#6B7582",
+                  "width": "150px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "4b2e221c-46f6-48d4-9c73-ea229aebe0e1",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"description\") }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 170,
+                "name": "text10",
+                "width": 590,
+                "customClass": "",
+                "y": 253,
+                "style": {
+                  "transform": "translate(170px, 249px)",
+                  "backgroundColor": "transparent",
+                  "color": "#323C47",
+                  "width": "590px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "160px"
+                },
+                "id": "0c9eabe5-b146-465d-90d4-8594a87171da",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ cv_selectData.value?.description ?? \"\" }}",
+                "height": 160
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 170,
+                "name": "text11",
+                "width": 590,
+                "customClass": "",
+                "y": 208,
+                "style": {
+                  "transform": "translate(170px, 208px)",
+                  "backgroundColor": "transparent",
+                  "color": "#323C47",
+                  "width": "590px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "36px"
+                },
+                "id": "077293bb-49eb-478c-8f62-5c6a79578a8a",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ cv_selectData.value?.due_date ?? \"\" }}",
+                "height": 36
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text12",
+                "width": 150,
+                "customClass": "",
+                "y": 208,
+                "style": {
+                  "transform": "translate(16px, 208px)",
+                  "backgroundColor": "transparent",
+                  "color": "#6B7582",
+                  "width": "150px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "36eef589-93e0-4f28-b921-50dbeac51456",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"dueDate\") }}",
+                "height": 35
+              },
+              {
+                "hidden": false,
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [],
+                "valueType": "text",
+                "x": 16,
+                "name": "text13",
+                "width": 150,
+                "customClass": "",
+                "y": 421,
+                "style": {
+                  "transform": "translate(16px, 421px)",
+                  "backgroundColor": "transparent",
+                  "color": "#6B7582",
+                  "width": "150px",
+                  "fontSize": "22px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "35px"
+                },
+                "id": "858c0780-6968-4e61-997a-d03f25f964c3",
+                "ignorePrint": false,
+                "locked": false,
+                "value": "{{ i18n.t(\"attachment\") }}",
+                "height": 35
+              },
+              {
+                "hidden": "{{ !(cv_selectData.value.attachment_url && Object.keys(cv_selectData.value.attachment_url).length > 0 && cv_selectData.value.attachment_url.category === \"image\") }}",
+                "objectFit": "contain",
+                "src": "{{ cv_selectData.value?.attachment_url?.url ?? \"\" }}",
+                "previewDisabled": false,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "image",
+                "onEvent": [],
+                "previewSrc": "",
+                "x": 170,
+                "name": "image1",
+                "width": 264,
+                "customClass": "",
+                "y": 421,
+                "style": {
+                  "transform": "translate(170px, 421px)",
+                  "backgroundColor": "#FFF",
+                  "width": "264px",
+                  "position": "absolute",
+                  "height": "287px"
+                },
+                "id": "1bd2bb84-1b85-4adf-8b45-dc005fb6c20e",
+                "ignorePrint": false,
+                "locked": false,
+                "imageType": "url",
+                "height": 287
+              },
+              {
+                "hidden": "{{ !(cv_selectData.value.attachment_url && Object.keys(cv_selectData.value.attachment_url).length > 0 && cv_selectData.value.attachment_url.category === \"file\") }}",
+                "lineClamp": 0,
+                "slot": "default",
+                "customId": "",
+                "contextObject": {},
+                "parentId": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+                "compType": "text",
+                "onEvent": [
+                  {
+                    "handler": {
+                      "comp": {
+                        "inNewTab": true,
+                        "query": [
+                          {
+                            "value": "",
+                            "key": ""
+                          }
+                        ],
+                        "url": "{{ cv_selectData.value?.attachment_url?.url ?? \"\" }}",
+                        "hash": ""
+                      },
+                      "compType": "goToURL",
+                      "delay": "",
+                      "conditionType": "conditions",
+                      "stopPropagation": true,
+                      "conditions": [
+                        {
+                          "type": "and",
+                          "value": "true"
+                        }
+                      ],
+                      "sync": false
+                    },
+                    "name": "click",
+                    "id": "ba5ef1e0-5ee9-4d87-821c-3fbc4d30990f"
+                  }
+                ],
+                "valueType": "text",
+                "x": 170,
+                "name": "text14",
+                "width": 590,
+                "customClass": "",
+                "y": 421,
+                "style": {
+                  "cursor": "pointer",
+                  "transform": "translate(170px, 421px)",
+                  "backgroundColor": "transparent",
+                  "color": "#2C60DB",
+                  "width": "590px",
+                  "fontSize": "26px",
+                  "position": "absolute",
+                  "fontWeight": "400",
+                  "height": "36px"
+                },
+                "id": "5b8e0d01-0fcd-4334-9181-60bb4f91e1af",
+                "ignorePrint": false,
+                "locked": true,
+                "value": "{{ cv_selectData.value?.attachment_url?.fileName ?? \"\" }}",
+                "height": 36
+              }
+            ],
+            "x": 1117,
+            "name": "rect3",
+            "width": 770,
+            "customClass": "",
+            "y": 0,
+            "style": {
+              "transform": "translate(1117px, 0px)",
+              "backgroundColor": "#FFFFFF",
+              "width": "770px",
+              "position": "absolute",
+              "height": "718px"
+            },
+            "id": "d5fbba64-93c0-4473-aeff-fbb987c81ebb",
+            "ignorePrint": false,
+            "locked": false,
+            "height": 718
+          }
+        ],
+        "x": 0,
+        "name": "rect1",
+        "width": 1887,
+        "customClass": "",
+        "y": 0,
+        "style": {
+          "transform": "translate(0px, 0px)",
+          "backgroundColor": "#F4F5F7",
+          "width": "1887px",
+          "position": "absolute",
+          "height": "718px"
+        },
+        "id": "18197795-5bad-4d08-a98c-761d95221815",
+        "ignorePrint": false,
+        "locked": false,
+        "height": 718
+      }
+    ],
+    "customShortcuts": [],
+    "inputs": [
+      {
+        "defaultValue": "\"\"",
+        "name": "resourceId",
+        "description": "资源ID",
+        "type": "data",
+        "testValue": "resource_d93bd8ab-f3f0-49f4-8f7d-9dd79ad80a68"
+      },
+      {
+        "defaultValue": "\"\"",
+        "name": "assigneeId",
+        "description": "分配的责任人ID",
+        "type": "data",
+        "testValue": ""
+      }
+    ],
+    "methods": [],
+    "global": [
+      {
+        "children": [
+          {
+            "notification": {
+              "duration": "",
+              "fail": [
+                {
+                  "condition": "{{ !$0.success }}",
+                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                }
+              ],
+              "success": {
+                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+              },
+              "showFail": false,
+              "showSuccess": false
+            },
+            "variables": [],
+            "advanced": {
+              "confirmationModal": {
+                "confirmationMessage": "",
+                "showConfirmationModal": false
+              },
+              "periodic": false,
+              "periodicTime": "",
+              "timeout": ""
+            },
+            "onEvent": [],
+            "name": "eca_getOptions",
+            "depQueryName": "",
+            "delayTime": "",
+            "id": "2e0ced70-56fd-4b86-a5be-f0f2506eb7c6",
+            "triggerType": "manual",
+            "type": "javascript",
+            "script": "// 提取筛选框所需的值\nconst list = eca_searchOptionValues.data?.data?.result ?? [];\nif (list.length > 0) {\n  // 1. 提取并去重\n  const idSet = new Set();\n  const statusSet = new Set();\n  \n  list.forEach(item => {\n    idSet.add(item.id);\n    statusSet.add(item.status);\n  });\n  \n  // 2. 按指定格式组装\n  const result = {\n    id: Array.from(idSet).map(val => ({ id: val })),\n    status: Array.from(statusSet).map(val => ({ status: val }))\n  };\n  \n  cv_optionss.setValue(result);\n};"
+          },
+          {
+            "name": "cv_optionss",
+            "id": "5dee63c7-d7d1-41cf-aa7c-051f2fe8d73c",
+            "type": "variable",
+            "value": "[]"
+          },
+          {
+            "bodyType": "application/json",
+            "headers": [
+              {
+                "value": "",
+                "key": ""
+              }
+            ],
+            "variables": [],
+            "pathParams": [],
+            "queryParams": [
+              {
+                "value": "",
+                "key": ""
+              }
+            ],
+            "advanced": {
+              "confirmationModal": {
+                "confirmationMessage": "",
+                "showConfirmationModal": false
+              },
+              "periodic": false,
+              "periodicTime": "",
+              "timeout": ""
+            },
+            "bodyParams": "{{\n  {\n    resourceId: resourceId.value ?? \"\",\n    table: \"oet_capas\",\n    page_number: 1,\n    page_size: 10000,\n    query: \"id, status\"\n  }\n}}",
+            "type": "presetRestApi",
+            "notification": {
+              "duration": "",
+              "fail": [
+                {
+                  "condition": "{{ !$0.success }}",
+                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                }
+              ],
+              "success": {
+                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+              },
+              "showFail": false,
+              "showSuccess": false
+            },
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "eca_getOptions",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "{{ eca_searchOptionValues.data?.code == 200 }}"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "success",
+                "id": "7c38ad60-ed8e-47c4-a7f0-9dcda1e1e797"
+              }
+            ],
+            "presetReferenceKey": "presetRestApi:search",
+            "name": "eca_searchOptionValues",
+            "depQueryName": "",
+            "delayTime": "",
+            "id": "02aa9751-1819-43da-b2d3-2c17fc87cb39",
+            "triggerType": "onPageLoad"
+          }
+        ],
+        "name": "筛选项",
+        "id": "9a999bbd-0ce6-4dbc-aa52-cc3ca007576f",
+        "type": "folder"
+      },
+      {
+        "children": [
+          {
+            "bodyType": "application/json",
+            "headers": [
+              {
+                "value": "",
+                "key": ""
+              }
+            ],
+            "variables": [],
+            "pathParams": [],
+            "queryParams": [
+              {
+                "value": "",
+                "key": ""
+              }
+            ],
+            "advanced": {
+              "confirmationModal": {
+                "confirmationMessage": "",
+                "showConfirmationModal": false
+              },
+              "periodic": false,
+              "periodicTime": "",
+              "timeout": ""
+            },
+            "bodyParams": "{{\n  {\n    resourceId: resourceId.value ?? \"\",\n    table: \"oet_capas\",\n    page_number: table1.page,\n    page_size: table1.pageSize,\n    filter: cv_filter.value ?? []\n  }\n}}",
+            "type": "presetRestApi",
+            "notification": {
+              "duration": "",
+              "fail": [
+                {
+                  "condition": "{{ !$0.success }}",
+                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                }
+              ],
+              "success": {
+                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+              },
+              "showFail": false,
+              "showSuccess": false
+            },
+            "onEvent": [],
+            "presetReferenceKey": "presetRestApi:search",
+            "name": "eca_searchCAPAData",
+            "depQueryName": "",
+            "delayTime": "",
+            "id": "bb450e3f-b7a2-4659-aeaf-3c83e0158fac",
+            "triggerType": "manual"
+          },
+          {
+            "name": "cv_filter",
+            "id": "eb9c86ea-b299-475b-b551-e1907ac50c94",
+            "type": "variable",
+            "value": "[]"
+          },
+          {
+            "notification": {
+              "duration": "",
+              "fail": [
+                {
+                  "condition": "{{ !$0.success }}",
+                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                }
+              ],
+              "success": {
+                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+              },
+              "showFail": false,
+              "showSuccess": false
+            },
+            "variables": [],
+            "advanced": {
+              "confirmationModal": {
+                "confirmationMessage": "",
+                "showConfirmationModal": false
+              },
+              "periodic": false,
+              "periodicTime": "",
+              "timeout": ""
+            },
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "eca_searchCAPAData",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "delay": "",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "{{ eca_buildingFilter.success }}"
+                    }
+                  ],
+                  "sync": false
+                },
+                "name": "success",
+                "id": "c91c20e7-1524-4972-b8ce-0e4f8d64589c"
+              }
+            ],
+            "name": "eca_buildingFilter",
+            "depQueryName": "",
+            "delayTime": "",
+            "id": "b3370df6-776b-4eb1-a2a9-3aee3d392b0a",
+            "triggerType": "onPageLoad",
+            "type": "javascript",
+            "script": "// 构建查询条件\nlet filter = [];\n// ID筛选\nconst selectvalue1 = select1.value && select1.value.length > 0;\nif ( selectvalue1 ) {\n  filter = [\n    {\n      condition: \"=\",\n      columnName: \"id\",\n      columnValue: select1.value ?? \"\"\n    }\n  ];\n};\n// 状态筛选\nconst selectvalue2 = select2.value && select2.value.length > 0;\nif ( selectvalue2 ) {\n  filter = [\n    {\n      condition: \"=\",\n      columnName: \"status\",\n      columnValue: select2.value ?? \"\"\n    }\n  ];\n};\n// 责任人筛选\nconst assignee = assigneeId.value && assigneeId.value.length > 0;\nif ( assignee ) {\n  filter = [\n    {\n      condition: \"=\",\n      columnName: \"assignee_id\",\n      columnValue: assigneeId.value ?? \"\"\n    }\n  ];\n};\ncv_filter.setValue(filter);"
+          }
+        ],
+        "name": "搜索",
+        "id": "f4c541aa-776c-45be-8e69-1dfad5f8129b",
+        "type": "folder"
+      },
+      {
+        "name": "cv_selectData",
+        "id": "2deb2c99-f7c8-417e-97e0-a2a895c5150d",
+        "type": "variable",
+        "value": "{}"
+      },
+      {
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "onEvent": [],
+        "name": "eca_processData",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "3ec47768-982b-4e1c-b3e7-c573b08cda85",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "/**\n * ========== 处理数据 ===========\n * 时间戳转换 ；赋值给临时变量\n * @param {number} timestamp 10位秒 / 13位毫秒时间戳\n * @returns {{date: string, time: string}}\n */\nfunction splitTsToDateObj(timestamp) {\n  if (!timestamp) {\n    return \"\";\n  };\n  // 兼容10位秒级时间戳，统一转毫秒\n  const ts = String(timestamp).length === 10 ? timestamp * 1000 : timestamp;\n  const d = new Date(ts);\n\n  // 补零工具\n  const pad = n => n.toString().padStart(2, '0');\n\n  const year = d.getFullYear();\n  const month = pad(d.getMonth() + 1);\n  const day = pad(d.getDate());\n\n  const hour = pad(d.getHours());\n  const min = pad(d.getMinutes());\n  const sec = pad(d.getSeconds());\n\n  return `${year}-${month}-${day} ${hour}:${min}:${sec}`;\n};\n\n\n/**\n * 纯本地解析文件链接，无网络请求\n * @param {string} url 文件地址\n * @returns {\n *   fileName: string,      // 完整文件名\n *   suffix: string,        // 小写后缀\n *   category: string      // 文件分类：图片 / 文档 / 未知\n * }\n */\nfunction parseFileUrlLocal(url) {\n  if (!url) {\n    return \"\";\n  };\n  // 取最后一段文件名\n  const fileName = url.split('/').pop();\n  const arr = fileName.split('.');\n  const suffix = arr.length >= 2 ? arr.pop().toLowerCase() : '';\n\n  let category = '未知';\n\n  // 图片后缀集合\n  const imgExt = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg'];\n  // File文档\n  const fileExt = ['doc', 'docx', 'pdf', 'xls', 'xlsx'];\n\n  if (imgExt.includes(suffix)) {\n    category = \"image\";\n  } else if (fileExt.includes(suffix)) {\n    category = \"file\";\n  }\n\n  return {\n    \"fileName\": fileName,\n    \"url\": url,\n    \"category\": category\n  };\n};\n\n// 将用户ID替换为昵称\nconst userList = eca_searchUsers.data?.data?.list ?? [];\n  // 优化：简化判断 + 安全访问\n  const getValues = value => {\n    if (!value) return \"\";\n    const item = userList.find(i => i.id == value);\n    return item?.nickname ?? value;\n  }\n// ======================= 调用 =======================\nlet selectedData = {...(table1.selectedRow ?? {})};\nselectedData[\"created_at\"] = splitTsToDateObj(selectedData[\"created_at\"]);\nselectedData[\"due_date\"] = splitTsToDateObj(selectedData[\"due_date\"]);\nselectedData[\"attachment_url\"] = parseFileUrlLocal(selectedData[\"attachment_url\"]);\nselectedData[\"assignee_id\"] = getValues(selectedData[\"assignee_id\"]);\n\ncv_selectData.setValue(selectedData);"
+      },
+      {
+        "onEvent": [
+          {
+            "handler": {
+              "comp": {
+                "queryName": "eca_buildingFilter",
+                "queryVariables": []
+              },
+              "compType": "executeQuery",
+              "delay": "",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "true"
+                }
+              ],
+              "sync": false
+            },
+            "name": "dataChange",
+            "id": "7fce5876-8ca3-41cd-b483-b27d810f7938"
+          },
+          {
+            "handler": {
+              "comp": {
+                "queryName": "eca_searchOptionValues",
+                "queryVariables": []
+              },
+              "compType": "executeQuery",
+              "delay": "",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "true"
+                }
+              ],
+              "sync": false
+            },
+            "name": "dataChange",
+            "id": "00717457-6bf5-4fcb-8e28-5d66033c4931"
+          },
+          {
+            "handler": {
+              "comp": {
+                "queryName": "eca_searchUsers",
+                "queryVariables": []
+              },
+              "compType": "executeQuery",
+              "delay": "",
+              "conditionType": "conditions",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "true"
+                }
+              ],
+              "sync": false
+            },
+            "name": "dataChange",
+            "id": "13f2f200-8005-407a-b93f-1ed6dfae61d4"
+          }
+        ],
+        "name": "resourceEvent",
+        "id": "aca95e3e-e020-4b7e-b035-0a23a4da4b9e",
+        "type": "responder",
+        "script": "{{ resourceId.value }}"
+      },
+      {
+        "onEvent": [
+          {
+            "handler": {
+              "comp": {
+                "queryName": "eca_buildingFilter",
+                "queryVariables": []
+              },
+              "compType": "executeQuery",
+              "delay": "",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "true"
+                }
+              ],
+              "sync": false
+            },
+            "name": "dataChange",
+            "id": "65bc06d6-ef92-461b-8a59-73f6e4682b47"
+          }
+        ],
+        "name": "assigneeEvent",
+        "id": "3536e187-38c6-48b2-bc61-105056d53644",
+        "type": "responder",
+        "script": "{{ assigneeId.value }}"
+      },
+      {
+        "bodyType": "none",
+        "headers": [
+          {
+            "value": "{{ cookie.values?.dop_t ?? \"\" }}",
+            "key": "Authorization"
+          },
+          {
+            "value": "{{ currentUser.data?.tenant?.id ?? \"\" }}",
+            "key": "tenant-Id"
+          }
+        ],
+        "variables": [],
+        "method": "GET",
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": "tissueName"
+          },
+          {
+            "value": "",
+            "key": "groupName"
+          },
+          {
+            "value": "",
+            "key": "childGroupName"
+          },
+          {
+            "value": "1",
+            "key": "page"
+          },
+          {
+            "value": "10000",
+            "key": "size"
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "confirmationMessage": "",
+            "showConfirmationModal": false
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": ""
+        },
+        "bodyParams": "",
+        "type": "restApi",
+        "url": "{{ currentAPI.USER_LIST }}",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+            }
+          ],
+          "success": {
+            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+          },
+          "showFail": true,
+          "showSuccess": true
+        },
+        "onEvent": [],
+        "name": "eca_searchUsers",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "128caee4-fd84-4508-a4ae-a9b554d06ff3",
+        "triggerType": "manual"
+      }
+    ],
+    "event": {
+      "enableEventTestMessage": false,
+      "list": [
+        {
+          "name": "rowClick",
+          "description": "行点击"
+        }
+      ]
+    },
+    "preload": {
+      "style": "",
+      "script": ""
+    },
+    "i18n": {
+      "defaultLocale": "zh-CN",
+      "messages": {
+        "en-US": {
+          "ioap.resource.query.execution_failed": "Query Failed",
+          "IN_REVIEW": "IN REVIEW",
+          "CLOSED": "CLOSED",
+          "IN_PROCESS": "IN PROCESS",
+          "ioap.material.file_upload.trigger_by_local_file": "Upload File",
+          "dueDate": "Due Date",
+          "description": "Description",
+          "viewCAPA": "View CAPA",
+          "ioap.material.file_upload.trigger_by_camera": "Take Photo & Upload",
+          "createdAt": "Created At",
+          "attachment": "Attachment",
+          "ioap.material.file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
+          "CANCEL": "CANCEL",
+          "ioap.material.file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
+          "details": "CAPA details",
+          "assignee": "Assignee ID",
+          "ioap.resource.query.execution_successful": "Query Successful",
+          "ioap.hello_world": "Hello World",
+          "status": "Status"
+        },
+        "zh-CN": {
+          "ioap.resource.query.execution_failed": "查询失败",
+          "IN_REVIEW": "审核中",
+          "CLOSED": "已关闭",
+          "IN_PROCESS": "处理中",
+          "ioap.material.file_upload.trigger_by_local_file": "上传文件",
+          "dueDate": "截止时间",
+          "description": "描述",
+          "viewCAPA": "查看纠正与预防措施",
+          "ioap.material.file_upload.trigger_by_camera": "拍照上传",
+          "createdAt": "创建时间",
+          "attachment": "附件",
+          "ioap.material.file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
+          "CANCEL": "已取消",
+          "ioap.material.file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
+          "details": "纠正与预防措施详情",
+          "assignee": "责任人",
+          "ioap.resource.query.execution_successful": "查询成功",
+          "ioap.hello_world": "你好，世界",
+          "status": "状态"
+        }
+      },
+      "fallbackLocale": {
+        "default": [
+          "zh-CN"
+        ]
+      },
+      "source": {
+        "key": ""
+      }
+    },
+    "canvasSetting": {
+      "deviceType": "desktop",
+      "paddingX": 0,
+      "backgroundColor": "",
+      "backgroundImage": "",
+      "backgroundSize": "cover",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundOrigin": "center center",
+      "paddingY": 0
+    },
+    "setting": {
+      "iconCorner": "default",
+      "icon": "",
+      "iconColor": "",
+      "description": "",
+      "category": []
+    }
+  },
+  "applicationInfo": {
+    "createBy": "zhangcy",
+    "favicon": "",
+    "name": "查询 CAPA 列表",
+    "id": "6a3cc389a4c46a7c40616bc7",
+    "type": "module",
+    "publicToAll": true,
+    "createAt": 1782367086489,
+    "publicToMarketplace": true
+  }
+}
