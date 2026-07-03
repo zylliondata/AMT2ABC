@@ -971,7 +971,7 @@
         },
         "bodyParams": "{{ cv_saveData.value ?? {} }}",
         "type": "restApi",
-        "url": "https://idfp-gateway.data4industry.com/api/fabric/secondaryDikube/transaction/templates/CREATE_CAPA_EVENT/execute",
+        "url": "https://xxx.com/api/fabric/secondaryDikube/transaction/templates/CREATE_CAPA_EVENT/execute",
         "notification": {
           "duration": "",
           "fail": [
@@ -1025,7 +1025,7 @@
         },
         "bodyParams": "{{ cv_saveData.value ?? {} }}",
         "type": "restApi",
-        "url": "https://idfp-gateway.data4industry.com/api/fabric/secondaryDikube/transaction/templates/CREATE_CAPA_EVENT/execute",
+        "url": "https://xxx.com/api/fabric/secondaryDikube/transaction/templates/CREATE_CAPA_EVENT/execute",
         "notification": {
           "duration": "",
           "fail": [
@@ -1208,7 +1208,7 @@
     }
   },
   "applicationInfo": {
-    "createBy": "",
+    "createBy": "TitanMile",
     "favicon": "",
     "name": "新建/编辑CAPA",
     "id": "000000000000000000000000",

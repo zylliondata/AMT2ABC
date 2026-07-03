@@ -1,6 +1,6 @@
 {
   "amt2abc": {
-    "id": "Query_CAPA_list_details",
+    "id": "query-capa-list-details",
     "name": "查询 CAPA 列表/详情",
     "industry": "general",
     "category": "form",
@@ -1060,11 +1060,11 @@
               "fail": [
                 {
                   "condition": "{{ !$0.success }}",
-                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                  "text": "{{ `${ $name } ${ i18n.t(\"query.execution_failed\") }` }}"
                 }
               ],
               "success": {
-                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+                "text": "{{ `${ $name } ${ i18n.t(\"query.execution_successful\") }` }}"
               },
               "showFail": false,
               "showSuccess": false
@@ -1126,11 +1126,11 @@
               "fail": [
                 {
                   "condition": "{{ !$0.success }}",
-                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                  "text": "{{ `${ $name } ${ i18n.t(\"query.execution_failed\") }` }}"
                 }
               ],
               "success": {
-                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+                "text": "{{ `${ $name } ${ i18n.t(\"query.execution_successful\") }` }}"
               },
               "showFail": false,
               "showSuccess": false
@@ -1202,11 +1202,11 @@
               "fail": [
                 {
                   "condition": "{{ !$0.success }}",
-                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                  "text": "{{ `${ $name } ${ i18n.t(\"query.execution_failed\") }` }}"
                 }
               ],
               "success": {
-                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+                "text": "{{ `${ $name } ${ i18n.t(\"query.execution_successful\") }` }}"
               },
               "showFail": false,
               "showSuccess": false
@@ -1231,11 +1231,11 @@
               "fail": [
                 {
                   "condition": "{{ !$0.success }}",
-                  "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+                  "text": "{{ `${ $name } ${ i18n.t(\"query.execution_failed\") }` }}"
                 }
               ],
               "success": {
-                "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+                "text": "{{ `${ $name } ${ i18n.t(\"query.execution_successful\") }` }}"
               },
               "showFail": false,
               "showSuccess": false
@@ -1296,11 +1296,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"query.execution_successful\") }` }}"
           },
           "showFail": true,
           "showSuccess": false
@@ -1471,11 +1471,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"query.execution_successful\") }` }}"
           },
           "showFail": true,
           "showSuccess": true
@@ -1505,45 +1505,43 @@
       "defaultLocale": "zh-CN",
       "messages": {
         "en-US": {
-          "ioap.resource.query.execution_failed": "Query Failed",
+          "query.execution_failed": "Query Failed",
           "IN_REVIEW": "IN REVIEW",
           "CLOSED": "CLOSED",
           "IN_PROCESS": "IN PROCESS",
-          "ioap.material.file_upload.trigger_by_local_file": "Upload File",
+          "file_upload.trigger_by_local_file": "Upload File",
           "dueDate": "Due Date",
           "description": "Description",
           "viewCAPA": "View CAPA",
-          "ioap.material.file_upload.trigger_by_camera": "Take Photo & Upload",
+          "file_upload.trigger_by_camera": "Take Photo & Upload",
           "createdAt": "Created At",
           "attachment": "Attachment",
-          "ioap.material.file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
+          "file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
           "CANCEL": "CANCEL",
-          "ioap.material.file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
+          "file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
           "details": "CAPA details",
           "assignee": "Assignee ID",
-          "ioap.resource.query.execution_successful": "Query Successful",
-          "ioap.hello_world": "Hello World",
+          "query.execution_successful": "Query Successful",
           "status": "Status"
         },
         "zh-CN": {
-          "ioap.resource.query.execution_failed": "查询失败",
+          "query.execution_failed": "查询失败",
           "IN_REVIEW": "审核中",
           "CLOSED": "已关闭",
           "IN_PROCESS": "处理中",
-          "ioap.material.file_upload.trigger_by_local_file": "上传文件",
+          "file_upload.trigger_by_local_file": "上传文件",
           "dueDate": "截止时间",
           "description": "描述",
           "viewCAPA": "查看纠正与预防措施",
-          "ioap.material.file_upload.trigger_by_camera": "拍照上传",
+          "file_upload.trigger_by_camera": "拍照上传",
           "createdAt": "创建时间",
           "attachment": "附件",
-          "ioap.material.file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
+          "file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
           "CANCEL": "已取消",
-          "ioap.material.file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
+          "file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
           "details": "纠正与预防措施详情",
           "assignee": "责任人",
-          "ioap.resource.query.execution_successful": "查询成功",
-          "ioap.hello_world": "你好，世界",
+          "query.execution_successful": "查询成功",
           "status": "状态"
         }
       },
@@ -1576,13 +1574,13 @@
     }
   },
   "applicationInfo": {
-    "createBy": "zhangcy",
+    "createBy": "TitanMile",
     "favicon": "",
     "name": "查询 CAPA 列表",
-    "id": "6a3cc389a4c46a7c40616bc7",
+    "id": "000000000000000000000000",
     "type": "module",
     "publicToAll": true,
-    "createAt": 1782367086489,
-    "publicToMarketplace": true
+    "createAt": 0,
+    "publicToMarketplace": false
   }
 }
