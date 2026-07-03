@@ -1,6 +1,6 @@
 {
   "amt2abc": {
-    "id": "Create_Edit_CAPA_Events",
+    "id": "create-edit-capa-events",
     "name": "创建/编辑 CAPA 事件",
     "industry": "general",
     "category": "form",
@@ -434,7 +434,7 @@
             "name": "fileUpload1",
             "width": 621,
             "customClass": "",
-            "messages": "{\n  \"triggerByCamera\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_camera') }}\",\n  \"triggerByLocalFile\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_local_file') }}\",\n  \"triggerByDnd\": {\n    \"description1\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_dnd.description1') }}\",\n    \"description2\": \"{{ i18n.t('ioap.material.file_upload.trigger_by_dnd.description2') }}\"\n  }\n}",
+            "messages": "{\n  \"triggerByCamera\": \"{{ i18n.t('file_upload.trigger_by_camera') }}\",\n  \"triggerByLocalFile\": \"{{ i18n.t('file_upload.trigger_by_local_file') }}\",\n  \"triggerByDnd\": {\n    \"description1\": \"{{ i18n.t('file_upload.trigger_by_dnd.description1') }}\",\n    \"description2\": \"{{ i18n.t('file_upload.trigger_by_dnd.description2') }}\"\n  }\n}",
             "y": 348,
             "style": {
               "transform": "translate(202px, 348px)",
@@ -728,11 +728,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_successful\") }` }}"
           },
           "showFail": false,
           "showSuccess": false
@@ -788,11 +788,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_successful\") }` }}"
           },
           "showFail": true,
           "showSuccess": false
@@ -831,11 +831,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_successful\") }` }}"
           },
           "showFail": false,
           "showSuccess": false
@@ -923,11 +923,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_successful\") }` }}"
           },
           "showFail": false,
           "showSuccess": false
@@ -977,7 +977,7 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
@@ -1031,7 +1031,7 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
@@ -1059,11 +1059,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_successful\") }` }}"
           },
           "showFail": true,
           "showSuccess": false
@@ -1093,11 +1093,11 @@
           "fail": [
             {
               "condition": "{{ !$0.success }}",
-              "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_failed\") }` }}"
+              "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_failed\") }` }}"
             }
           ],
           "success": {
-            "text": "{{ `${ $name } ${ i18n.t(\"ioap.resource.query.execution_successful\") }` }}"
+            "text": "{{ `${ $name } ${ i18n.t(\"resource.query.execution_successful\") }` }}"
           },
           "showFail": true,
           "showSuccess": false
@@ -1139,43 +1139,43 @@
       "defaultLocale": "zh-CN",
       "messages": {
         "en-US": {
-          "ioap.resource.query.execution_failed": "Query Failed",
+          "resource.query.execution_failed": "Query Failed",
           "submitMess": "Save successful",
-          "ioap.material.file_upload.trigger_by_local_file": "Upload File",
+          "file_upload.trigger_by_local_file": "Upload File",
           "dueDate": "Due date",
           "save": "Save",
           "description": "Description",
-          "ioap.material.file_upload.trigger_by_camera": "Take Photo & Upload",
+          "file_upload.trigger_by_camera": "Take Photo & Upload",
           "assigneeID": "Assignee ID",
           "editCAPA": "Edit CAPA",
           "reUpload": "Re-upload",
           "addCAPA": "Add CAPA",
           "attachment": "Update Attachment",
-          "ioap.material.file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
-          "ioap.material.file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
+          "file_upload.trigger_by_dnd.description2": "Do not upload sensitive data, such as bank card numbers, passwords, credit card numbers, expiration dates and security codes.",
+          "file_upload.trigger_by_dnd.description1": "Click or drag files here to upload",
           "linkDefect": "Link defects events",
-          "ioap.resource.query.execution_successful": "Query Successful",
-          "ioap.hello_world": "Hello World",
+          "resource.query.execution_successful": "Query Successful",
+          "hello_world": "Hello World",
           "requiredMess": "Please fill in the required fields"
         },
         "zh-CN": {
-          "ioap.resource.query.execution_failed": "查询失败",
+          "resource.query.execution_failed": "查询失败",
           "submitMess": "保存成功",
-          "ioap.material.file_upload.trigger_by_local_file": "上传文件",
+          "file_upload.trigger_by_local_file": "上传文件",
           "dueDate": "截止日期",
           "save": "保存",
           "description": "描述",
-          "ioap.material.file_upload.trigger_by_camera": "拍照上传",
+          "file_upload.trigger_by_camera": "拍照上传",
           "assigneeID": "负责人",
           "editCAPA": "编辑纠正与预防措施",
           "reUpload": "重新上传",
           "addCAPA": "添加纠正与预防措施",
           "attachment": "上传附件",
-          "ioap.material.file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
-          "ioap.material.file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
+          "file_upload.trigger_by_dnd.description2": "请不要上传敏感数据，比如你的银行卡号和密码，信用卡号有效期和安全码",
+          "file_upload.trigger_by_dnd.description1": "点击或者拖动文件到该区域来上传",
           "linkDefect": "关联缺陷事件",
-          "ioap.resource.query.execution_successful": "查询成功",
-          "ioap.hello_world": "你好，世界",
+          "resource.query.execution_successful": "查询成功",
+          "hello_world": "你好，世界",
           "requiredMess": "请填写必填项"
         }
       },
@@ -1208,13 +1208,13 @@
     }
   },
   "applicationInfo": {
-    "createBy": "zhangcy",
+    "createBy": "",
     "favicon": "",
     "name": "新建/编辑CAPA",
-    "id": "6a3ddc3ca4c46a7c40616da1",
+    "id": "000000000000000000000000",
     "type": "module",
     "publicToAll": true,
-    "createAt": 1782438946225,
-    "publicToMarketplace": true
+    "createAt": 0,
+    "publicToMarketplace": false
   }
 }
