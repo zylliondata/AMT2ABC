@@ -1,6 +1,6 @@
 {
   "amt2abc":{
-	"id":"create-material-request",
+	"id":"form-create-material-request",
 	"name":"发起物料申请",
 	"industry":"general",
 	"category":"form",
@@ -590,7 +590,7 @@
             "key": "Content-Type"
           },
           {
-            "value": "{{tenantId.value}}",
+            "value": "{{tenant_id.value}}",
             "key": "Tenant-Id"
           },
           {
@@ -616,7 +616,7 @@
           "periodicTime": "",
           "timeout": ""
         },
-        "bodyParams": "{{\n  {\n    \"resourceId\": resourceId.value,\n    \"action\": \"ACTION_02\",\n    \"businessKey\": \"MATERIAL_REQUEST_APP_DOMAIN\",\n    \"correlationId\": getCtx(\"correlationId\"),\n    \"parameters\": {\n      \"material_request_item\": input1.value,\n      \"material_request_qty\": inputNumber1.value,\n      \"material_request_due_date\": datePicker1.value,\n      \"material_request_source_type\": \"KANBAN\",\n      \"material_request_priority\": select1.value,\n      \"material_request_kanban_id\": kanbanId.value\n    }\n  }\n}}",
+        "bodyParams": "{{\n  {\n    \"resourceId\": resource_id.value,\n    \"action\": \"ACTION_02\",\n    \"businessKey\": \"MATERIAL_REQUEST_APP_DOMAIN\",\n    \"correlationId\": getCtx(\"correlation_id\"),\n    \"parameters\": {\n      \"material_request_item\": input1.value,\n      \"material_request_qty\": inputNumber1.value,\n      \"material_request_due_date\": datePicker1.value,\n      \"material_request_source_type\": \"KANBAN\",\n      \"material_request_priority\": select1.value,\n      \"material_request_kanban_id\": kanban_id.value\n    }\n  }\n}}",
         "type": "restApi",
         "url": "{{currentConfig.GATEWAY_API_URL}}/api/fabric/secondaryDikube/transaction/templates/MATERIAL_REQUEST_APP/execute",
         "notification": {
@@ -728,8 +728,8 @@
   "applicationInfo": {
     "createBy": "",
     "favicon": "",
-    "name": "create_material_request",
-    "id": "0000000000",
+    "name": "发起物料申请",
+    "id": "000000000000000000000000",
     "type": "",
     "publicToAll": false,
     "createAt": 0,
