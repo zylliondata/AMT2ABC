@@ -7,3 +7,15 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg
+.venv/
