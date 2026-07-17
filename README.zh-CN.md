@@ -22,23 +22,71 @@
 
 | 概念 | 全称 | 说明 |
 |------|------|------|
-| **AMT** | Atomic Mechanism Triplet | 原子机理三元组，不可再拆的最小工业因果单元，如"负载↑ → 振动↑" |
-| **SECP** | Structure, Event, Configuration, Process | 工业软件的四维语法，为 AMT 提供统一的结构化标签 |
+| **AMT** | Atomic Mechanism Triplet | 原子机理三元组，由 Cause→Effect→CAUSAL 组成的最小工业因果单元 |
+| **SECP** | Structure, Event, Configuration, Process, Formula | 工业软件的五维语法，为 AMT 提供统一的结构化标签 |
 | **ABC** | Atomic Business Capability | 原子业务能力，可独立部署、跨场景复用的最小软件能力单元 |
 | **Compiler** | AMT2ABC Compiler | 从业务目标（GS）自动抽取 AMT Cluster，封装为 ABC 并编排为 App/Agent 的系统 |
+
+### AMT Triplet 结构
+
+```
+Mechanism (SECP 源)
+    │
+    ├──COMPOSED_OF──→ AMT_Cause (S: 主体结构)
+    │
+    └──COMPOSED_OF──→ AMT_Effect (E: 事件/动作)
+                          ↑
+              CAUSAL ─────┘ (C/P/F: 配置/过程/公式)
+```
+
+- **Mechanism**: 存储 SECP 四维指纹和元数据
+- **AMT_Cause**: 具体化 S 维度 (entity_id, attribute)
+- **AMT_Effect**: 具体化 E 维度 (event_name, entity_id)
+- **CAUSAL**: 具体化 C/P/F 维度 (config, process, formula)
+
+详细格式规范请参考 [docs/secp_format.md](docs/secp_format.md)。
 
 ## 架构概览
 
 ```
-Working Domain → Mechanism → AMT → AMT Graph
-                                           ↓
-                GS(目标) → AMT Cluster → ABC
-                                           ↓
-             App/Agent → Scenario → OAO Loop
+Working Domain → Mechanism → AMT Triplet → AMT Graph
+                    │            │
+                    │            ├── AMT_Cause (S)
+                    │            ├── AMT_Effect (E)
+                    │            └── CAUSAL (C/P/F)
+                    ↓
+                 GS(目标) → AMT Cluster → ABC
+                                            ↓
+              App/Agent → Scenario → OAO Loop
 ```
 
 - **人定义的部分**：工作域、机理、AMT、AMT Graph
 - **Compiler 自动完成的部分**：GS → AMT Cluster → ABC → App/Agent
+
+### AMT Graph 示例
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Mechanism: 傅里叶热传导-模具温度场                           │
+│  SECP: {S: {subject: 模具}, E: [热传导], C: {k: 80-120}}    │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                COMPOSED_OF │
+                            ↓
+┌───────────────────────────┴───────────────────────────┐
+│                                                       │
+↓                                                       ↓
+┌─────────────────────────┐   ┌─────────────────────────┐
+│  AMT_Cause: 模具-模温    │   │  AMT_Effect: 热传导      │
+│  entity_id: 模具         │   │  event_name: 热传导      │
+│  attribute: 模温分布     │   │  entity_id: 冷却水道     │
+└─────────────────────────┘   └─────────────────────────┘
+            │                               ↑
+            │        CAUSAL                 │
+            └───────────────────────────────┘
+                    formula: q = -k * dT/dx
+                    config: {"k": "80-120 W/(m·K)"}
+```
 
 ## 快速开始
 

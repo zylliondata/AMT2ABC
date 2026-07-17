@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMT 图谱报告</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--text2:#8b949e;--accent:#58a6ff;--green:#3fb950;--orange:#d29922;--red:#f85149;--purple:#bc8cff;--cyan:#39d2c0;--font:system-ui,-apple-system,sans-serif;--mono:'Cascadia Code','Fira Code',monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow:hidden;height:100vh}
+.app{display:flex;height:100vh}
+.sidebar{width:280px;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-header{padding:20px;border-bottom:1px solid var(--border)}
+.sidebar-header h1{font-size:16px;color:var(--accent);margin-bottom:4px}
+.sidebar-header p{font-size:11px;color:var(--text2)}
+.nav{flex:1;overflow-y:auto;padding:8px 0}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 20px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s}
+.nav-item:hover{background:rgba(88,166,255,.08);color:var(--text)}
+.nav-item.active{background:rgba(88,166,255,.12);color:var(--accent);border-right:2px solid var(--accent)}
+.nav-item .icon{width:18px;text-align:center;font-size:14px}
+.nav-section{padding:12px 20px 4px;font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:48px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px;flex-shrink:0}
+.topbar .breadcrumb{font-size:13px;color:var(--text2)}
+.topbar .breadcrumb span{color:var(--text)}
+.topbar .actions{margin-left:auto;display:flex;gap:8px}
+.btn{padding:6px 14px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:12px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.primary:hover{opacity:.9}
+.content{flex:1;overflow-y:auto;padding:32px 40px}
+.report{max-width:900px}
+.report h1{font-size:28px;color:#fff;margin-bottom:8px;border-bottom:1px solid var(--border);padding-bottom:12px}
+.report h2{font-size:20px;color:#fff;margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.report h3{font-size:16px;color:var(--accent);margin:24px 0 12px}
+.report h4{font-size:14px;color:var(--cyan);margin:20px 0 8px}
+.report p{margin:8px 0;color:var(--text)}
+.report blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:8px 0;background:rgba(88,166,255,.05);color:var(--text2);font-size:13px}
+.report strong{color:#fff}
+.report hr{border:none;border-top:1px solid var(--border);margin:24px 0}
+.report table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+.report th{text-align:left;padding:8px 12px;background:var(--card);border:1px solid var(--border);color:var(--accent);font-weight:600}
+.report td{padding:8px 12px;border:1px solid var(--border)}
+.report tr:hover td{background:rgba(88,166,255,.04)}
+.report ul,.report ol{margin:8px 0 8px 24px}
+.report li{margin:4px 0}
+.report code{background:rgba(88,166,255,.1);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:12px;color:var(--cyan)}
+.report pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin:12px 0;overflow-x:auto}
+.report pre code{background:none;padding:0;color:var(--text);font-size:12px;line-height:1.8}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
+.stat-card .value{font-size:28px;font-weight:700;color:var(--accent)}
+.stat-card .label{font-size:11px;color:var(--text2);margin-top:4px}
+.stat-card.green .value{color:var(--green)}
+.stat-card.orange .value{color:var(--orange)}
+.stat-card.purple .value{color:var(--purple)}
+.stat-card.cyan .value{color:var(--cyan)}
+.chart-container{display:flex;gap:16px;margin:16px 0;flex-wrap:wrap}
+.chart-box{flex:1;min-width:280px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.chart-box h4{margin:0 0 12px;font-size:13px;color:var(--text)}
+.bar-chart{display:flex;flex-direction:column;gap:6px}
+.bar-row{display:flex;align-items:center;gap:8px;font-size:12px}
+.bar-label{width:120px;text-align:right;color:var(--text2);flex-shrink:0}
+.bar-track{flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:11px;color:#fff;font-weight:600;transition:width .6s ease}
+.bar-count{margin-left:8px;color:var(--text2);font-size:11px;white-space:nowrap}
+/* Graph viz */
+.graph-panel{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:100;flex-direction:column}
+.graph-panel.open{display:flex}
+.graph-header{height:48px;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:12px}
+.graph-header h3{font-size:14px;color:var(--text)}
+.graph-header .close-btn{margin-left:auto;cursor:pointer;color:var(--text2);font-size:18px;padding:4px 8px;border-radius:4px}
+.graph-header .close-btn:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.graph-body{flex:1;overflow:hidden;position:relative}
+.graph-svg{width:100%;height:100%}
+.legend{position:absolute;top:12px;right:12px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;font-size:11px}
+.legend-item{display:flex;align-items:center;gap:6px;margin:4px 0}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.tooltip{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:10px 14px;font-size:12px;pointer-events:none;opacity:0;transition:opacity .15s;max-width:300px;z-index:10}
+.tooltip.show{opacity:1}
+.tooltip .tt-title{font-weight:600;color:var(--accent);margin-bottom:4px}
+.tooltip .tt-body{color:var(--text2)}
+.filter-bar{display:flex;gap:8px;padding:8px 24px;border-bottom:1px solid var(--border);background:var(--card)}
+.filter-chip{padding:4px 12px;border-radius:16px;font-size:11px;cursor:pointer;border:1px solid var(--border);color:var(--text2);transition:all .15s}
+.filter-chip:hover,.filter-chip.active{border-color:var(--accent);color:var(--accent);background:rgba(88,166,255,.1)}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+<div class="sidebar-header">
+<h1>AMT Graph</h1>
+<p>压铸领域工业机理知识图谱</p>
+</div>
+<nav class="nav">
+<div class="nav-section">概览</div>
+<div class="nav-item active" data-section="overview"><span class="icon">&#9673;</span>概述与统计</div>
+<div class="nav-item" data-section="mechanisms"><span class="icon">&#9881;</span>机理分类</div>
+<div class="nav-item" data-section="triplet"><span class="icon">&#9670;</span>AMT 三元组</div>
+<div class="nav-item" data-section="process"><span class="icon">&#9654;</span>工艺流程</div>
+<div class="nav-item" data-section="secp"><span class="icon">&#11044;</span>SECP 四维语法</div>
+<div class="nav-section">描述</div>
+<div class="nav-item" data-section="descriptions"><span class="icon">&#9998;</span>自然语言描述</div>
+<div class="nav-item" data-section="scenarios"><span class="icon">&#9733;</span>应用场景</div>
+<div class="nav-section">系统</div>
+<div class="nav-item" data-section="performance"><span class="icon">&#9889;</span>编译器性能</div>
+<div class="nav-item" data-section="todo"><span class="icon">&#9744;</span>待改进项</div>
+<div class="nav-section">可视化</div>
+<div class="nav-item" onclick="openGraph()"><span class="icon">&#9672;</span>图谱可视化</div>
+</nav>
+</aside>
+
+<div class="main">
+<div class="topbar">
+<div class="breadcrumb">AMT_Graph / <span>图谱报告</span></div>
+<div class="actions">
+<button class="btn" onclick="openGraph()">&#9672; 图谱视图</button>
+<button class="btn primary" onclick="window.open('graph_report.md')">&#10064; 打开 MD</button>
+</div>
+</div>
+<div class="content" id="contentArea">
+<div class="report" id="reportContent"></div>
+</div>
+</div>
+</div>
+
+<div class="graph-panel" id="graphPanel">
+<div class="graph-header">
+<h3>&#9672; AMT 图谱可视化</h3>
+<div class="filter-bar" id="filterBar">
+<div class="filter-chip active" data-filter="all">全部</div>
+<div class="filter-chip" data-filter="thermo">热力学 (9)</div>
+<div class="filter-chip" data-filter="mech">力学 (6)</div>
+<div class="filter-chip" data-filter="fluid">流体 (7)</div>
+<div class="filter-chip" data-filter="matl">材料 (7)</div>
+<div class="filter-chip" data-filter="other">综合 (5)</div>
+</div>
+<div class="close-btn" onclick="closeGraph()">&#10005;</div>
+</div>
+<div class="graph-body">
+<svg class="graph-svg" id="graphSvg"></svg>
+<div class="legend">
+<div style="font-weight:600;margin-bottom:6px">图例</div>
+<div class="legend-item"><div class="legend-dot" style="background:#58a6ff"></div>机理</div>
+<div class="legend-item"><div class="legend-dot" style="background:#3fb950"></div>原因 (S)</div>
+<div class="legend-item"><div class="legend-dot" style="background:#f85149"></div>结果 (E)</div>
+<div class="legend-item"><div class="legend-dot" style="background:#d29922"></div>实体</div>
+<div class="legend-item"><div class="legend-dot" style="background:#bc8cff"></div>工艺</div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+</div>
+</div>
+
+<script>
+const MECHANISMS = [
+{id:"AMT_DC_THERMO_001",name:"傅里叶热传导-模具温度场",cat:"thermo",formula:"q = -k * dT/dx",cause:"模具.模温分布",cause_entity:"模具",cause_attr:"模温分布",effect:"温度场变化",effect_entity:"模具",config:{"热导率k":"80-120 W/(m*K)"},"process":["浇注","热传导","温度场平衡"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_002",name:"牛顿冷却定律-模具散热",cat:"thermo",formula:"Q = h*A*(Tw-Tinf)",cause:"模具.模温",cause_entity:"模具",cause_attr:"模温",effect:"模具散热",effect_entity:"模具",config:{"对流换热系数h":"50-200 W/(m2*K)"},"process":["自然对流","强制对流","散热"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_003",name:"凝固相变-潜热释放",cat:"thermo",formula:"Q = L * dm/dt",cause:"压铸件.凝固分数",cause_entity:"压铸件",cause_attr:"凝固分数",effect:"潜热释放",effect_entity:"压铸件",config:{"潜热L":"389 kJ/kg"},"process":["凝固","潜热释放","温度平台"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_004",name:"模具预热温度场均匀性",cat:"thermo",formula:"dT/dt = Q/(m*Cp)",cause:"模具.模温分布",cause_entity:"模具",cause_attr:"模温分布",effect:"温度均匀化",effect_entity:"模具",config:{"预热温度":"220-280 C"},"process":["模温机","升温","均匀化"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_005",name:"冷却水道散热效率",cat:"thermo",formula:"Q = m_dot*Cp*dT",cause:"模具.水流速",cause_entity:"模具",cause_attr:"水流速",effect:"模具降温",effect_entity:"模具",config:{"水流速":">2m/s"},"process":["冷却水","带热","降温"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_006",name:"浇注温度对流动性影响",cat:"thermo",formula:"mu = mu_0*exp(Ea/RT)",cause:"模具.浇注温度",cause_entity:"模具",cause_attr:"浇注温度",effect:"流动性变化",effect_entity:"压铸件",config:{"浇注温度":"680-720 C"},"process":["熔化","保温","浇注"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_007",name:"凝固收缩-体积变化",cat:"thermo",formula:"dV/V = beta*dT",cause:"压铸件.收缩率",cause_entity:"压铸件",cause_attr:"收缩率",effect:"体积收缩",effect_entity:"压铸件",config:{"线收缩率":"1.2-1.5%"},"process":["凝固","收缩","补缩"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMO_008",name:"热平衡-模具温度波动",cat:"thermo",formula:"Q_in = Q_out",cause:"模具.模温分布",cause_entity:"模具",cause_attr:"模温分布",effect:"温度稳定",effect_entity:"模具",config:{"目标温度":"180-220 C"},"process":["热收入","热支出","平衡"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_THERMAL_EXPANSION_001",name:"热膨胀量计算",cat:"thermo",formula:"dL = alpha * L * dT",cause:"模具.热膨胀量",cause_entity:"模具",cause_attr:"热膨胀量",effect:"尺寸变化",effect_entity:"模具",config:{"膨胀系数":"2.1e-5 /K"},"process":["温度变化","膨胀","尺寸调整"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MECH_001",name:"热应力-模具疲劳裂纹",cat:"mech",formula:"s = E*a*dT/(1-n)",cause:"模具.温度梯度",cause_entity:"模具",cause_attr:"温度梯度",effect:"疲劳裂纹",effect_entity:"模具",config:{"E模量":"210 GPa"},"process":["热循环","应力累积","裂纹扩展"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MECH_002",name:"锁模力-飞边控制",cat:"mech",formula:"F >= P*A",cause:"压铸机.锁模力",cause_entity:"压铸机",cause_attr:"锁模力",effect:"飞边控制",effect_entity:"压铸件",config:{"锁模力":"3000-5000 kN"},"process":["合模","锁紧","压射"],evidence:"physics_law",engine:"rule_engine"},
+{id:"AMT_DC_MECH_003",name:"压射压力-内部致密度",cat:"mech",formula:"P = F/A_shot",cause:"压铸机.增压压力",cause_entity:"压铸机",cause_attr:"增压压力",effect:"内部致密",effect_entity:"压铸件",config:{"增压压力":"80-120 MPa"},"process":["高速充填","增压","补缩"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MECH_004",name:"模具变形-尺寸精度",cat:"mech",formula:"d = F*L^3/(3*E*I)",cause:"模具.模具变形量",cause_entity:"模具",cause_attr:"模具变形量",effect:"尺寸偏差",effect_entity:"压铸件",config:{"刚度要求":">50 GPa"},"process":["受力","弹性变形","回弹"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MECH_005",name:"残余应力-铸件变形",cat:"mech",formula:"s = s_thermal + s_mechanic",cause:"压铸件.残余应力",cause_entity:"压铸件",cause_attr:"残余应力",effect:"铸件变形",effect_entity:"压铸件",config:{"应力阈值":"<50 MPa"},"process":["凝固","冷却","应力锁定"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MECH_006",name:"顶出力-铸件脱模",cat:"mech",formula:"F = u*P*A + Fsh",cause:"模具.顶出力",cause_entity:"模具",cause_attr:"顶出力",effect:"铸件脱模",effect_entity:"压铸件",config:{"摩擦系数":"0.3-0.5"},"process":["开模","顶出","取件"],evidence:"physics_law",engine:"rule_engine"},
+{id:"AMT_DC_FLUID_001",name:"压射充填-高速流动",cat:"fluid",formula:"Navier-Stokes",cause:"压铸机.压射速度",cause_entity:"压铸机",cause_attr:"压射速度",effect:"高速充填",effect_entity:"压铸件",config:{"充填速度":"2-6 m/s"},"process":["慢压射","快压射","增压"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_FLUID_002",name:"气体卷吸-气孔形成",cat:"fluid",formula:"Re = rho*v*L/mu",cause:"模具.气体含量",cause_entity:"模具",cause_attr:"气体含量",effect:"气孔形成",effect_entity:"压铸件",config:{"Re阈值":">4000"},"process":["湍流","卷气","气泡"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_FLUID_003",name:"排气设计-气体排出效率",cat:"fluid",formula:"Q = A*Cd*sqrt(2dP/r)",cause:"模具.真空度",cause_entity:"模具",cause_attr:"真空度",effect:"气体排出",effect_entity:"压铸件",config:{"排气面积":"设计值"},"process":["真空","排气","降压"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_FLUID_004",name:"内浇口设计-充填模式",cat:"fluid",formula:"v = Q/A_gate",cause:"模具.充填速度",cause_entity:"模具",cause_attr:"充填速度",effect:"充填模式",effect_entity:"压铸件",config:{"浇口速度":"30-60 m/s"},"process":["设计","浇口","充填"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_FLUID_005",name:"真空度对气孔率影响",cat:"fluid",formula:"P = P_amb*(1-Ve)",cause:"真空系统.真空度",cause_entity:"真空系统",cause_attr:"真空度",effect:"气孔率降低",effect_entity:"压铸件",config:{"真空度":"10-100 Pa"},"process":["抽真空","充填","凝固"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_FLUID_006",name:"压射三段-慢速高速增压",cat:"fluid",formula:"v1<v2>v3",cause:"压铸机.压射速度",cause_entity:"压铸机",cause_attr:"压射速度",effect:"三段控制",effect_entity:"压铸件",config:{"慢速":"0.1-0.5 m/s","高速":"2-6 m/s"},"process":["慢速","高速","增压"],evidence:"empirical",engine:"rule_engine"},
+{id:"AMT_DC_FLUID_007",name:"脱模剂喷涂-表面状态",cat:"fluid",formula:"m = Cd*A*sqrt(2rho*dP)",cause:"脱模剂.喷涂时间",cause_entity:"脱模剂",cause_attr:"喷涂时间",effect:"表面脱模",effect_entity:"模具",config:{"喷涂时间":"8-15s","浓度":"5-8%"},"process":["开模","喷涂","合模"],evidence:"empirical",engine:"numerical_calculation"},
+{id:"AMT_DC_MATL_001",name:"缩孔形成-最后凝固区",cat:"matl",formula:"V = V*beta*(1-fs)",cause:"压铸件.缩孔体积",cause_entity:"压铸件",cause_attr:"缩孔体积",effect:"缩孔缺陷",effect_entity:"压铸件",config:{"缩孔阈值":"<0.5%"},"process":["凝固","补缩不足","缩孔"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MATL_002",name:"微观组织-晶粒度",cat:"matl",formula:"d = b*G^(-1/2)*R^(-1/3)",cause:"压铸件.晶粒度",cause_entity:"压铸件",cause_attr:"晶粒度",effect:"组织细化",effect_entity:"压铸件",config:{"G":"温度梯度","R":"凝固速率"},"process":["形核","生长","细化"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MATL_003",name:"气体溶解度-氢含量",cat:"matl",formula:"S = A*sqrt(P)*exp(-E/RT)",cause:"模具.氢含量",cause_entity:"模具",cause_attr:"氢含量",effect:"氢析出",effect_entity:"压铸件",config:{"溶解度系数":"Sievert常数"},"process":["溶解","析出","气孔"],evidence:"physics_law",engine:"numerical_calculation"},
+{id:"AMT_DC_MATL_004",name:"氧化皮-夹渣缺陷",cat:"matl",formula:"dx/dt = k_ox * exp(-Q/RT)",cause:"模具.氧化膜厚度",cause_entity:"模具",cause_attr:"氧化膜厚度",effect:"夹渣缺陷",effect_entity:"压铸件",config:{"氧化速率":"温度相关"},"process":["氧化","卷入","夹渣"],evidence:"empirical",engine:"numerical_calculation"},
+{id:"AMT_DC_MATL_005",name:"合金成分-力学性能",cat:"matl",formula:"UTS = f(Si,Cu,Mg,Fe,CR)",cause:"压铸件.力学性能",cause_entity:"压铸件",cause_attr:"力学性能",effect:"强度变化",effect_entity:"压铸件",config:{"Si":"9-12%","Cu":"<1%"},"process":["合金化","热处理","强化"],evidence:"empirical",engine:"rule_engine"},
+{id:"AMT_DC_MATL_006",name:"模具寿命-磨损机理",cat:"matl",formula:"W = K*P*V*t",cause:"模具.磨损量",cause_entity:"模具",cause_attr:"磨损量",effect:"模具磨损",effect_entity:"模具",config:{"磨损系数":"K值"},"process":["冲刷","磨损","修复"],evidence:"empirical",engine:"rule_engine"},
+{id:"AMT_DC_MATL_007",name:"热裂纹-模具失效",cat:"matl",formula:"N = C*(de)^(-m)",cause:"模具.裂纹长度",cause_entity:"模具",cause_attr:"裂纹长度",effect:"模具失效",effect_entity:"模具",config:{"Coffin-Manson参数":"材料相关"},"process":["热循环","裂纹萌生","扩展"],evidence:"empirical",engine:"rule_engine"},
+{id:"AMT_DC_RISK_CLASSIFY_001",name:"飞边风险等级分类",cat:"other",formula:"<=0.5%->Low, >0.8%->High",cause:"压铸件.飞边缺陷率",cause_entity:"压铸件",cause_attr:"飞边缺陷率",effect:"风险分级",effect_entity:"压铸件",config:{"Low":"<=0.5%","Medium":"0.5-0.8%","High":">0.8%"},"process":["检测","分级","响应"],evidence:"threshold_rule",engine:"rule_engine"},
+{id:"AMT_DC_QUALITY_ALERT_001",name:"缩孔超限报警",cat:"other",formula:"if shrinkage > 0.5%",cause:"压铸件.缩孔体积",cause_entity:"压铸件",cause_attr:"缩孔体积",effect:"质量警报",effect_entity:"压铸件",config:{"阈值":"0.5%"},"process":["检测","报警","处理"],evidence:"threshold_rule",engine:"rule_engine"},
+{id:"AMT_DC_FLASH_DEFECT_MAP_001",name:"飞边缺陷率映射",cat:"other",formula:"P_flash = f(gap,pressure,T)",cause:"合模系统.飞边缺陷率",cause_entity:"合模系统",cause_attr:"飞边缺陷率",effect:"飞边预测",effect_entity:"压铸件",config:{"间隙阈值":"0.05mm"},"process":["映射","预测","优化"],evidence:"empirical",engine:"rule_engine"},
+{id:"AMT_DC_GAP_EVALUATION_001",name:"动态合模间隙评估",cat:"other",formula:"Gap = Gap0 - dL",cause:"合模系统.合模间隙",cause_entity:"合模系统",cause_attr:"合模间隙",effect:"间隙评估",effect_entity:"合模系统",config:{"初始间隙":"设计值"},"process":["合模","变形","评估"],evidence:"empirical",engine:"rule_engine"},
+{id:"AMT_DC_PROCESS_PARAM_ADJUST_001",name:"工艺参数调整",cat:"other",formula:"Expert Rule + Optimization",cause:"压铸机.工艺参数",cause_entity:"压铸机",cause_attr:"工艺参数",effect:"参数优化",effect_entity:"压铸件",config:{"方法":"专家规则+优化"},"process":["分析","调整","验证"],evidence:"experience_rule",engine:"rule_engine"}
+];
+
+const CATS={thermo:{color:'#f97583',label:'THERMO'},mech:{color:'#79c0ff',label:'MECH'},fluid:{color:'#56d4dd',label:'FLUID'},matl:{color:'#7ee787',label:'MATL'},other:{color:'#d2a8ff',label:'Other'}};
+
+const OVERVIEW=`
+<h1>AMT 图谱总结报告</h1>
+<blockquote>压铸领域工业机理知识图谱 (AMT_Graph)<br>生成日期: 2026-07-17</blockquote>
+<h2>1. 概述</h2>
+<p>AMT (Atomic Mechanism Triplet, 原子机理三元组) 图谱是一个面向<strong>压铸制造领域</strong>的工业机理知识图谱，采用 NebulaGraph 3.8.0 作为图数据库存储。AMT 是<strong>不可再拆的最小工业因果单元</strong>，如"负载↑ → 振动↑"。图谱以 <strong>SECP 四维语法</strong>（Structure / Event / Configuration / Process）为核心组织方式，将工业机理建模为原子机理三元组。</blockquote>
+<h2>2. 统计信息</h2>
+<h3>2.1 节点统计</h3>
+<div class="stat-grid">
+<div class="stat-card"><div class="value">1,783</div><div class="label">总节点数</div></div>
+<div class="stat-card green"><div class="value">34</div><div class="label">机理节点</div></div>
+<div class="stat-card orange"><div class="value">133</div><div class="label">实体节点</div></div>
+<div class="stat-card purple"><div class="value">1,151</div><div class="label">UI操作节点</div></div>
+</div>
+<table>
+<tr><th>节点标签</th><th>数量</th><th>说明</th></tr>
+<tr><td><strong>Mechanism</strong></td><td>44</td><td>机理节点 (34个压铸机理 + 10个状态机机理)</td></tr>
+<tr><td><strong>AMT_Cause</strong></td><td>34</td><td>原因维度节点 (S维度)</td></tr>
+<tr><td><strong>AMT_Effect</strong></td><td>34</td><td>结果维度节点 (E维度)</td></tr>
+<tr><td><strong>Entity</strong></td><td>133</td><td>实体节点 (设备、物料、人员、文档)</td></tr>
+<tr><td><strong>Event</strong></td><td>72</td><td>事件节点</td></tr>
+<tr><td><strong>State</strong></td><td>78</td><td>状态节点 (设备状态、工单状态)</td></tr>
+<tr><td><strong>UIAction</strong></td><td>1,151</td><td>UI操作节点 (来自222个Tulip应用)</td></tr>
+<tr><td><strong>ProcessDefinition</strong></td><td>237</td><td>流程定义节点</td></tr>
+<tr><td><strong>合计</strong></td><td><strong>1,783</strong></td><td></td></tr>
+</table>
+<h3>2.2 边统计</h3>
+<div class="chart-container">
+<div class="chart-box">
+<h4>节点分布</h4>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">UIAction</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--purple)">1,151</div></div></div>
+<div class="bar-row"><div class="bar-label">State</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--orange)">78</div></div></div>
+<div class="bar-row"><div class="bar-label">Event</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:var(--cyan)">72</div></div></div>
+<div class="bar-row"><div class="bar-label">Mechanism</div><div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--accent)">44</div></div></div>
+<div class="bar-row"><div class="bar-label">Entity</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--orange)">133</div></div></div>
+</div>
+</div>
+<div class="chart-box">
+<h4>边分布</h4>
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">CONTAINS_UIACTION</div><div class="bar-track"><div class="bar-fill" style="width:95%;background:var(--purple)">2,264</div></div></div>
+<div class="bar-row"><div class="bar-label">CONTAINS_EVENT</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--cyan)">242</div></div></div>
+<div class="bar-row"><div class="bar-label">COMPOSED_OF</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--green)">68</div></div></div>
+<div class="bar-row"><div class="bar-label">NEXT_STEP</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--accent)">70</div></div></div>
+<div class="bar-row"><div class="bar-label">CAUSAL</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:var(--red)">34</div></div></div>
+</div>
+</div>
+</div>
+<h3>2.3 实体分类</h3>
+<table>
+<tr><th>类型</th><th>数量</th><th>示例</th></tr>
+<tr><td>设备 (equipment)</td><td>32</td><td>压铸机、模具、熔炉、合模系统、温控器</td></tr>
+<tr><td>物料 (material)</td><td>28</td><td>压铸件、铝合金、脱模剂、工单</td></tr>
+<tr><td>人员 (personnel)</td><td>17</td><td>质检员、维修工程师、操作员</td></tr>
+<tr><td>工艺 (process)</td><td>13</td><td>凝固组织、厚壁区、工艺定义</td></tr>
+<tr><td>质量 (quality)</td><td>12</td><td>检验计划、纠正预防、质量事件</td></tr>
+<tr><td>数据记录 (DataRecord)</td><td>12</td><td>模具使用记录、追溯记录、报废记录</td></tr>
+<tr><td>位置 (location)</td><td>7</td><td>车间、生产线、工作站、仓库</td></tr>
+<tr><td>文档 (document)</td><td>5</td><td>SOP、作业指导书</td></tr>
+<tr><td>订单 (order)</td><td>5</td><td>生产计划、班次、工单</td></tr>
+</table>
+`;
+
+const MECHANISMS_HTML=`
+<h2>3. 机理分类</h2>
+<h3>3.1 按物理领域</h3>
+<p>全部34个压铸机理属于<strong>天理层</strong>（不变的物理定律），分为6大类：</p>
+${Object.entries({thermo:'热力学',mech:'力学',fluid:'流体力学',matl:'材料科学',other:'综合评估'}).map(([k,v])=>{
+const ms=MECHANISMS.filter(m=>m.cat===k);
+return `<h4>${v} (${CATS[k].label}, ${ms.length}个)</h4>
+<table><tr><th>ID</th><th>名称</th><th>公式</th><th>证据来源</th><th>计算引擎</th></tr>
+${ms.map(m=>`<tr><td><code>${m.id}</code></td><td>${m.name}</td><td><code>${m.formula}</code></td><td>${m.evidence}</td><td>${m.engine}</td></tr>`).join('')}
+</table>`;
+}).join('')}
+<h3>3.2 按计算引擎</h3>
+<div class="chart-container"><div class="chart-box">
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">数值计算</div><div class="bar-track"><div class="bar-fill" style="width:59%;background:var(--accent)">20 (58.8%)</div></div></div>
+<div class="bar-row"><div class="bar-label">规则引擎</div><div class="bar-track"><div class="bar-fill" style="width:41%;background:var(--orange)">14 (41.2%)</div></div></div>
+</div></div></div>
+<h3>3.3 按证据来源</h3>
+<div class="chart-container"><div class="chart-box">
+<div class="bar-chart">
+<div class="bar-row"><div class="bar-label">物理定律</div><div class="bar-track"><div class="bar-fill" style="width:53%;background:var(--green)">18 (52.9%)</div></div></div>
+<div class="bar-row"><div class="bar-label">经验公式</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:var(--orange)">12 (35.3%)</div></div></div>
+<div class="bar-row"><div class="bar-label">阈值规则</div><div class="bar-track"><div class="bar-fill" style="width:6%;background:var(--purple)">2 (5.9%)</div></div></div>
+<div class="bar-row"><div class="bar-label">经验规则</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:var(--red)">1 (2.9%)</div></div></div>
+<div class="bar-row"><div class="bar-label">机器学习</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:var(--cyan)">1 (2.9%)</div></div></div>
+</div></div></div>
+`;
+
+const TRIPLET_HTML=`
+<h2>4. AMT 原子机理三元组</h2>
+<p>AMT (Atomic Mechanism Triplet) 是<strong>不可再拆的最小工业因果单元</strong>。每个机理节点通过COMPOSED_OF边连接到对应的原因和结果节点，形成三元组：</p>
+<pre><code>AMT_Cause (S: 结构/主体)
+    |-- entity_id: 目标对象 (如"模具"、"压铸件")
+    |-- attribute: 关键属性 (如"模温分布"、"收缩率")
+    |-- value_range: 值域范围
+    |
+    |  CAUSAL边 (C/P: 配置/流程)
+    |  |-- config: 工艺参数和阈值
+    |  |-- process: 工艺步骤
+    |  |-- formula: 物理公式 (附注)
+    |
+    v
+AMT_Effect (E: 事件/触发)
+    |-- event_name: 事件名称 (如"缩孔形成"、"飞边形成")
+    |-- entity_id: 受影响实体</code></pre>
+<h3>4.1 三元组示例</h3>
+<table><tr><th>机理</th><th>Cause (S)</th><th>CAUSAL (C/P)</th><th>Effect (E)</th></tr>
+<tr><td>AMT_DC_THERMO_001</td><td>模具.模温分布</td><td>q = -k * dT/dx</td><td>温度场变化</td></tr>
+<tr><td>AMT_DC_MECH_002</td><td>压铸机.锁模力</td><td>F >= P * A</td><td>飞边控制</td></tr>
+<tr><td>AMT_DC_MATL_001</td><td>压铸件.收缩率</td><td>V = V0 * beta * (1-fs)</td><td>缩孔缺陷</td></tr>
+</table>
+`;
+
+const PROCESS_HTML=`
+<h2>5. 压铸工艺流程</h2>
+<p>6个完整的工艺定义，包含30个状态节点：</p>
+<h3>5.1 熔炼</h3><pre><code>加料 -> 熔化 -> 成分检测 -> 温度控制 -> 保温</code></pre>
+<h3>5.2 压铸</h3><pre><code>合模 -> 浇注 -> 压射 -> 保压 -> 凝固 -> 喷涂</code></pre>
+<h3>5.3 取件</h3><pre><code>开模 -> 顶出 -> 机器人取件 -> 切边 -> 喷模</code></pre>
+<h3>5.4 后处理</h3><pre><code>切割 -> 去毛刺 -> 清洗 -> 洗涤 -> 干燥</code></pre>
+<h3>5.5 检测</h3><pre><code>目视检查 -> 尺寸测量 -> X光检测 -> 力学测试 -> 判定</code></pre>
+<h3>5.6 包装</h3><pre><code>称重 -> 贴标 -> 包装 -> 入库</code></pre>
+`;
+
+const SECP_HTML=`
+<h2>6. SECP 四维语法</h2>
+<table><tr><th>维度</th><th>全称</th><th>含义</th><th>示例</th></tr>
+<tr><td><strong>S</strong></td><td>Structure (结构/主体)</td><td>目标对象及其属性</td><td>模具、压铸件、压铸机</td></tr>
+<tr><td><strong>E</strong></td><td>Event (事件/触发)</td><td>产生的效果或事件</td><td>温度超标、飞边检测</td></tr>
+<tr><td><strong>C</strong></td><td>Configuration (配置/约束)</td><td>工艺参数和阈值</td><td>阈值、参数、规则</td></tr>
+<tr><td><strong>P</strong></td><td>Process (流程/步骤)</td><td>工艺步骤</td><td>检测→分析→调整</td></tr>
+</table>
+<h3>6.1 SECP 示例 (AMT_DC_THERMO_001)</h3>
+<pre><code>{
+  "S": { "subject": "模具", "attributes": ["模温分布", "温度场"] },
+  "E": ["模具温度场变化"],
+  "C": { "热导率k": "80-120 W/(m*K)" },
+  "P": ["浇注", "热传导", "温度场平衡"]
+}</code></pre>
+`;
+
+const DESC_HTML=`
+<h2>7. 自然语言描述</h2>
+<h3>热力学</h3>
+<ol>
+<li><strong>傅里叶热传导</strong>：模具内部的热传递遵循傅里叶定律——热通量与温度梯度成正比。当熔融铝液浇入型腔时，热量从型腔表面（高温）向冷却水道（低温）流动，形成温度场分布。</li>
+<li><strong>牛顿冷却定律</strong>：模具外表面的散热遵循牛顿冷却定律——散热速率与模具表面温度和环境温度之差成正比。</li>
+<li><strong>凝固潜热</strong>：凝固过程中，铝液释放约389 kJ/kg的潜热，在凝固前沿形成热阻，延缓凝固进程。</li>
+<li><strong>模具预热均匀性</strong>：开模前，模具需预热至220-280°C并保持温度均匀。不均匀预热会导致热应力，影响铸件质量和模具寿命。</li>
+<li><strong>冷却水道效率</strong>：内部冷却水道通过强制对流带走热量。冷却效率取决于水流速、进口温度和水道设计。水道堵塞会显著降低效率。</li>
+<li><strong>浇注温度与流动性</strong>：铝液粘度随温度升高呈指数下降。浇注温度（680-720°C）直接影响充填流动性。</li>
+<li><strong>凝固收缩</strong>：凝固过程中体积收缩（线收缩率约1.2-1.5%）。最后凝固区因补缩不足形成缩孔缩松。</li>
+<li><strong>热平衡</strong>：稳态条件下，热收入（铝液热量）等于热支出（冷却水+表面散热）。打破平衡会导致温度波动。</li>
+<li><strong>热膨胀</strong>：模具和铸件随温度变化发生线性膨胀/收缩，影响模隙、尺寸精度和顶出性能。</li>
+</ol>
+<h3>力学</h3>
+<ol start="10">
+<li><strong>热应力与模具疲劳</strong>：反复冷热循环产生的交变热应力是模具疲劳裂纹和最终失效的根本原因。</li>
+<li><strong>锁模力与飞边控制</strong>：合模力必须超过金属压力在投影面积上的作用力（F >= P*A）。通常为3000-5000 kN。</li>
+<li><strong>压射压力与致密度</strong>：增压压力通过冲头传递到铝液，促进补缩和内部致密化。</li>
+<li><strong>模具变形</strong>：高压下的弹性变形（d = FL³/(3EI)）影响铸件尺寸精度。</li>
+<li><strong>残余应力</strong>：凝固后残留的热应力和机械应力之和——是铸件变形和开裂的内驱力。</li>
+<li><strong>顶出力</strong>：克服摩擦和粘附力将铸件顶出所需的力。力不足会导致拉伤或粘模。</li>
+</ol>
+<h3>流体力学</h3>
+<ol start="16">
+<li><strong>压射充填</strong>：铝液在冲头推动下高速（2-6 m/s）充填型腔，遵循纳维-斯托克斯方程，流动状态为湍流。</li>
+<li><strong>气体卷吸</strong>：高速湍流的铝液将型腔内残留气体卷入，形成气泡，凝固后成为气孔缺陷。</li>
+<li><strong>排气设计</strong>：排气槽和真空系统将型腔气体排出。效率取决于排气面积和压差。</li>
+<li><strong>内浇口设计</strong>：内浇口截面积决定铝液入射速度和流动模式，影响充填方式和缺陷分布。</li>
+<li><strong>真空度与气孔率</strong>：型腔真空度越高，残留气体越少，气孔率越低。真空度通常控制在10-100 Pa。</li>
+<li><strong>压射三段</strong>：慢速阶段排出压室气体，高速阶段快速充填型腔，增压阶段补缩和压实。时序控制是工艺优化的核心。</li>
+<li><strong>脱模剂喷涂</strong>：喷涂量和均匀性影响铸件表面质量和脱模性能。</li>
+</ol>
+<h3>材料科学</h3>
+<ol start="23">
+<li><strong>缩孔形成</strong>：最后凝固区因补缩不足形成空洞（V = V0*β*(1-fs)）。</li>
+<li><strong>微观组织-晶粒度</strong>：晶粒度由温度梯度G和凝固速率R决定。晶粒越细，力学性能越好。</li>
+<li><strong>气体溶解度-氢含量</strong>：氢在铝液中的溶解度遵循西弗特定律。凝固时溶解度急剧下降导致氢析出和气孔。</li>
+<li><strong>氧化皮-夹渣缺陷</strong>：表面氧化膜（Al₂O₃）卷入形成夹渣缺陷。氧化速率随温度呈指数增长。</li>
+<li><strong>合金成分与性能</strong>：抗拉强度是Si、Cu、Mg、Fe含量和冷加工硬化率的多元函数。</li>
+<li><strong>模具磨损</strong>：型腔表面在高温高压铝液反复冲刷下磨损，影响表面质量和尺寸精度。</li>
+<li><strong>热裂纹-模具失效</strong>：反复热循环产生的疲劳裂纹遵循Coffin-Manson关系的裂纹扩展寿命。</li>
+</ol>
+`;
+
+const SCENARIOS_HTML=`
+<h2>8. 应用场景</h2>
+<h3>8.1 缩孔预测 (SC_DC_001)</h3>
+<ul><li><strong>目标</strong>：预测铸件缩孔缩松风险</li>
+<li><strong>相关机理</strong>：凝固收缩、潜热释放、热传导、残余应力</li>
+<li><strong>编译结果</strong>：匹配8个机理，最高分0.51</li></ul>
+<h3>8.2 飞边风险预测 (SC_DC_FLASH_001)</h3>
+<ul><li><strong>目标</strong>：预测飞边形成风险</li>
+<li><strong>相关机理</strong>：锁模力控制、合模间隙评估、飞边缺陷映射</li>
+<li><strong>编译结果</strong>：匹配2个机理，最高分0.35</li></ul>
+<h3>8.3 气孔率控制 (SC_DC_003)</h3>
+<ul><li><strong>目标</strong>：降低铸件气孔率</li>
+<li><strong>相关机理</strong>：气体卷吸、真空控制、排气设计、气体溶解度</li>
+<li><strong>编译结果</strong>：匹配8个机理，最高分0.47</li></ul>
+<h3>8.4 模具寿命预测 (SC_DC_004)</h3>
+<ul><li><strong>目标</strong>：预测模具使用寿命</li>
+<li><strong>相关机理</strong>：热应力疲劳、热裂纹、模具磨损、热平衡</li>
+<li><strong>编译结果</strong>：匹配18个机理，最高分0.47</li></ul>
+`;
+
+const PERF_HTML=`
+<h2>9. 编译器性能</h2>
+<table><tr><th>指标</th><th>值</th></tr>
+<tr><td>图谱数据加载</td><td>0.736s</td></tr>
+<tr><td>单次编译</td><td>2.55ms (平均)</td></tr>
+<tr><td>编译吞吐量</td><td>393次/秒</td></tr>
+<tr><td>单机理评分</td><td>0.062ms</td></tr>
+<tr><td>评分吞吐量</td><td>16,041个机理/秒</td></tr>
+<tr><td>三元组图查询</td><td>28.81ms</td></tr>
+</table>
+`;
+
+const TODO_HTML=`
+<h2>10. 待改进项</h2>
+<ol>
+<li><strong>Effect节点event_name为空</strong>：34个AMT_Effect节点的event_name为空，导致E维度评分=0。需要回填。</li>
+<li><strong>状态机节点(SM_*)未参与三元组</strong>：10个SM_*机理节点缺少Cause/Effect关联。</li>
+<li><strong>ABC/ABL/AMTCluster标签为空</strong>：标签已创建但未填充数据。</li>
+<li><strong>COMPOSED_OF描述为空</strong>：68条COMPOSED_OF边缺少description字段。</li>
+<li><strong>实体丰富度</strong>：133个实体主要来自CDM/Tulip，领域特定实体（合金牌号、模具规格）需扩展。</li>
+</ol>
+<blockquote>报告由 AMT_Graph NebulaGraph 数据库生成。版本: AMT_Graph v1.0 | 引擎: NebulaGraph 3.8.0</blockquote>
+`;
+
+const SECTIONS={overview:OVERVIEW,mechanisms:MECHANISMS_HTML,triplet:TRIPLET_HTML,process:PROCESS_HTML,secp:SECP_HTML,descriptions:DESC_HTML,scenarios:SCENARIOS_HTML,performance:PERF_HTML,todo:TODO_HTML};
+
+let currentSection='overview';
+function switchSection(s){
+currentSection=s;
+document.getElementById('reportContent').innerHTML=SECTIONS[s]||'';
+document.querySelectorAll('.nav-item[data-section]').forEach(el=>{
+el.classList.toggle('active',el.dataset.section===s);
+});
+document.getElementById('contentArea').scrollTop=0;
+}
+document.querySelectorAll('.nav-item[data-section]').forEach(el=>{
+el.addEventListener('click',()=>switchSection(el.dataset.section));
+});
+switchSection('overview');
+
+// Graph visualization
+function openGraph(){
+document.getElementById('graphPanel').classList.add('open');
+setTimeout(()=>renderGraph('all'),100);
+}
+function closeGraph(){
+document.getElementById('graphPanel').classList.remove('open');
+}
+function renderGraph(filter){
+const svg=document.getElementById('graphSvg');
+const w=svg.clientWidth||1200,h=svg.clientHeight||700;
+const nodes=[],edges=[];
+const mechs=filter==='all'?MECHANISMS:MECHANISMS.filter(m=>m.cat===filter);
+const entitySet=new Set();
+mechs.forEach(m=>{entitySet.add(m.cause_entity);entitySet.add(m.effect_entity)});
+const entities=[...entitySet];
+const cx=w/2,cy=h/2;
+const mechR=Math.min(w,h)*0.3;
+const entR=mechR*0.6;
+const eR=mechR*0.12;
+mechs.forEach((m,i)=>{
+const a=(i/mechs.length)*Math.PI*2-Math.PI/2;
+nodes.push({x:cx+Math.cos(a)*mechR,y:cy+Math.sin(a)*mechR,r:8,color:CATS[m.cat].color,type:'mech',data:m,id:m.id});
+});
+const entAngles={};
+entities.forEach((e,i)=>{
+const linked=mechs.filter(m=>m.cause_entity===e||m.effect_entity===e);
+const avgA=linked.reduce((s,m)=>{
+const ni=nodes.findIndex(n=>n.id===m.id);
+return s+(ni>=0?Math.atan2(nodes[ni].y-cy,nodes[ni].x-cx):0);
+},0)/linked.length;
+nodes.push({x:cx+Math.cos(avgA)*entR,y:cy+Math.sin(avgA)*entR,r:6,color:'#d29922',type:'entity',data:{name:e},id:'E_'+e});
+});
+mechs.forEach(m=>{
+const mi=nodes.findIndex(n=>n.id===m.id);
+const ci=nodes.findIndex(n=>n.id==='E_'+m.cause_entity);
+const ei=nodes.findIndex(n=>n.id==='E_'+m.effect_entity);
+if(ci>=0)edges.push({from:ci,to:mi,color:'#3fb950',type:'cause'});
+if(ei>=0)edges.push({from:mi,to:ei,color:'#f85149',type:'effect'});
+});
+let html='';
+edges.forEach(e=>{
+const f=nodes[e.from],t=nodes[e.to];
+html+=`<line x1="${f.x}" y1="${f.y}" x2="${t.x}" y2="${t.y}" stroke="${e.color}" stroke-width="1" stroke-opacity="0.4"/>`;
+});
+nodes.forEach(n=>{
+html+=`<circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${n.color}" stroke="#fff" stroke-width="1" stroke-opacity="0.3" style="cursor:pointer" data-id="${n.id}"/>`;
+if(n.type==='mech'){
+const tx=n.x+(n.x>cx?12:-12);
+const ty=n.y;
+const anchor=n.x>cx?'start':'end';
+const label=n.data.name.split('-')[0];
+html+=`<text x="${tx}" y="${ty+4}" fill="${n.color}" font-size="10" text-anchor="${anchor}" font-family="system-ui">${label}</text>`;
+}
+if(n.type==='entity'){
+html+=`<text x="${n.x}" y="${n.y-10}" fill="#d29922" font-size="10" text-anchor="middle" font-family="system-ui">${n.data.name}</text>`;
+}
+});
+svg.innerHTML=html;
+svg.querySelectorAll('circle[data-id]').forEach(el=>{
+el.addEventListener('mouseenter',e=>{
+const id=el.dataset.id;
+const n=nodes.find(x=>x.id===id);
+if(!n)return;
+const tt=document.getElementById('tooltip');
+let content='';
+if(n.type==='mech'){
+const m=n.data;
+content=`<div class="tt-title">${m.name}</div><div class="tt-body">
+ID: ${m.id}<br>公式: <code>${m.formula}</code><br>
+原因: ${m.cause}<br>结果: ${m.effect}<br>
+引擎: ${m.engine}</div>`;
+}else{
+content=`<div class="tt-title">${n.data.name}</div><div class="tt-body">实体节点</div>`;
+}
+tt.innerHTML=content;
+tt.style.left=(e.clientX+12)+'px';
+tt.style.top=(e.clientY+12)+'px';
+tt.classList.add('show');
+});
+el.addEventListener('mouseleave',()=>{
+document.getElementById('tooltip').classList.remove('show');
+});
+});
+}
+document.querySelectorAll('.filter-chip').forEach(el=>{
+el.addEventListener('click',()=>{
+document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+el.classList.add('active');
+renderGraph(el.dataset.filter);
+});
+});
+window.addEventListener('resize',()=>{
+if(document.getElementById('graphPanel').classList.contains('open'))renderGraph('all');
+});
+</script>
+</body>
+</html>
