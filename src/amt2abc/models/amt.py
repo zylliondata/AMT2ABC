@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, Dict, List
 
 from pydantic import BaseModel, Field
 
@@ -20,4 +20,4 @@ class AMT(BaseModel):
     domain: str = Field(description="Industrial domain, e.g. 'die_casting'")
     triplets: List[Triplet] = Field(description="Ordered list of causal triplets")
     tags: List[str] = Field(default_factory=list)
-    metadata: dict = Field(default_factory=dict)
+    metadata: Dict[str, Any] = Field(default_factory=dict)

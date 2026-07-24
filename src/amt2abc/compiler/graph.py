@@ -6,8 +6,8 @@ from amt2abc.models.amt import AMT
 
 
 class AMTGraph:
-    def __init__(self):
-        self.graph = nx.DiGraph()
+    def __init__(self) -> None:
+        self.graph: nx.DiGraph[str] = nx.DiGraph()
 
     def build(self, amts: List[AMT]) -> None:
         for amt in amts:
@@ -22,6 +22,9 @@ class AMTGraph:
 
     def find_path(self, source: str, target: str) -> List[str]:
         try:
-            return nx.shortest_path(self.graph, source=source, target=target)
+            path: List[str] = nx.shortest_path(
+                self.graph, source=source, target=target
+            )
+            return path
         except (nx.NodeNotFound, nx.NetworkXNoPath):
             return []

@@ -26,7 +26,7 @@ def test_amt_parser_load_one(tmp_path):
             },
         ],
     }
-    with open(amt_file, "w") as f:
+    with amt_file.open("w") as f:
         yaml.dump(data, f)
     parser = AMTParser(str(tmp_path))
     result = parser.load_all()

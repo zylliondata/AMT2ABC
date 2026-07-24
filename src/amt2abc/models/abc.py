@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, Dict, List
 
 from pydantic import BaseModel, Field
 
@@ -11,8 +11,8 @@ class ABC(BaseModel):
     )
     industry: str = Field(description="Industry domain, e.g. 'die_casting'")
     description: str = Field(default="")
-    inputs: dict = Field(default_factory=dict)
-    outputs: dict = Field(default_factory=dict)
+    inputs: Dict[str, Any] = Field(default_factory=dict)
+    outputs: Dict[str, Any] = Field(default_factory=dict)
     source_amts: List[str] = Field(
         default_factory=list,
         description="AMT IDs that this ABC implements",

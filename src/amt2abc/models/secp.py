@@ -1,4 +1,4 @@
-from typing import List
+from typing import Any, Dict, List
 
 from pydantic import BaseModel, Field
 
@@ -14,7 +14,7 @@ class EventDimension(BaseModel):
 
 
 class ConfigurationDimension(BaseModel):
-    parameters: dict = Field(default_factory=dict)
+    parameters: Dict[str, Any] = Field(default_factory=dict)
     constraints: List[str] = Field(default_factory=list)
 
 

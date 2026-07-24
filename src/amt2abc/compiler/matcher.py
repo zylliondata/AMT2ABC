@@ -1,16 +1,16 @@
-from typing import List, Tuple
+from typing import List, Set, Tuple
 
 from amt2abc.models.amt import AMT
 from amt2abc.models.gs import GoalStatement
 
 
 class GoalMatcher:
-    def __init__(self, amts: List[AMT]):
+    def __init__(self, amts: List[AMT]) -> None:
         self.amts = amts
 
     def match(self, goal: GoalStatement) -> List[Tuple[AMT, float]]:
-        scored = []
-        keywords = set(
+        scored: List[Tuple[AMT, float]] = []
+        keywords: Set[str] = set(
             w.lower() for w in goal.keywords or goal.text.lower().split()
         )
         for amt in self.amts:
@@ -20,9 +20,8 @@ class GoalMatcher:
         scored.sort(key=lambda x: -x[1])
         return scored
 
-    def _score(self, amt: AMT, keywords: set) -> float:
+    def _score(self, amt: AMT, keywords: Set[str]) -> float:
         text = (amt.name + " " + " ".join(amt.tags)).lower()
-        matches = sum(1 for kw in keywords if kw in text)
         for t in amt.triplets:
             text += " " + t.cause + " " + t.effect + " " + t.mechanism
         text_lower = text.lower()

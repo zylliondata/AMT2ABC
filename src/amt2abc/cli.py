@@ -1,4 +1,5 @@
 import json
+from typing import Any, Dict
 
 import click
 
@@ -7,12 +8,12 @@ from amt2abc import __version__
 
 @click.group()
 @click.version_option(version=__version__, prog_name="amt2abc")
-def main():
+def main() -> None:
     """AMT2ABC: Atomic Mechanism Triplets to Atomic Business Capabilities."""
 
 
 @main.command()
-def list():
+def list() -> None:  # noqa: A001
     """List available AMTs and ABCs."""
     from amt2abc.parser.abc_parser import ABCParser
     from amt2abc.parser.amt_parser import AMTParser
@@ -31,12 +32,12 @@ def list():
 @main.command()
 @click.argument("goal")
 @click.option("--format", "-f", "output_format", default="text")
-def compile(goal, output_format):
+def compile(goal: str, output_format: str) -> None:  # noqa: A001
     """Compile a goal statement into recommended ABCs."""
     from amt2abc.compiler.pipeline import CompilerPipeline
 
     pipeline = CompilerPipeline()
-    result = pipeline.compile(goal)
+    result: Dict[str, Any] = pipeline.compile(goal)
 
     if output_format == "json":
         click.echo(json.dumps(result, ensure_ascii=False, indent=2))
