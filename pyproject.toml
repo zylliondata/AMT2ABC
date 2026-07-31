@@ -33,6 +33,7 @@ pytest = "^7.0"
 ruff = "^0.1"
 mypy = "^1.0"
 pre-commit = "^3.0"
+pytest-cov = "^4.1"
 
 [tool.poetry.scripts]
 amt2abc = "amt2abc.cli:main"
@@ -40,6 +41,7 @@ amt2abc = "amt2abc.cli:main"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
+addopts = "--cov=amt2abc --cov-report=term-missing"
 
 [tool.ruff]
 line-length = 100
