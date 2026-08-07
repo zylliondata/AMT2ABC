@@ -1,0 +1,42 @@
+id: AMT_DC_VACUUM_001
+name: 真空度-缩孔率控制
+name_en: Vacuum Level - Porosity Control
+domain: die_casting
+triplets:
+  - cause: vacuum_level
+    effect: porosity_rate
+    relation: decreases
+    mechanism: 型腔真空度提高降低空气残留，减少气体卷入形成缩孔
+  - cause: vacuum_level
+    effect: filling_quality
+    relation: increases
+    mechanism: 真空辅助充填改善铝液流动形态，提升充型完整性
+tags:
+  - porosity
+  - vacuum
+  - die_casting
+  - 缩孔
+  - 真空
+metadata:
+  layer: 法理
+  evidence_source: empirical_formula
+  mcl_engine: rule_engine
+  reference: VDJ 指南 / 压铸真空工艺标准
+  formula_dsl: "porosity ∝ P_gas_residual = P_initial * (V_remaining/V_total)"
+  secp:
+    S:
+      subject: 模具型腔
+      attributes: [真空度, 气体残留]
+    E: [真空排气, 卷气减少]
+    C:
+      vacuum: 50-100 mbar
+      T_pour: 680-720°C
+    P: [抽真空, 合模, 充填]
+  cause:
+    entity: 模具型腔
+    attribute: 真空度
+    value_range: 50-100 mbar
+  effect:
+    event: 卷气减少
+    entity: 压铸件
+  optimal_window: 80-100 mbar
