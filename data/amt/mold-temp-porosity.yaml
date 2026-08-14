@@ -7,35 +7,38 @@ triplets:
     effect: porosity_rate
     relation: decreases
     mechanism: 模具温度升高使铝液凝固时间延长，气体有足够时间排出，减少缩孔/气孔
+    weight: 0.9
+    confidence: 0.85
   - cause: mold_temperature
     effect: cooling_time
     relation: increases
     mechanism: 模温升高降低温度梯度，延长凝固时间
+    weight: 0.6
+    confidence: 0.7
 tags:
   - porosity
   - mold_temperature
   - die_casting
   - 缩孔
   - 模具温度
-metadata:
-  layer: 法理
-  evidence_source: expert_knowledge
-  mcl_engine: rule_engine
-  reference: GB/T 15115-2009
-  formula_dsl: "porosity ∝ 1/(T_mold) [within 180-320°C window]"
-  secp:
-    S:
-      subject: 模具
-      attributes: [模温分布, 温度场]
-    E: [凝固, 缩孔形成]
-    C:
-      T_mold: 180-320°C
-      T_pour: 680-720°C
-    P: [合模, 充填, 增压凝固]
-  cause:
-    entity: 模具
-    attribute: 模温分布
-    value_range: 180-320°C
-  effect:
-    event: 缩孔形成
-    entity: 压铸件
+layer: 法理
+evidence_source: expert_knowledge
+mcl_engine: rule_engine
+reference: GB/T 15115-2009
+formula_dsl: "porosity ∝ 1/(T_mold) [within 180-320°C window]"
+secp:
+  S:
+    subject: 模具
+    attributes: [模温分布, 温度场]
+  E: [凝固, 缩孔形成]
+  C:
+    T_mold: 180-320°C
+    T_pour: 680-720°C
+  P: [合模, 充填, 增压凝固]
+cause:
+  entity: 模具
+  attribute: 模温分布
+  value_range: 180-320°C
+effect:
+  event: 缩孔形成
+  entity: 压铸件

@@ -7,36 +7,41 @@ triplets:
     effect: porosity_rate
     relation: decreases
     mechanism: 压射速度提高使金属液在型腔内快速充填，减少卷气形成缩孔
+    weight: 0.85
+    confidence: 0.8
+    formula: "P + 1/2*rho*v^2 = const (Bernoulli)"
   - cause: shot_speed
     effect: turbulence_intensity
     relation: increases
     mechanism: 速度过高引起湍流加剧，反而增加卷气风险（存在最优区间）
+    weight: 0.5
+    confidence: 0.75
 tags:
   - porosity
   - shot_speed
   - die_casting
   - 缩孔
   - 压射速度
+layer: 天理
+evidence_source: physics_law
+mcl_engine: numerical_calculation
+reference: ISO 10816-3
+formula_dsl: "P + 1/2*rho*v^2 = const (Bernoulli)"
+secp:
+  S:
+    subject: 压铸机
+    attributes: [压射速度, 充填时间]
+  E: [高速充填, 卷气]
+  C:
+    shot_speed: 2-6 m/s
+    T_pour: 680-720°C
+  P: [低速排气, 高速充填, 增压凝固]
+cause:
+  entity: 压铸机
+  attribute: 压射速度
+  value_range: 2-6 m/s
+effect:
+  event: 卷气
+  entity: 模具型腔
 metadata:
-  layer: 天理
-  evidence_source: physics_law
-  mcl_engine: numerical_calculation
-  reference: ISO 10816-3
-  formula_dsl: "P + 1/2*rho*v^2 = const (Bernoulli)"
-  secp:
-    S:
-      subject: 压铸机
-      attributes: [压射速度, 充填时间]
-    E: [高速充填, 卷气]
-    C:
-      shot_speed: 2-6 m/s
-      T_pour: 680-720°C
-    P: [低速排气, 高速充填, 增压凝固]
-  cause:
-    entity: 压铸机
-    attribute: 压射速度
-    value_range: 2-6 m/s
-  effect:
-    event: 卷气
-    entity: 模具型腔
   optimal_window: 4-5 m/s
