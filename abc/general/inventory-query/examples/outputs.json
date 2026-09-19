@@ -1,0 +1,18 @@
+{
+  "result": [
+    {
+      "id": "INV-0001",
+      "item": "MAT-0001",
+      "material_definition_type": "RAW",
+      "lot_batch_number": "LOT-0001",
+      "location": "LOC-01",
+      "area": "A1",
+      "qty": 500,
+      "unit_of_measure": "KG",
+      "status": "IN_STOCK"
+    }
+  ],
+  "total": 1,
+  "selectedRow": {},
+  "pageNumber": 1
+}
