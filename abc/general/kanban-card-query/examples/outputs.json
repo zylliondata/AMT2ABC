@@ -1,0 +1,16 @@
+{
+  "result": [
+    {
+      "id": "KB-0001",
+      "material_definition_id": "MAT-0001",
+      "consuming_location": "LOC-01",
+      "supplier": "SupplierA",
+      "qty": 120,
+      "status": "ACTIVE",
+      "is_active": true
+    }
+  ],
+  "total": 1,
+  "selectedRow": {},
+  "pageNumber": 1
+}

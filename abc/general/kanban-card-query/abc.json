@@ -1,0 +1,1234 @@
+{
+  "amt2abc": {
+    "id": "kanban-card-query",
+    "name": "看板卡查询 ABC",
+    "industry": "general",
+    "category": "form",
+    "author": "zylliondata",
+    "sanitized": true
+  },
+  "applicationInfo": {
+    "createBy": "",
+    "favicon": "",
+    "name": "kanban-card-query",
+    "id": "000000000000000000000000",
+    "type": "module",
+    "publicToAll": false,
+    "publicToMarketplace": false,
+    "createAt": 0
+  },
+  "applicationDSL": {
+    "outputs": [
+      {
+        "name": "result",
+        "description": "看板卡列表",
+        "value": "{{eca_kbSearch?.data?.data?.result ?? []}}"
+      },
+      {
+        "name": "total",
+        "description": "总条数",
+        "value": "{{Number(eca_kbSearch?.data?.data?.total ?? 0)}}"
+      },
+      {
+        "name": "selectedRow",
+        "description": "当前选中看板卡",
+        "value": "{{ cv_kbCurrentSelectRow.value ?? ({}) }}"
+      },
+      {
+        "name": "pageNumber",
+        "description": "当前页码",
+        "value": "{{ typeof KbResultTable !== 'undefined' ? Number(KbResultTable?.pagination?.current || 1) : 1 }}"
+      }
+    ],
+    "ui": [
+      {
+        "hidden": false,
+        "customId": "",
+        "contextObject": {},
+        "compType": "rect",
+        "children": [
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "default",
+            "contextObject": {},
+            "customId": "",
+            "parentId": "kb_root",
+            "compType": "text",
+            "valueType": "text",
+            "onEvent": [],
+            "name": "KbTitle",
+            "x": 32,
+            "width": 400,
+            "y": 20,
+            "customClass": "",
+            "style": {
+              "transform": "translate(32px, 20px)",
+              "backgroundColor": "transparent",
+              "color": "#00224C",
+              "width": "400px",
+              "fontSize": "24px",
+              "position": "absolute",
+              "fontWeight": "600",
+              "height": "36px"
+            },
+            "id": "kb_title",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{i18n.t('kb_title')}}",
+            "height": 36
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "contextObject": {},
+            "customId": "",
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "kb_id_input",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "clearable": true,
+            "textType": "text",
+            "label": "{{i18n.t('kb_f_id')}}",
+            "parentId": "kb_root",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "name": "KbIdInput",
+            "x": 32,
+            "width": 220,
+            "y": 64,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "style": {
+              "transform": "translate(32px, 64px)",
+              "width": "220px",
+              "position": "absolute",
+              "height": "auto"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "contextObject": {},
+            "customId": "",
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "kb_kw_input",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "clearable": true,
+            "textType": "text",
+            "label": "{{i18n.t('kb_f_keyword')}}",
+            "parentId": "kb_root",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "name": "KbKeywordInput",
+            "x": 268,
+            "width": 240,
+            "y": 64,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "style": {
+              "transform": "translate(268px, 64px)",
+              "width": "240px",
+              "position": "absolute",
+              "height": "auto"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "contextObject": {},
+            "customId": "",
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "kb_cons_input",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "clearable": true,
+            "textType": "text",
+            "label": "{{i18n.t('kb_f_consuming')}}",
+            "parentId": "kb_root",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "name": "KbConsumingInput",
+            "x": 524,
+            "width": 200,
+            "y": 64,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "style": {
+              "transform": "translate(524px, 64px)",
+              "width": "200px",
+              "position": "absolute",
+              "height": "auto"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "regexp": "",
+            "hidden": false,
+            "defaultValue": "",
+            "suffixIcon": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "contextObject": {},
+            "customId": "",
+            "required": false,
+            "prefixIconClickable": false,
+            "suffixIconClickable": false,
+            "feedback": "",
+            "showCount": false,
+            "compType": "input",
+            "readonly": false,
+            "labelTooltip": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "regexpMessage": "",
+            "disabled": false,
+            "id": "kb_sup_input",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "clearable": true,
+            "textType": "text",
+            "label": "{{i18n.t('kb_f_supplier')}}",
+            "parentId": "kb_root",
+            "labelPlacement": "top",
+            "labelAlign": "left",
+            "onEvent": [],
+            "name": "KbSupplierInput",
+            "x": 740,
+            "width": 200,
+            "y": 64,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "style": {
+              "transform": "translate(740px, 64px)",
+              "width": "200px",
+              "position": "absolute",
+              "height": "auto"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "hidden": false,
+            "defaultValue": "",
+            "labelWidth": "100px",
+            "slot": "default",
+            "contextObject": {
+              "item": {}
+            },
+            "customId": "",
+            "required": false,
+            "optionType": "map",
+            "feedback": "",
+            "compType": "select",
+            "labelTooltip": "",
+            "mapOptions": "{{ [{ label: i18n.t('kb_active_all'), value: '' }, { label: i18n.t('kb_active_yes'), value: 'true' }, { label: i18n.t('kb_active_no'), value: 'false' }] }}",
+            "maxTagCount": "",
+            "labelStyle": {
+              "fontSize": "26px"
+            },
+            "disabled": false,
+            "id": "kb_active_sel",
+            "ignorePrint": false,
+            "placeholder": "",
+            "locked": false,
+            "filterable": false,
+            "clearable": false,
+            "manualOptions": [
+              {
+                "hidden": "",
+                "disabled": "",
+                "label": "Option 1",
+                "prefixIcon": "",
+                "value": 1
+              },
+              {
+                "hidden": "",
+                "disabled": "",
+                "label": "Option 2",
+                "prefixIcon": "",
+                "value": 2
+              }
+            ],
+            "multiple": false,
+            "label": "{{i18n.t('kb_f_active')}}",
+            "parentId": "kb_root",
+            "labelPlacement": "top",
+            "mapOptionsFieldMap": {
+              "hidden": "",
+              "disabled": "",
+              "label": "{{ item.label }}",
+              "prefixIcon": "",
+              "value": "{{ item.value }}"
+            },
+            "labelAlign": "left",
+            "onEvent": [],
+            "name": "KbActiveSelect",
+            "x": 956,
+            "width": 200,
+            "y": 64,
+            "customClass": "",
+            "inputStyle": {
+              "fontSize": "26px"
+            },
+            "style": {
+              "transform": "translate(956px, 64px)",
+              "width": "200px",
+              "position": "absolute",
+              "height": "auto"
+            }
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "primary",
+            "contextObject": {},
+            "customId": "",
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "kb_search_btn",
+            "text": "{{i18n.t('kb_search')}}",
+            "ignorePrint": false,
+            "locked": false,
+            "height": 50,
+            "loading": false,
+            "parentId": "kb_root",
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "js_kbSearch",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "sync": true
+                },
+                "name": "click",
+                "id": "evt_kb_search_click"
+              }
+            ],
+            "name": "KbSearchButton",
+            "x": 1172,
+            "width": 96,
+            "y": 100,
+            "customClass": "",
+            "style": {
+              "border": "1px solid #00224C",
+              "transform": "translate(1172px, 100px)",
+              "backgroundColor": "#00224C",
+              "color": "#FFFFFF",
+              "borderRadius": "6px",
+              "width": "96px",
+              "fontSize": "14px",
+              "position": "absolute",
+              "fontWeight": "500",
+              "height": "50px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "strong": false,
+            "prefixIconColor": "",
+            "hidden": false,
+            "tooltip": "",
+            "suffixIcon": "",
+            "slot": "default",
+            "type": "default",
+            "contextObject": {},
+            "customId": "",
+            "compType": "button",
+            "corner": "default",
+            "disabled": false,
+            "id": "kb_reset_btn",
+            "text": "{{i18n.t('kb_reset')}}",
+            "ignorePrint": false,
+            "locked": false,
+            "height": 50,
+            "loading": false,
+            "parentId": "kb_root",
+            "suffixIconColor": "",
+            "appearance": "default",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "js_kbReset",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery",
+                  "sync": true
+                },
+                "name": "click",
+                "id": "evt_kb_reset_click"
+              }
+            ],
+            "name": "KbResetButton",
+            "x": 1284,
+            "width": 96,
+            "y": 100,
+            "customClass": "",
+            "style": {
+              "border": "1px solid #00224C",
+              "transform": "translate(1284px, 100px)",
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": "6px",
+              "color": "#00224C",
+              "width": "96px",
+              "fontSize": "14px",
+              "position": "absolute",
+              "fontWeight": "500",
+              "height": "50px"
+            },
+            "prefixIcon": ""
+          },
+          {
+            "hidden": false,
+            "lineClamp": 0,
+            "slot": "default",
+            "contextObject": {},
+            "customId": "",
+            "parentId": "kb_root",
+            "compType": "text",
+            "valueType": "text",
+            "onEvent": [],
+            "name": "KbTotalText",
+            "x": 35,
+            "width": 400,
+            "y": 144,
+            "customClass": "",
+            "style": {
+              "transform": "translate(35px, 144px)",
+              "backgroundColor": "transparent",
+              "color": "#6B7582",
+              "width": "400px",
+              "fontSize": "13px",
+              "position": "absolute",
+              "fontWeight": "400",
+              "height": "22px"
+            },
+            "id": "kb_total_txt",
+            "ignorePrint": false,
+            "locked": false,
+            "value": "{{i18n.t('kb_total', [Number(eca_kbSearch?.data?.data?.total ?? 0)])}}",
+            "height": 22
+          },
+          {
+            "pagination": {
+              "total": "{{Number(eca_kbSearch?.data?.data?.total ?? 0)}}",
+              "defaultPage": "1",
+              "pageSizes": [
+                5,
+                10,
+                20,
+                50
+              ],
+              "defaultPageSize": "6",
+              "quickJumperText": "跳至",
+              "hideOnSinglePage": true,
+              "showSizePicker": false,
+              "showQuickJumper": true
+            },
+            "data": "{{eca_kbSearch?.data?.data?.result ?? []}}",
+            "hidden": false,
+            "columns": [
+              {
+                "show": true,
+                "width": 160,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_id')}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "id",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.id }}",
+                  "ellipsis": false
+                },
+                "key": "id"
+              },
+              {
+                "show": true,
+                "width": 150,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_material')}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "material_definition_id",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.material_definition_id }}",
+                  "ellipsis": false
+                },
+                "key": "material_definition_id"
+              },
+              {
+                "show": true,
+                "width": 140,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_consuming')}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "consuming_location",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.consuming_location }}",
+                  "ellipsis": false
+                },
+                "key": "consuming_location"
+              },
+              {
+                "show": true,
+                "width": 120,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_supplier')}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "supplier",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.supplier }}",
+                  "ellipsis": false
+                },
+                "key": "supplier"
+              },
+              {
+                "show": true,
+                "width": 80,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "right",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_qty')}}",
+                  "align": "right"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "qty",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.qty }}",
+                  "ellipsis": false
+                },
+                "key": "qty"
+              },
+              {
+                "show": true,
+                "width": 100,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_status')}}",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "status",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ ({ACTIVE:'正常',LOW:'低位',INACTIVE:'停用'})[currentRow.status] || currentRow.status }}",
+                  "ellipsis": false
+                },
+                "key": "status"
+              },
+              {
+                "show": true,
+                "width": 82,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "fixed": "none",
+                "align": "center",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "{{i18n.t('kb_col_active')}}",
+                  "align": "center"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "is_active",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ (currentRow.is_active === true || currentRow.is_active === 'true') ? '是' : '否' }}",
+                  "ellipsis": false
+                },
+                "key": "is_active"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "UpdatedAt",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "updated_at",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.updated_at }}",
+                  "ellipsis": false
+                },
+                "key": "updated_at"
+              },
+              {
+                "show": false,
+                "tooltip": "",
+                "tooltipPlacement": "top",
+                "autoWidth": "fixed",
+                "width": 200,
+                "fixed": "none",
+                "align": "left",
+                "title": {
+                  "show": true,
+                  "tooltip": "",
+                  "tooltipPlacement": "top",
+                  "label": "LeadTime",
+                  "align": "left"
+                },
+                "render": {
+                  "suffixIconColor": "",
+                  "prefixIconColor": "",
+                  "prefixIconSize": 24,
+                  "fieldKey": "lead_time",
+                  "suffixIconSize": 24,
+                  "suffixIcon": "",
+                  "type": "text",
+                  "prefixIcon": "",
+                  "value": "{{ currentRow.lead_time }}",
+                  "ellipsis": false
+                },
+                "key": "lead_time"
+              }
+            ],
+            "slot": "default",
+            "customId": "",
+            "contextObject": {
+              "currentCell": "",
+              "currentRow": {},
+              "currentIndex": 0
+            },
+            "compType": "table",
+            "fixedHeader": false,
+            "id": "kb_result_table",
+            "ignorePrint": false,
+            "locked": false,
+            "fixedToolbar": false,
+            "height": 480,
+            "defaultSelected": true,
+            "showHeader": true,
+            "resizeableColumnsWidth": false,
+            "loading": "{{eca_kbSearch.isFetching}}",
+            "parentId": "kb_root",
+            "toolbar": {
+              "showToolbar": false,
+              "showColumnControl": false,
+              "showDownload": false,
+              "iconSize": 18,
+              "downloadName": "table-data.csv",
+              "csvSeparator": ","
+            },
+            "size": "medium",
+            "onEvent": [
+              {
+                "handler": {
+                  "comp": {
+                    "name": "cv_kbCurrentSelectRow",
+                    "methodName": "setValue",
+                    "params": {
+                      "comp": "{{ KbResultTable.selectedRow }}",
+                      "path": ""
+                    }
+                  },
+                  "compType": "setTempState",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": true
+                },
+                "name": "rowClick",
+                "id": "evt_kb_rowclick_setstate"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "name": "onSelect"
+                  },
+                  "compType": "triggerModuleEvent",
+                  "delay": "",
+                  "conditions": [
+                    {
+                      "type": "and",
+                      "value": "true"
+                    }
+                  ],
+                  "sync": true
+                },
+                "name": "rowClick",
+                "id": "evt_kb_rowclick"
+              },
+              {
+                "handler": {
+                  "comp": {
+                    "queryName": "eca_kbSearch",
+                    "queryVariables": []
+                  },
+                  "compType": "executeQuery"
+                },
+                "name": "pageChange",
+                "id": "evt_kb_pagechange"
+              }
+            ],
+            "name": "KbResultTable",
+            "x": 30,
+            "width": 1776,
+            "enableScrollX": false,
+            "y": 168,
+            "customClass": "",
+            "style": {
+              "transform": "translate(30px, 168px)",
+              "width": "1776px",
+              "position": "absolute",
+              "height": "480px"
+            },
+            "rowKey": "id"
+          }
+        ],
+        "name": "KanbanQueryRoot",
+        "x": 0,
+        "width": 1840,
+        "y": 0,
+        "customClass": "",
+        "style": {
+          "border": "1px solid #CCD3DB",
+          "padding": "0",
+          "transform": "translate(0px, 0px)",
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": "8px",
+          "width": "1840px",
+          "position": "absolute",
+          "height": "664px"
+        },
+        "id": "kb_root",
+        "ignorePrint": false,
+        "locked": false,
+        "height": 664
+      }
+    ],
+    "customShortcuts": [],
+    "inputs": [
+      {
+        "defaultValue": "",
+        "name": "resourceId",
+        "description": "资源 ID,由宿主/平台注入",
+        "type": "data",
+        "testValue": ""
+      },
+      {
+        "defaultValue": "20",
+        "name": "pageSize",
+        "description": "每页条数",
+        "type": "data",
+        "testValue": "5"
+      },
+      {
+        "defaultValue": "false",
+        "name": "readonly",
+        "description": "是否只读",
+        "type": "data",
+        "testValue": "false"
+      }
+    ],
+    "methods": [
+      {
+        "name": "search",
+        "description": "执行查询",
+        "action": {
+          "comp": {
+            "queryName": "js_kbSearch",
+            "queryVariables": []
+          },
+          "compType": "executeQuery"
+        },
+        "params": []
+      },
+      {
+        "name": "reset",
+        "description": "重置筛选",
+        "action": {
+          "comp": {
+            "queryName": "js_kbReset",
+            "queryVariables": []
+          },
+          "compType": "executeQuery"
+        },
+        "params": []
+      }
+    ],
+    "global": [
+      {
+        "name": "cv_kbFilter",
+        "id": "v_kb_filter",
+        "type": "variable",
+        "value": []
+      },
+      {
+        "name": "cv_kbCurrentSelectRow",
+        "id": "v_kb_sel_row",
+        "type": "variable",
+        "value": "null"
+      },
+      {
+        "notification": {
+          "duration": "3s",
+          "fail": [],
+          "success": {
+            "text": ""
+          },
+          "showFail": true,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "showConfirmationModal": false,
+            "confirmationMessage": ""
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": "15s"
+        },
+        "onEvent": [
+          {
+            "handler": {
+              "comp": {
+                "name": "onSearchDone"
+              },
+              "compType": "triggerModuleEvent"
+            },
+            "name": "success",
+            "id": "evt_kb_search_ok"
+          },
+          {
+            "handler": {
+              "comp": {
+                "name": "onError"
+              },
+              "compType": "triggerModuleEvent"
+            },
+            "name": "failure",
+            "id": "evt_kb_search_fail"
+          }
+        ],
+        "name": "js_kbSearch",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "js_kb_search",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "var conds = [];\nvar id = String(KbIdInput?.value || '').trim();\nvar kw = String(KbKeywordInput?.value || '').trim();\nvar cons = String(KbConsumingInput?.value || '').trim();\nvar sup = String(KbSupplierInput?.value || '').trim();\nvar act = String(KbActiveSelect?.value || '').trim();\nif (id) conds.push({condition:'like', columnName:'id', columnValue:id});\nif (kw) conds.push({condition:'like', columnName:'material_definition_id', columnValue:kw});\nif (cons) conds.push({condition:'=', columnName:'consuming_location', columnValue:cons});\nif (sup) conds.push({condition:'=', columnName:'supplier', columnValue:sup});\nif (act) conds.push({condition:'=', columnName:'is_active', columnValue: act === 'true'});\ncv_kbFilter.setValue(conds);\nawait eca_kbSearch.run();"
+      },
+      {
+        "notification": {
+          "duration": "3s",
+          "fail": [],
+          "success": {
+            "text": ""
+          },
+          "showFail": false,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "showConfirmationModal": false,
+            "confirmationMessage": ""
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": "10s"
+        },
+        "onEvent": [],
+        "name": "js_kbReset",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "js_kb_reset",
+        "triggerType": "manual",
+        "type": "javascript",
+        "script": "if (KbIdInput) KbIdInput.setValue('');\nif (KbKeywordInput) KbKeywordInput.setValue('');\nif (KbConsumingInput) KbConsumingInput.setValue('');\nif (KbSupplierInput) KbSupplierInput.setValue('');\nif (KbActiveSelect) KbActiveSelect.setValue('');\ncv_kbFilter.setValue([]);\ncv_kbCurrentSelectRow.setValue('null');\nif (KbResultTable && KbResultTable.resetPage) { KbResultTable.resetPage(); }\nif (KbResultTable && KbResultTable.resetPageSize) { KbResultTable.resetPageSize(); }\nawait eca_kbSearch.run();"
+      },
+      {
+        "bodyType": "application/json",
+        "headers": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "variables": [],
+        "pathParams": [],
+        "queryParams": [
+          {
+            "value": "",
+            "key": ""
+          }
+        ],
+        "advanced": {
+          "confirmationModal": {
+            "showConfirmationModal": false,
+            "confirmationMessage": ""
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": "15s"
+        },
+        "bodyParams": "{{\n{\n  table: 'oet_kanban_cards',\n  resourceId: (cv_resourceId.value || resourceId.value || ''),\n  query: 'id, material_definition_id, consuming_location, supplier, qty, lead_time, is_active, status,updated_at',\n  filter: cv_kbFilter.value || [],\n  order_by: [{ type: 'DESC', column_name: 'id' }],\n  page_size: Number(KbResultTable.pageSize),\n  page_number: Number(KbResultTable.page) \n}\n}}",
+        "type": "presetRestApi",
+        "notification": {
+          "duration": "",
+          "fail": [
+            {
+              "condition": "{{ !$0.success }}",
+              "text": "{{i18n.t('kb_search_fail')}}"
+            }
+          ],
+          "success": {
+            "text": ""
+          },
+          "showFail": true,
+          "showSuccess": false
+        },
+        "onEvent": [],
+        "name": "eca_kbSearch",
+        "presetReferenceKey": "presetRestApi:search",
+        "depQueryName": "",
+        "delayTime": "",
+        "id": "q_kb_search",
+        "triggerType": "manual"
+      },
+      {
+        "onEvent": [
+          {
+            "handler": {
+              "comp": {
+                "queryName": "eca_kbSearch",
+                "queryVariables": []
+              },
+              "compType": "executeQuery",
+              "delay": "",
+              "conditions": [
+                {
+                  "type": "and",
+                  "value": "true"
+                }
+              ],
+              "sync": false
+            },
+            "name": "dataChange",
+            "id": "91657c9e-738a-4ee8-b5f0-2da42ebfcc84"
+          }
+        ],
+        "name": "responder_resourceId",
+        "id": "6bd4015d-26e0-42f4-8ba2-4b556463efc2",
+        "type": "responder",
+        "script": "{{resourceId.value}}"
+      },
+      {
+        "notification": {
+          "duration": "3s",
+          "fail": [],
+          "success": {
+            "text": ""
+          },
+          "showFail": false,
+          "showSuccess": false
+        },
+        "variables": [],
+        "advanced": {
+          "confirmationModal": {
+            "showConfirmationModal": false,
+            "confirmationMessage": ""
+          },
+          "periodic": false,
+          "periodicTime": "",
+          "timeout": "10s"
+        },
+        "onEvent": [],
+        "name": "js_kbAutoSearch",
+        "depQueryName": "",
+        "delayTime": "1500ms",
+        "id": "js_auto_kbq",
+        "triggerType": "onTimeout",
+        "type": "javascript",
+        "script": "// mount 后自动查询:resourceId 由宿主注入,未注入则不执行\ntry {\n  var rid = (typeof resourceId !== \"undefined\" && resourceId && resourceId.value) ? resourceId.value : (cv_resourceId.value || \"\");\n  if (!rid) return false;\n  if (typeof js_kbSearch !== \"undefined\" && js_kbSearch && js_kbSearch.run) { await js_kbSearch.run(); }\n} catch(e) { /* 静默 */ }\nreturn true;"
+      },
+      {
+        "onEvent": [],
+        "name": "cv_resourceId",
+        "initiaValue": "",
+        "id": "cv_resourceId",
+        "type": "variable"
+      }
+    ],
+    "event": {
+      "enableEventTestMessage": true,
+      "list": [
+        {
+          "name": "onSearchDone",
+          "description": "查询完成"
+        },
+        {
+          "name": "onSelect",
+          "description": "用户选中一张看板卡"
+        },
+        {
+          "name": "onError",
+          "description": "查询失败"
+        }
+      ]
+    },
+    "preload": {
+      "style": ".n-data-table--loading .n-data-table-empty{display:none !important;}",
+      "script": ""
+    },
+    "i18n": {
+      "defaultLocale": "zh-CN",
+      "messages": {
+        "en-US": {
+          "kb_title": "Kanban Cards",
+          "kb_col_supplier": "Supplier",
+          "kb_col_consuming": "Consuming Loc.",
+          "kb_col_qty": "Qty",
+          "kb_f_supplier": "Supplier",
+          "kb_col_status": "Status",
+          "kb_active_no": "Inactive",
+          "kb_f_active": "Active",
+          "kb_col_active": "Active",
+          "kb_f_id": "Card ID",
+          "kb_col_id": "Card ID",
+          "kb_col_material": "Material",
+          "kb_search": "Search",
+          "kb_f_consuming": "Consuming Loc.",
+          "kb_active_yes": "Active",
+          "kb_active_all": "All",
+          "kb_total": "{0} records",
+          "kb_search_fail": "Kanban card query failed",
+          "kb_reset": "Reset",
+          "kb_f_keyword": "Material"
+        },
+        "zh-CN": {
+          "kb_title": "看板卡查询",
+          "kb_col_supplier": "供应商",
+          "kb_col_consuming": "消耗库位",
+          "kb_col_qty": "数量",
+          "kb_f_supplier": "供应商",
+          "kb_col_status": "状态",
+          "kb_active_no": "停用",
+          "kb_f_active": "启用状态",
+          "kb_col_active": "启用",
+          "kb_f_id": "看板ID",
+          "kb_col_id": "看板ID",
+          "kb_col_material": "物料",
+          "kb_search": "查询",
+          "kb_f_consuming": "消耗库位",
+          "kb_active_yes": "启用",
+          "kb_active_all": "全部",
+          "kb_total": "共 {0} 条",
+          "kb_search_fail": "看板卡查询失败",
+          "kb_reset": "重置",
+          "kb_f_keyword": "物料"
+        }
+      },
+      "fallbackLocale": "zh-CN",
+      "source": {}
+    },
+    "canvasSetting": {
+      "deviceType": "desktop",
+      "paddingX": 0,
+      "backgroundColor": "#FFFFFF",
+      "backgroundImage": "",
+      "backgroundSize": "",
+      "backgroundPosition": "",
+      "backgroundRepeat": "no-repeat",
+      "backgroundOrigin": "",
+      "paddingY": 0
+    },
+    "setting": {
+      "iconCorner": "default",
+      "icon": "",
+      "iconColor": "#00224C",
+      "description": "看板卡查询 Module:按 ID/物料/库位/供应商/启用状态等条件查询看板卡,支持分页与行选中。",
+      "category": [
+        "Inventory"
+      ]
+    }
+  }
+}
