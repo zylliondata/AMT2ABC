@@ -102,6 +102,28 @@ def graph(source: str, target: str) -> None:
 
 
 @main.command()
+@click.option("--export", "export_path", default=None, help="Write graph JSON to path")
+def build(export_path: str) -> None:
+    """Build the AMT graph and print a summary report."""
+    from amt2abc.compiler.builder import GraphBuilder
+
+    builder = GraphBuilder().from_directory()
+    graph, report = builder.build_checked()
+
+    click.echo(f"AMTs: {report.amt_count}")
+    click.echo(f"Variables: {report.variable_count}")
+    click.echo(f"Variable edges: {report.variable_edge_count}")
+    click.echo(f"AMT edges: {report.amt_edge_count}")
+    click.echo(f"Status: {'OK' if report.ok else 'WARNINGS'}")
+    for warning in report.warnings:
+        click.echo(f"  ! {warning}")
+
+    if export_path:
+        out = builder.export_json(export_path)
+        click.echo(f"Exported: {out}")
+
+
+@main.command()
 @click.argument("goal")
 @click.option("--format", "-f", "output_format", default="text")
 def compile(goal: str, output_format: str) -> None:  # noqa: A001

@@ -61,3 +61,19 @@ def test_compile():
     assert result.exit_code == 0
     assert "Goal:" in result.output
     assert "Matched AMTs" in result.output
+
+
+def test_build():
+    runner = CliRunner()
+    result = runner.invoke(main, ["build"])
+    assert result.exit_code == 0
+    assert "AMTs:" in result.output
+    assert "Status: OK" in result.output
+
+
+def test_build_export(tmp_path):
+    out = tmp_path / "graph.json"
+    runner = CliRunner()
+    result = runner.invoke(main, ["build", "--export", str(out)])
+    assert result.exit_code == 0
+    assert out.exists()
