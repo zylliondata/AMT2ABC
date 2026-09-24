@@ -77,3 +77,11 @@ def test_build_export(tmp_path):
     result = runner.invoke(main, ["build", "--export", str(out)])
     assert result.exit_code == 0
     assert out.exists()
+
+
+def test_goal_parse():
+    runner = CliRunner()
+    result = runner.invoke(main, ["goal", "reduce porosity rate"])
+    assert result.exit_code == 0
+    assert "Target variable: porosity" in result.output
+    assert "Desired direction: decrease" in result.output

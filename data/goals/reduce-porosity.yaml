@@ -1,0 +1,18 @@
+id: GS_DC_POROSITY_001
+text: Reduce porosity rate by 20% in die casting
+domain: die_casting
+target_variable: porosity_rate
+desired_direction: decrease
+constraints:
+  - "injection_time <= 0.5 s"
+  - "tmax_die <= 220 degC"
+keywords:
+  - porosity
+  - die_casting
+priority: high
+source: manufacturing_partner
+target:
+  variable: porosity_rate
+  direction: decrease
+  reduction_pct: 20
+  unit: "%"

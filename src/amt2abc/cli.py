@@ -124,6 +124,27 @@ def build(export_path: str) -> None:
 
 
 @main.command()
+@click.argument("goal_text")
+@click.option("--format", "-f", "output_format", default="text")
+def goal(goal_text: str, output_format: str) -> None:
+    """Parse a natural-language goal statement."""
+    from amt2abc.parser.gs_parser import GSParser
+
+    gs = GSParser().parse_text(goal_text)
+
+    if output_format == "json":
+        click.echo(
+            json.dumps(gs.model_dump(), ensure_ascii=False, indent=2)
+        )
+        return
+
+    click.echo(f"Text: {gs.text}")
+    click.echo(f"Target variable: {gs.target_variable}")
+    click.echo(f"Desired direction: {gs.desired_direction}")
+    click.echo(f"Keywords: {', '.join(gs.keywords) if gs.keywords else '-'}")
+
+
+@main.command()
 @click.argument("goal")
 @click.option("--format", "-f", "output_format", default="text")
 def compile(goal: str, output_format: str) -> None:  # noqa: A001
