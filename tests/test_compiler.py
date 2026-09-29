@@ -1,5 +1,5 @@
 from amt2abc.compiler.graph import AMTGraph
-from amt2abc.compiler.matcher import GoalMatcher
+from amt2abc.compiler.matcher import GoalMatcher, GraphMatcher
 from amt2abc.compiler.pipeline import CompilerPipeline
 from amt2abc.models.amt import AMT, Triplet
 from amt2abc.models.gs import GoalStatement
@@ -142,3 +142,90 @@ def test_pipeline_no_data(tmp_path):
     result = pipeline.compile("reduce porosity")
     assert result["goal"] == "reduce porosity"
     assert result["matched_amts"] == []
+
+
+def test_graph_matcher_target_resolution():
+    amt = _amt(
+        "m1",
+        [("mold_temperature", "porosity_rate", "increases")],
+    )
+    graph = AMTGraph()
+    graph.build([amt])
+    matcher = GraphMatcher([amt], graph)
+    assert matcher.resolve_target("porosity_rate") == "porosity_rate"
+    assert matcher.resolve_target("porosity") == "porosity_rate"
+    assert matcher.resolve_target("mold") == "mold_temperature"
+    assert matcher.resolve_target("unknown") is None
+
+
+def test_graph_matcher_direct_ranks_higher():
+    direct = _amt("direct", [("temp", "porosity_rate", "increases")])
+    unrelated = _amt("unrelated", [("a", "b", "increases")])
+    graph = AMTGraph()
+    graph.build([direct, unrelated])
+    matcher = GraphMatcher([direct, unrelated], graph)
+    goal = GoalStatement(
+        text="reduce porosity",
+        target_variable="porosity",
+        desired_direction="decrease",
+        keywords=["porosity", "improve"],
+    )
+    matches = matcher.match(goal)
+    assert len(matches) == 1
+    assert matches[0][0].id == "direct"
+
+
+def test_graph_matcher_handles_unmatched_target():
+    amt = _amt("m1", [("temp", "porosity", "increases")], name="porosity fix")
+    matcher = GraphMatcher([amt])
+    goal = GoalStatement(
+        text="reduce porosity",
+        target_variable="nonexistent_var",
+        desired_direction="decrease",
+        keywords=["porosity"],
+    )
+    matches = matcher.match(goal)
+    assert matches[0][0].id == "m1"
+
+
+def test_graph_matcher_fallback_without_target():
+    amt = _amt("m1", [("temp", "porosity", "increases")], name="porosity fix")
+    matcher = GraphMatcher([amt])
+    goal = GoalStatement(text="fix porosity", keywords=["porosity"])
+    matches = matcher.match(goal)
+    assert matches[0][0].id == "m1"
+
+
+def test_graph_matcher_influencing_subgraph():
+    probe = _amt(
+        "probe",
+        [("probe_var", "shared", "increases")],
+    )
+    target = _amt(
+        "target",
+        [("shared", "final_var", "increases")],
+    )
+    graph = AMTGraph()
+    graph.build([probe, target])
+    matcher = GraphMatcher([probe, target], graph)
+    sub = matcher.influencing_subgraph(
+        GoalStatement(
+            text="improve final_var",
+            target_variable="final_var",
+            keywords=["final_var"],
+        )
+    )
+    assert sub["target"] == "final_var"
+    assert set(sub["amts"]) == {"probe", "target"}
+    assert sub["edges"] == [
+        {"from": "probe", "to": "target", "via": "shared"}
+    ]
+
+
+def test_graph_matcher_subgraph_with_no_target():
+    matcher = GraphMatcher([])
+    sub = matcher.influencing_subgraph(
+        GoalStatement(text="hello", keywords=[])
+    )
+    assert sub["target"] is None
+    assert sub["amts"] == []

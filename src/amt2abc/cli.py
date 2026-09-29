@@ -159,7 +159,16 @@ def compile(goal: str, output_format: str) -> None:  # noqa: A001
         return
 
     click.echo(f"Goal: {result['goal']}")
+    if result["target_variable"]:
+        click.echo(
+            f"Target: {result['target_variable']} "
+            f"({result['desired_direction']})"
+        )
     click.echo(f"Matched AMTs: {len(result['matched_amts'])}")
     for amt in result["matched_amts"]:
         click.echo(f"  {amt['id']:<30} score={amt['score']}")
+    subgraph = result["influencing_subgraph"]
+    click.echo(
+        f"Influencing AMTs: {len(subgraph['amts']) if subgraph else 0}"
+    )
     click.echo(f"Recommended ABCs: {len(result['recommended_abcs'])}")
